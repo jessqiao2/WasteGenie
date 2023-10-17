@@ -7,51 +7,6 @@
     android:background="#F3F3F4"
     tools:context=".AnalysisActivity">
 
-    <TextView
-        android:id="@+id/tvAnalysisRecycleScore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/public_sans_bold"
-        android:text="Your E-Recycling Score is 78%"
-        android:textColor="#2995E2"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/tvAnalysisHeader"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.124" />
-
-    <TextView
-        android:id="@+id/tvAnalysisRecycleScoreChange"
-        android:layout_width="150dp"
-        android:layout_height="30dp"
-        android:fontFamily="@font/public_sans_bold"
-        android:text="(+15%)"
-        android:textColor="#4CAF50"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tvAnalysisRecycleScore"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.014"
-        app:layout_constraintStart_toEndOf="@+id/tvAnalysisRecycleScore"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <TextView
-        android:id="@+id/tvAnalysisHeader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/public_sans_bold"
-        android:text="My Dashboard"
-        android:textColor="#2995E2"
-        android:textSize="50sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.215"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.042" />
-
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
@@ -71,6 +26,52 @@
         app:menu="@menu/navigation" />
 
     <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="373dp"
+        android:layout_height="169dp"
+        android:background="@drawable/blue_rectangle_frame"
+        app:layout_constraintBottom_toBottomOf="@+id/relativeLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintStart_toEndOf="@+id/relativeLayout"
+        app:layout_constraintTop_toTopOf="@+id/relativeLayout"
+        app:layout_constraintVertical_bias="1.0">
+
+        <TextView
+            android:id="@+id/tvAnalysisRecycleScore3"
+            android:layout_width="347dp"
+            android:layout_height="79dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="17dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="70dp"
+            android:fontFamily="@font/public_sans_bold"
+            android:text="Total E-Waste Weight"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tvAnalysisMonthly"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:fontFamily="@font/public_sans_bold"
+        android:text="Monthly"
+        android:textColor="#2995E2"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/relativeLayout"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/relativeLayout"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+        app:layout_constraintVertical_bias="0.001" />
+
+    <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="373dp"
         android:layout_height="169dp"
@@ -80,7 +81,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/tvAnalysisRecycleScore"
         app:layout_constraintTop_toBottomOf="@+id/tvAnalysisRecycleScore"
-        app:layout_constraintVertical_bias="0.023">
+        app:layout_constraintVertical_bias="0.022">
 
         <TextView
             android:id="@+id/tvAnalysisRecycleScore2"
@@ -100,35 +101,66 @@
             android:textSize="30sp" />
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/relativeLayout2"
-        android:layout_width="373dp"
-        android:layout_height="169dp"
-        android:background="@drawable/blue_rectangle_frame"
-        app:layout_constraintBottom_toBottomOf="@+id/relativeLayout"
+    <TextView
+        android:id="@+id/tvAnalysisHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/public_sans_bold"
+        android:text="My Dashboard"
+        android:textColor="#2995E2"
+        android:textSize="50sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.046"
-        app:layout_constraintStart_toEndOf="@+id/relativeLayout"
-        app:layout_constraintTop_toTopOf="@+id/relativeLayout"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintHorizontal_bias="0.221"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.042" />
 
-        <TextView
-            android:id="@+id/tvAnalysisRecycleScore3"
-            android:layout_width="347dp"
-            android:layout_height="79dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="18dp"
-            android:layout_marginTop="17dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="70dp"
-            android:fontFamily="@font/public_sans_bold"
-            android:text="Total E-Waste Weight"
-            android:textColor="#FFFFFF"
-            android:textSize="30sp" />
-    </RelativeLayout>
+    <TextView
+        android:id="@+id/tvAnalysisRecycleScoreChange"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:fontFamily="@font/public_sans_bold"
+        android:text="(+15%)"
+        android:textColor="#4CAF50"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvAnalysisRecycleScore"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.012"
+        app:layout_constraintStart_toEndOf="@+id/tvAnalysisRecycleScore"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/tvAnalysisWeekly"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:fontFamily="@font/public_sans_bold"
+        android:text="Weekly"
+        android:textColor="#2995E2"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvAnalysisMonthly"
+        app:layout_constraintEnd_toEndOf="@+id/relativeLayout"
+        app:layout_constraintHorizontal_bias="0.651"
+        app:layout_constraintStart_toStartOf="@+id/relativeLayout"
+        app:layout_constraintTop_toTopOf="@+id/tvAnalysisMonthly"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/tvAnalysisRecycleScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/public_sans_bold"
+        android:text="Your E-Recycling Score is 78%"
+        android:textColor="#2995E2"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tvAnalysisHeader"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.124" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout3"
@@ -261,38 +293,6 @@
         app:layout_constraintVertical_bias="0.903">
 
     </RelativeLayout>
-
-    <TextView
-        android:id="@+id/tvAnalysisMonthly"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:fontFamily="@font/public_sans_bold"
-        android:text="Monthly"
-        android:textColor="#2995E2"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/relativeLayout"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/relativeLayout"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/tvAnalysisWeekly"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:fontFamily="@font/public_sans_bold"
-        android:text="Weekly"
-        android:textColor="#2995E2"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tvAnalysisMonthly"
-        app:layout_constraintEnd_toEndOf="@+id/relativeLayout"
-        app:layout_constraintHorizontal_bias="0.657"
-        app:layout_constraintStart_toStartOf="@+id/relativeLayout"
-        app:layout_constraintTop_toTopOf="@+id/tvAnalysisMonthly"
-        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
