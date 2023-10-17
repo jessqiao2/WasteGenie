@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="1814dp"
+        android:layout_height="1117dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.69"
+        app:layout_constraintStart_toEndOf="@+id/relativeLayout5"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/login_waste_collection" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout5"
+        android:layout_width="983dp"
+        android:layout_height="1080dp"
+        android:background="#CCE6FB"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="457dp"
+            android:layout_height="139dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="200dp"
+            android:layout_marginEnd="476dp"
+            android:layout_marginBottom="741dp"
+            app:srcCompat="@drawable/wastegenie_logo" />
+
+        <TextView
+            android:id="@+id/tvLoginDesc"
+            android:layout_width="895dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="49dp"
+            android:layout_marginTop="372dp"
+            android:layout_marginEnd="39dp"
+            android:layout_marginBottom="582dp"
+            android:fontFamily="@font/public_sans_bold"
+            android:text="Sign Up for E-Waste Management"
+            android:textColor="#0460A1"
+            android:textSize="50sp" />
+
+        <TextView
+            android:id="@+id/tvLoginDesc2"
+            android:layout_width="592dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="197dp"
+            android:layout_marginTop="226dp"
+            android:layout_marginEnd="194dp"
+            android:layout_marginBottom="728dp"
+            android:fontFamily="@font/public_sans_bold"
+            android:text="WasteGenie"
+            android:textColor="#0460A1"
+            android:textSize="54sp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="901dp"
+            android:layout_height="83dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="42dp"
+            android:layout_marginTop="523dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="474dp"
+            android:background="@drawable/searchview_background">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etSignUpEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:textSize="30sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="901dp"
+            android:layout_height="80dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="42dp"
+            android:layout_marginTop="642dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="358dp"
+            android:background="@drawable/searchview_background"
+            app:passwordToggleEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etSignUpPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:textSize="30sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btSignUp"
+            android:layout_width="395dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="277dp"
+            android:layout_marginTop="778dp"
+            android:layout_marginEnd="311dp"
+            android:layout_marginBottom="242dp"
+            android:background="@drawable/button_blue"
+            android:text="Sign Up"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="278dp"
+            android:layout_marginTop="898dp"
+            android:layout_marginEnd="357dp"
+            android:layout_marginBottom="149dp"
+            android:text="Already have an account?"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/tvSignUpSignIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="571dp"
+            android:layout_marginTop="897dp"
+            android:layout_marginEnd="313dp"
+            android:layout_marginBottom="150dp"
+            android:fontFamily="@font/public_sans_bold"
+            android:text=" Sign In"
+            android:textColor="#0460A1"
+            android:textSize="25sp" />
+
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "649683473989",
+    "project_id": "wastegenie-f5786",
+    "storage_bucket": "wastegenie-f5786.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:649683473989:android:e5538de9e92b140715b52c",
+        "android_client_info": {
+          "package_name": "com.example.wastegenie"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAe0InYKdqmQjy4NFyLAt97pdHRJmsm9Lw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

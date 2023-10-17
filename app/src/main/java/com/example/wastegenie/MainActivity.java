@@ -14,73 +14,55 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+import java.util.Objects;
 
-    private DrawerLayout drawerLayout;
+public class MainActivity extends AppCompatActivity {
+    NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //setTitle("WasteGenie");
+        setTitle("Home Page");
 
-        Toolbar toolbar = findViewById(R.id.toolbar); //Ignore red line errors
-        setSupportActionBar(toolbar);
-        drawerLayout = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_nav,
-                R.string.close_nav);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
-            navigationView.setCheckedItem(R.id.home);
-        }
+        /**
+         * For navigation view, if we want to change this to  navigation toggle, use this guide:
+         * https://www.youtube.com/watch?v=KO-wBv7Phwo&ab_channel=KGINFO
+         */
+
+        navigationView = findViewById(R.id.nav_view);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+
+                if(id == R.id.home) {
+                    return true;
+                } else if (id == R.id.analysis) {
+                    Intent intent = new Intent(MainActivity.this, AnalysisActivity.class);
+                    startActivity(intent);
+                    finish();
+                    return true;
+                } else if (id == R.id.tracking) {
+                    Intent intent = new Intent(MainActivity.this, TrackingActivity.class);
+                    startActivity(intent);
+                    finish();
+                    return true;
+                } else if (id == R.id.profile) {
+                    Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+                    startActivity(intent);
+                    finish();
+                    return true;
+                } else if (id == R.id.logout) {
+                    Toast.makeText(getApplication(), "Logout Selected", Toast.LENGTH_SHORT).show();
+                    return true;
+                }
+
+                return false;
+            }
+        });
 
     }
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-
-        if(id == R.id.home) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
-        } else if (id == R.id.analysis) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AnalysisFragment()).commit();
-        } else if (id == R.id.tracking) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new TrackingFragment()).commit();
-        } else if (id == R.id.profile) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileFragment()).commit();
-        } else if (id == R.id.logout) {
-            Toast.makeText(this, "Logout has been selected", Toast.LENGTH_LONG).show();
-        }
-//        switch (item.getItemId()) {
-//            case R.id.home:
-//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
-//                break;
-//            case R.id.analysis:
-//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AnalysisFragment()).commit();
-//                break;
-//            case R.id.tracking:
-//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new TrackingFragment()).commit();
-//                break;
-//            case R.id.profile:
-//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileFragment()).commit();
-//                break;
-//            case R.id.logout:
-//                Toast.makeText(this, "Logout has been selected", Toast.LENGTH_LONG).show();
-//                break;
-//        }
-        drawerLayout.closeDrawer(GravityCompat.START);
-        return true;
-    }
-    @Override
-    public void onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
 }

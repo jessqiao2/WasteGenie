@@ -3,29 +3,31 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="180dp"
+    android:layout_height="200dp"
     android:gravity="bottom"
     android:padding="16dp"
     android:background="@drawable/header_navigation"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <ImageView
-        android:layout_width="180dp"
-        android:layout_height="50dp"
+        android:layout_width="200dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="8dp"
         android:src="@drawable/wastegenie_logo" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="WasteGenie"
+        android:text="E-Waste Solutions "
         android:textColor="@color/white"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="8dp"
         android:text="contact@WasteGenie.com"
         android:textColor="@color/white"
-        android:textSize="14sp" />
+        android:textSize="20sp" />
 </LinearLayout>
