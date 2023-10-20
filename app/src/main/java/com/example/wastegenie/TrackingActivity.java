@@ -8,16 +8,31 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.navigation.NavigationView;
 
-public class TrackingActivity extends AppCompatActivity {
+public class TrackingActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     NavigationView navigationView;
+    private MapView mvTracking;
+    private static final String MAPVIEW_BUNDLE_KEY = "MapViewBundleKey";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tracking);
         setTitle("Tracking Page");
+
+        Bundle mapViewBundle = null;
+        if (savedInstanceState != null) {
+            mapViewBundle = savedInstanceState.getBundle(MAPVIEW_BUNDLE_KEY);
+        }
+        mvTracking = findViewById(R.id.mvTracking);
+        mvTracking.onCreate(mapViewBundle);
+        mvTracking.getMapAsync(this);
 
         /**
          * Set up navigation view
@@ -54,5 +69,57 @@ public class TrackingActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+    @Override
+
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        Bundle mapViewBundle = outState.getBundle(MAPVIEW_BUNDLE_KEY);
+        if (mapViewBundle == null) {
+            mapViewBundle = new Bundle();
+            outState.putBundle(MAPVIEW_BUNDLE_KEY, mapViewBundle);
+        }
+
+        mvTracking.onSaveInstanceState(mapViewBundle);
+    }
+    @Override
+    public void onMapReady(GoogleMap map) {
+        map.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mvTracking.onResume();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mvTracking.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mvTracking.onStop();
+    }
+
+    @Override
+    protected void onPause() {
+        mvTracking.onPause();
+        super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        mvTracking.onDestroy();
+        super.onDestroy();
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        mvTracking.onLowMemory();
     }
 }
