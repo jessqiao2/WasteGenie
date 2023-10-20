@@ -5,7 +5,7 @@ import java.util.Date;
 public class BinData {
 
     /**
-     * Follow data is based on the dummy data on the groupchat - this has been added onto
+     * The data below is based on the dummy data on the groupchat - this has been added onto
      * firebase realtime database!
      */
 
@@ -15,7 +15,7 @@ public class BinData {
     int consumerElectronicsPercent;
     String councilAddress;
     String councilName;
-    Date date;
+    String date;
     int eWasteWeightKilos;
     int id;
     int lightingDevicesPercent;
@@ -74,11 +74,11 @@ public class BinData {
         this.councilName = councilName;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
