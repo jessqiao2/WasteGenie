@@ -218,6 +218,61 @@
         app:layout_constraintTop_toTopOf="@+id/tvHomeWelcome"
         app:layout_constraintVertical_bias="0.088">
 
+        <RelativeLayout
+            android:layout_width="652dp"
+            android:layout_height="37dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="196dp"
+            android:layout_marginBottom="764dp"
+            android:background="@drawable/searchview_background">
+
+            <Spinner
+                android:id="@+id/spHomeTrackTruckID"
+                android:layout_width="614dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="19dp"
+                android:layout_marginEnd="19dp"
+                android:layout_marginBottom="4dp" />
+        </RelativeLayout>
+
+        <CheckBox
+            android:id="@+id/cbHomeRecycle"
+            android:layout_width="210dp"
+            android:layout_height="43dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="72dp"
+            android:layout_marginTop="245dp"
+            android:layout_marginEnd="413dp"
+            android:layout_marginBottom="709dp"
+            android:text="Bin Fully Recyclable"
+            android:textAlignment="viewEnd"
+            android:textSize="20sp" />
+
+        <CheckBox
+            android:id="@+id/cbHomeContaminated"
+            android:layout_width="300dp"
+            android:layout_height="43dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="327dp"
+            android:layout_marginTop="245dp"
+            android:layout_marginEnd="68dp"
+            android:layout_marginBottom="709dp"
+            android:text="Bin Flagged as Contaminated"
+            android:textAlignment="viewEnd"
+            android:textSize="20sp" />
+
         <TextView
             android:id="@+id/tvHomeGraphTitle2"
             android:layout_width="495dp"
@@ -235,33 +290,78 @@
             android:textColor="#FFFFFF"
             android:textSize="30sp" />
 
-        <SearchView
-            android:layout_width="653dp"
-            android:layout_height="54dp"
+        <TextView
+            android:id="@+id/tvHomeGraphTitle3"
+            android:layout_width="495dp"
+            android:layout_height="34dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="22dp"
-            android:layout_marginTop="87dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="856dp"
-            android:background="@drawable/searchview_background"
-            android:iconifiedByDefault="false"
-            android:queryHint="Search Truck ID..." />
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="85dp"
+            android:layout_marginEnd="175dp"
+            android:layout_marginBottom="878dp"
+            android:fontFamily="@font/public_sans_bold"
+            android:text="Select Council:"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tvHomeGraphTitle4"
+            android:layout_width="497dp"
+            android:layout_height="30dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="164dp"
+            android:layout_marginEnd="171dp"
+            android:layout_marginBottom="803dp"
+            android:fontFamily="@font/public_sans_bold"
+            android:text="Select Truck ID:"
+            android:textColor="#000000"
+            android:textSize="20sp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvTracking"
-            android:layout_width="643dp"
-            android:layout_height="805dp"
+            android:layout_width="645dp"
+            android:layout_height="656dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="27dp"
-            android:layout_marginTop="159dp"
-            android:layout_marginEnd="25dp"
+            android:layout_marginTop="308dp"
+            android:layout_marginEnd="23dp"
             android:layout_marginBottom="33dp" />
+
+        <RelativeLayout
+            android:layout_width="652dp"
+            android:layout_height="37dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="121dp"
+            android:layout_marginEnd="19dp"
+            android:layout_marginBottom="839dp"
+            android:background="@drawable/searchview_background">
+
+            <Spinner
+                android:id="@+id/spHomeTrackCouncil"
+                android:layout_width="614dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="19dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="19dp" />
+        </RelativeLayout>
+
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

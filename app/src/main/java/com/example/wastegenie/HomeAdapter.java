@@ -5,6 +5,8 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -25,19 +27,23 @@ import java.util.Locale;
  * This is the adapter for the home screen recyclerview showing the live tracking
  */
 
-public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> {
+public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> implements Filterable {
 
     Context context;
     ArrayList<BinData> list;
+    ArrayList<BinData> contaminatedList;
+    ArrayList<BinData> fullList;
 
     public HomeAdapter(Context context, ArrayList<BinData> list) {
         this.context = context;
-        this.list = list;
+        this.fullList = list;
+        this.contaminatedList = list;
+        this.list = new ArrayList<>(fullList);
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView tvTime, tvDateTime, tvLocation, tvStatus;
+        TextView tvDateTime, tvLocation, tvStatus;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -90,4 +96,112 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> 
     public int getItemCount() {
         return list.size();
     }
+
+    @Override
+    public Filter getFilter() {
+        return truckFilter;
+    }
+
+    private final Filter truckFilter = new Filter() {
+
+        @Override
+        protected FilterResults performFiltering(CharSequence truckFilter) {
+
+            ArrayList<BinData> filteredTruckList = new ArrayList<>();
+
+            // if the user doesn't choose a selection, show the full list of the tracking status
+            // for all trucks
+            if (truckFilter == null || truckFilter.length() == 0) {
+                filteredTruckList.addAll(fullList);
+            } else {
+                // loop through all the data within the list to find those which
+                // contain the filtered truck id
+                for (BinData bindata : fullList) {
+                    if (bindata.getTruckId().equals(truckFilter))
+                        filteredTruckList.add(bindata);
+                }
+            }
+
+            FilterResults results = new FilterResults();
+            results.values = filteredTruckList;
+            results.count = filteredTruckList.size();
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            list.clear();
+            list.addAll((ArrayList)results.values);
+            notifyDataSetChanged();
+        }
+    };
+
+    /**
+     * Create another filter for when user selects the checkbox for contaminated bins
+     */
+
+    public Filter getContaminationFilter() {
+        return contaminationFilter;
+    }
+
+    private final Filter contaminationFilter = new Filter() {
+
+        @Override
+        protected FilterResults performFiltering(CharSequence contaminationFilter) {
+            ArrayList<BinData> filteredTruckList = new ArrayList<>();
+
+            for (BinData bindata : list) {
+                if (bindata.getStatus().equals(contaminationFilter))
+                    filteredTruckList.add(bindata);
+            }
+
+            FilterResults results = new FilterResults();
+            results.values = filteredTruckList;
+            results.count = filteredTruckList.size();
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            list.clear();
+            list.addAll((ArrayList)results.values);
+            notifyDataSetChanged();
+        }
+    };
+
+//    /**
+//     * Create another filter for when user selects the checkbox for fully recycled bins
+//     */
+//
+//    public Filter getRecycledFilter() {
+//        return recycledFilter;
+//    }
+//
+//    private final Filter recycledFilter = new Filter() {
+//
+//        @Override
+//        protected FilterResults performFiltering(CharSequence recycledFilter) {
+//            ArrayList<BinData> filteredTruckList = new ArrayList<>();
+//
+//            for (BinData bindata : list) {
+//                if (bindata.getStatus().equals(recycledFilter))
+//                    filteredTruckList.add(bindata);
+//            }
+//
+//            FilterResults results = new FilterResults();
+//            results.values = filteredTruckList;
+//            results.count = filteredTruckList.size();
+//            return results;
+//        }
+//
+//        @Override
+//        protected void publishResults(CharSequence constraint, FilterResults results) {
+//            list.clear();
+//            list.addAll((ArrayList)results.values);
+//            notifyDataSetChanged();
+//        }
+//    };
+
+
+
 }
