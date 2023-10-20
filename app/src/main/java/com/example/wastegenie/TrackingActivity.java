@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -21,9 +22,21 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
+
+import okhttp3.OkHttpClient;
+import okhttp3.ResponseBody;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class TrackingActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -32,6 +45,9 @@ public class TrackingActivity extends AppCompatActivity implements OnMapReadyCal
     private static final String MAPVIEW_BUNDLE_KEY = "MapViewBundleKey";
     DatabaseReference database;
     ArrayList<String> addressList = new ArrayList<String>();
+    String key = null;
+
+    GoogleMap map;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,13 +63,57 @@ public class TrackingActivity extends AppCompatActivity implements OnMapReadyCal
         mvTracking.getMapAsync(this);
 
 
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://maps.googleapis.com/maps/api/geocode/")
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        GeocodingService geocodingService = retrofit.create(GeocodingService.class);
+
+        try {
+            key = getPackageManager().getApplicationInfo(getPackageName(), PackageManager.GET_META_DATA).metaData.get("com.google.android.geo.API_KEY").toString();
+        } catch (PackageManager.NameNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
         database = FirebaseDatabase.getInstance().getReference().child("1qHYUHw1GGaVy9oW_pT8LMAWjR9fODaJE1qWqhcSNHBs").child("Sheet1");
         database.orderByChild("status").equalTo("Bin Flagged as Contaminated").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 BinData bindata = snapshot.getValue(BinData.class);
-                String test = bindata.getBinAddress();
-                addressList.add(test);
+                String address = bindata.getBinAddress();
+                addressList.add(address);
+
+                Call<ResponseBody> geocodingCall = geocodingService.getLongLat(address, key);
+                geocodingCall.enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        JSONObject rawResponse = null;
+                        try {
+                            rawResponse = new JSONObject(response.body().string());
+                            JSONObject longLat = rawResponse.getJSONArray("results").getJSONObject(0).getJSONObject("geometry").getJSONObject("location");
+                            LatLng binLoc = new LatLng(longLat.getDouble("lat"), longLat.getDouble("lng"));
+                            map.addMarker(new MarkerOptions()
+                                    .position(binLoc)
+                                    .title("Marker in Sydney"));
+
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                    }
+                });
 
             }
 
@@ -73,6 +133,10 @@ public class TrackingActivity extends AppCompatActivity implements OnMapReadyCal
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
+
+
+
+
 
         /**
          * Set up navigation view
@@ -125,6 +189,7 @@ public class TrackingActivity extends AppCompatActivity implements OnMapReadyCal
     }
     @Override
     public void onMapReady(GoogleMap map) {
+        this.map = map;
         map.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
         LatLng sydney = new LatLng(-33.865143, 151.009900);
         map.addMarker(new MarkerOptions()
@@ -168,4 +233,5 @@ public class TrackingActivity extends AppCompatActivity implements OnMapReadyCal
         super.onLowMemory();
         mvTracking.onLowMemory();
     }
+
 }
