@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
     HomeAdapter adapter;
     ArrayList<BinData> list;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,23 +64,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
-//        database.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-//                    BinData binData = dataSnapshot.getValue(BinData.class);
-//                    list.add(binData);
-//                }
-//                adapter.notifyDataSetChanged();
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
 
 
         /**

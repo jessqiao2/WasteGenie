@@ -138,6 +138,7 @@
 
     </RelativeLayout>
 
+
     <RelativeLayout
         android:id="@+id/rlHomeScore"
         android:layout_width="373dp"
@@ -149,7 +150,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/tvHomeWelcomeDesc"
         app:layout_constraintTop_toBottomOf="@+id/tvHomeWelcomeDesc"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="0.009">
 
         <TextView
             android:id="@+id/tvHomeScoreTitle"
@@ -203,7 +204,6 @@
             android:textSize="60sp" />
 
     </RelativeLayout>
-
 
     <RelativeLayout
         android:id="@+id/rlHomeTrack"

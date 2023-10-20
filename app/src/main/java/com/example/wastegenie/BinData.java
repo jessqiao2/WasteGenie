@@ -16,6 +16,7 @@ public class BinData {
     String councilAddress;
     String councilName;
     String date;
+    String dateTime;
     int eWasteWeightKilos;
     int id;
     int lightingDevicesPercent;
@@ -80,6 +81,14 @@ public class BinData {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(String dateTime) {
+        this.dateTime = dateTime;
     }
 
     public int geteWasteWeightKilos() {
