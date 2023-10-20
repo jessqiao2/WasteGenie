@@ -78,15 +78,95 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="96dp"
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="32dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="parent" />
+            app:layout_constraintTop_toBottomOf="parent"
+            app:uiCompass="true"
+            app:uiScrollGestures="true"
+            app:uiZoomControls="true"
+            app:uiZoomGestures="true" />
+
+        <TextView
+            android:id="@+id/tvLiveMap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="1124dp"
+            android:fontFamily="@font/public_sans_bold"
+            android:text="Live Map of All Trucks and Contamination"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlTruckTracker"
+        android:layout_width="0dp"
+        android:layout_height="284dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="64dp"
+        android:background="@drawable/blue_rectangle_frame"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/rlMaps"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvTrackTrucks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="1124dp"
+            android:fontFamily="@font/public_sans_bold"
+            android:text="Live Map of All Trucks and Contamination"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlTopContamination"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/blue_rectangle_frame"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/rlMaps"
+        app:layout_constraintEnd_toEndOf="@+id/rlTruckTracker"
+        app:layout_constraintStart_toStartOf="@+id/rlTruckTracker"
+        app:layout_constraintTop_toBottomOf="@+id/rlTruckTracker">
+
+        <TextView
+            android:id="@+id/tvTopContamination"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="1124dp"
+            android:fontFamily="@font/public_sans_bold"
+            android:text="Top E-Waste Contamination Councils"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </RelativeLayout>
+
 
     <!-- How to use the MapView:
     https://developers.google.com/maps/documentation/android-sdk/map
