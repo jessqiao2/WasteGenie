@@ -1,4 +1,41 @@
 <resources>
     <string name="app_name">WasteGenie</string>
     <string name="title_activity_maps">MapsActivity</string>
+
+    // for council spinner
+    <string-array name="councilArray">
+        <item>Parramatta</item>
+        <item>City of Sydney</item>
+        <item>Ku-ring-gai</item>
+        <item>Burwood</item>
+        <item>Hornsby</item>
+        <item>Strathfield</item>
+        <item>Northern Beaches</item>
+        <item>Randwick</item>
+        <item>Mosman</item>
+        <item>Hunters Hill</item>
+    </string-array>
+
+    // for each council's truck id's
+    <string-array name="parramattaTrucksArray">
+        <item>PA122</item>
+        <item>PA123</item>
+    </string-array>
+
+    <string-array name="sydneyTrucksArray">
+        <item>SY124</item>
+        <item>SY125</item>
+    </string-array>
+
+    <string-array name="kuRingGaiTrucksArray">
+        <item>KU126</item>
+        <item>KU127</item>
+    </string-array>
+
+
+
+
+
+
+
 </resources>

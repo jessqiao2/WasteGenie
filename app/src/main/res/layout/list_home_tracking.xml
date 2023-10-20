@@ -7,8 +7,8 @@
 
     <RelativeLayout
         android:id="@+id/relTrack"
-        android:layout_width="632dp"
-        android:layout_height="101dp"
+        android:layout_width="625dp"
+        android:layout_height="85dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/searchview_background"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -26,14 +26,14 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="237dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="7dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginBottom="51dp"
+            android:layout_marginBottom="48dp"
             android:fontFamily="@font/public_sans_bold"
             android:text="Location example"
             android:textAlignment="viewEnd"
             android:textColor="#5E5E5E"
-            android:textSize="25sp" />
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/tvTrackDateTime"
@@ -44,32 +44,32 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="11dp"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="320dp"
-            android:layout_marginBottom="50dp"
+            android:layout_marginBottom="41dp"
             android:fontFamily="@font/public_sans_bold"
             android:text="12:20PM 28-09-23"
             android:textAlignment="textStart"
             android:textColor="#2196F3"
-            android:textSize="25sp" />
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/tvTrackStatus"
-            android:layout_width="561dp"
+            android:layout_width="550dp"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="11dp"
-            android:layout_marginTop="60dp"
-            android:layout_marginEnd="60dp"
-            android:layout_marginBottom="7dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="64dp"
+            android:layout_marginBottom="8dp"
             android:fontFamily="@font/public_sans_bold"
             android:text="Bin Flagged as EXAMPLE"
             android:textAlignment="textStart"
             android:textColor="#F44336"
-            android:textSize="25sp" />
+            android:textSize="20sp" />
 
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
