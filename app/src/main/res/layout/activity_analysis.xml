@@ -5,7 +5,225 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F3F3F4"
-    tools:context=".AnalysisActivity">
+    tools:context=".MainActivity">
+
+
+    <RelativeLayout
+        android:id="@+id/rlHomeTrack"
+        android:layout_width="681dp"
+        android:layout_height="378dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/blue_rectangle_frame"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toEndOf="@+id/rlHomeWeight"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+        app:layout_constraintVertical_bias="0.118">
+
+        <TextView
+            android:layout_width="633dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="17dp"
+            android:layout_marginEnd="26dp"
+            android:fontFamily="@font/public_sans_bold"
+            android:text="Top Weekly E-Waste Contamination Bins"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvTopWeeklyContamBins"
+            android:layout_width="642dp"
+            android:layout_height="278dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="75dp"
+            android:layout_marginEnd="18dp"
+            android:layout_marginBottom="29dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="684dp"
+        android:layout_height="276dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/blue_rectangle_frame"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.527"
+        app:layout_constraintStart_toEndOf="@+id/rlHomeWeight"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout2"
+        app:layout_constraintVertical_bias="0.03">
+
+        <Button
+            android:id="@+id/btViewBinAnalysis"
+            android:layout_width="247dp"
+            android:layout_height="35dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="222dp"
+            android:layout_marginTop="227dp"
+            android:layout_marginEnd="215dp"
+            android:background="@drawable/button_blue"
+            android:text="View Bin Analysis"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp" />
+
+        <RelativeLayout
+            android:layout_width="652dp"
+            android:layout_height="37dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="178dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/searchview_background">
+
+            <Spinner
+                android:id="@+id/SpDashboardBinName"
+                android:layout_width="614dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="19dp"
+                android:layout_marginEnd="19dp"
+                android:layout_marginBottom="4dp" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="495dp"
+            android:layout_height="43dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="175dp"
+            android:fontFamily="@font/public_sans_bold"
+            android:text="Data for Specific Bins"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp" />
+
+        <TextView
+            android:layout_width="495dp"
+            android:layout_height="34dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="61dp"
+            android:layout_marginEnd="175dp"
+            android:fontFamily="@font/public_sans_bold"
+            android:text="Select Council:"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tvHomeGraphTitle4"
+            android:layout_width="497dp"
+            android:layout_height="30dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="146dp"
+            android:layout_marginEnd="171dp"
+            android:fontFamily="@font/public_sans_bold"
+            android:text="Select Bin Name:"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
+        <RelativeLayout
+            android:layout_width="652dp"
+            android:layout_height="37dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="94dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/searchview_background">
+
+            <Spinner
+                android:id="@+id/spCouncilforBins"
+                android:layout_width="614dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="19dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="19dp" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="816dp"
+        android:layout_height="547dp"
+        app:layout_constraintBottom_toBottomOf="@+id/rlHomeTrack"
+        app:layout_constraintEnd_toEndOf="@+id/rlHomeWeight"
+        app:layout_constraintHorizontal_bias="0.629"
+        app:layout_constraintStart_toStartOf="@+id/rlHomeScore"
+        app:layout_constraintTop_toTopOf="@+id/relativeLayout"
+        app:layout_constraintVertical_bias="1.0">
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/bcDashboardWeekly"
+            android:layout_width="778dp"
+            android:layout_height="274dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="7dp"
+            android:layout_marginBottom="286dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.675"
+            app:layout_constraintVertical_bias="0.025" />
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/lcDashboardWeekly"
+            android:layout_width="778dp"
+            android:layout_height="266dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="3dp" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="170dp"
+            android:layout_height="38dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="-58dp"
+            android:layout_marginTop="95dp"
+            android:layout_marginEnd="703dp"
+            android:layout_marginBottom="414dp"
+            android:fontFamily="@font/public_sans"
+            android:rotation="270"
+            android:text="Number of Bins"
+            android:textSize="15sp" />
+
+
+    </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
@@ -25,274 +243,352 @@
         app:layout_constraintTop_toTopOf="parent"
         app:menu="@menu/navigation" />
 
-    <RelativeLayout
-        android:id="@+id/relativeLayout2"
-        android:layout_width="373dp"
-        android:layout_height="169dp"
-        android:background="@drawable/blue_rectangle_frame"
-        app:layout_constraintBottom_toBottomOf="@+id/relativeLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.045"
-        app:layout_constraintStart_toEndOf="@+id/relativeLayout"
-        app:layout_constraintTop_toTopOf="@+id/relativeLayout"
-        app:layout_constraintVertical_bias="1.0">
-
-        <TextView
-            android:id="@+id/tvAnalysisRecycleScore3"
-            android:layout_width="347dp"
-            android:layout_height="79dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="18dp"
-            android:layout_marginTop="17dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="70dp"
-            android:fontFamily="@font/public_sans_bold"
-            android:text="Total E-Waste Weight"
-            android:textColor="#FFFFFF"
-            android:textSize="30sp" />
-    </RelativeLayout>
-
     <TextView
-        android:id="@+id/tvAnalysisMonthly"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:fontFamily="@font/public_sans_bold"
-        android:text="Monthly"
-        android:textColor="#2995E2"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/relativeLayout"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/relativeLayout"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
-        app:layout_constraintVertical_bias="0.001" />
-
-    <RelativeLayout
-        android:id="@+id/relativeLayout"
-        android:layout_width="373dp"
-        android:layout_height="169dp"
-        android:background="@drawable/blue_rectangle_frame"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/tvAnalysisRecycleScore"
-        app:layout_constraintTop_toBottomOf="@+id/tvAnalysisRecycleScore"
-        app:layout_constraintVertical_bias="0.022">
-
-        <TextView
-            android:id="@+id/tvAnalysisRecycleScore2"
-            android:layout_width="346dp"
-            android:layout_height="71dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="17dp"
-            android:layout_marginEnd="11dp"
-            android:layout_marginBottom="81dp"
-            android:fontFamily="@font/public_sans_bold"
-            android:text="Total E-Waste Volume"
-            android:textColor="#FFFFFF"
-            android:textSize="30sp" />
-    </RelativeLayout>
-
-    <TextView
-        android:id="@+id/tvAnalysisHeader"
+        android:id="@+id/tvHomeWelcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/public_sans_bold"
-        android:text="My Dashboard"
+        android:text="Hi Cleanaway,"
         android:textColor="#2995E2"
         android:textSize="50sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.221"
+        app:layout_constraintHorizontal_bias="0.226"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.042" />
+        app:layout_constraintVertical_bias="0.045" />
 
     <TextView
-        android:id="@+id/tvAnalysisRecycleScoreChange"
-        android:layout_width="150dp"
-        android:layout_height="30dp"
-        android:fontFamily="@font/public_sans_bold"
-        android:text="(+15%)"
-        android:textColor="#4CAF50"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tvAnalysisRecycleScore"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.012"
-        app:layout_constraintStart_toEndOf="@+id/tvAnalysisRecycleScore"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <TextView
-        android:id="@+id/tvAnalysisWeekly"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:fontFamily="@font/public_sans_bold"
-        android:text="Weekly"
-        android:textColor="#2995E2"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tvAnalysisMonthly"
-        app:layout_constraintEnd_toEndOf="@+id/relativeLayout"
-        app:layout_constraintHorizontal_bias="0.651"
-        app:layout_constraintStart_toStartOf="@+id/relativeLayout"
-        app:layout_constraintTop_toTopOf="@+id/tvAnalysisMonthly"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <TextView
-        android:id="@+id/tvAnalysisRecycleScore"
+        android:id="@+id/tvHomeWelcomeDesc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/public_sans_bold"
-        android:text="Your E-Recycling Score is 78%"
+        android:text="Your E-Recycling Score is "
         android:textColor="#2995E2"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/tvAnalysisHeader"
+        app:layout_constraintStart_toStartOf="@+id/tvHomeWelcome"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.124" />
+        app:layout_constraintVertical_bias="0.125" />
+
+    <TextView
+        android:id="@+id/tvDashboardRecyclingScore"
+        android:layout_width="107dp"
+        android:layout_height="41dp"
+        android:fontFamily="@font/public_sans_bold"
+        android:text="78%"
+        android:textColor="#2995E2"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvHomeWelcomeDesc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.007"
+        app:layout_constraintStart_toEndOf="@+id/tvHomeWelcomeDesc"
+        app:layout_constraintTop_toTopOf="@+id/tvHomeWelcomeDesc"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/tvHomeGraphTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/public_sans_bold"
+        android:text="E-Waste Breakdown "
+        android:textColor="#2995E2"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/rlHomeWeight"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tvHomeWelcome"
+        app:layout_constraintTop_toBottomOf="@+id/rlHomeScore"
+        app:layout_constraintVertical_bias="0.031" />
+
+
+    <TextView
+        android:id="@+id/tvDashboardWeekly"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/public_sans_bold"
+        android:text="Weekly"
+        android:textColor="#2995E2"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvHomeGraphTitle"
+        app:layout_constraintEnd_toEndOf="@+id/rlHomeWeight"
+        app:layout_constraintHorizontal_bias="0.384"
+        app:layout_constraintStart_toStartOf="@+id/tvHomeWelcome"
+        app:layout_constraintTop_toTopOf="@+id/tvHomeGraphTitle"
+        app:layout_constraintVertical_bias="0.03" />
+
+    <TextView
+        android:id="@+id/tvDashboardMonthly"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/public_sans_bold"
+        android:text="Monthly"
+        android:textColor="#87BBDF"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvDashboardWeekly"
+        app:layout_constraintEnd_toEndOf="@+id/rlHomeWeight"
+        app:layout_constraintHorizontal_bias="0.57"
+        app:layout_constraintStart_toStartOf="@+id/tvHomeWelcome"
+        app:layout_constraintTop_toTopOf="@+id/tvDashboardWeekly"
+        app:layout_constraintVertical_bias="0.0" />
 
     <RelativeLayout
-        android:id="@+id/relativeLayout3"
-        android:layout_width="700dp"
-        android:layout_height="181dp"
+        android:id="@+id/rlHomeWeight"
+        android:layout_width="250dp"
+        android:layout_height="122dp"
+        android:layout_marginEnd="772dp"
+        android:layout_marginBottom="732dp"
         android:background="@drawable/blue_rectangle_frame"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.466"
-        app:layout_constraintStart_toEndOf="@+id/relativeLayout2"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.052">
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/rlHomeScore"
+        app:layout_constraintTop_toTopOf="@+id/rlHomeScore"
+        app:layout_constraintVertical_bias="0.0">
 
         <TextView
-            android:id="@+id/tvAnalysisRecycleScore4"
-            android:layout_width="419dp"
-            android:layout_height="40dp"
+            android:id="@+id/tvHomeScoreTitle2"
+            android:layout_width="331dp"
+            android:layout_height="41dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="30dp"
+            android:fontFamily="@font/public_sans_bold"
+            android:text="E-Waste Weight"
+            android:textColor="#FFFFFF"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/tvDashboardWeight"
+            android:layout_width="108dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="13dp"
+            android:layout_marginTop="55dp"
+            android:layout_marginEnd="129dp"
+            android:fontFamily="@font/public_sans_bold"
+            android:text="15.3"
+            android:textColor="#FFFFFF"
+            android:textSize="40sp" />
+
+        <TextView
+            android:id="@+id/tvRecyclingPercentageChange2"
+            android:layout_width="125dp"
+            android:layout_height="54dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="122dp"
+            android:layout_marginTop="68dp"
+            android:layout_marginEnd="3dp"
+            android:fontFamily="@font/public_sans_bold"
+            android:text="kilograms"
+            android:textColor="#FFFFFF"
+            android:textSize="25sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlHomeScore"
+        android:layout_width="250dp"
+        android:layout_height="126dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/blue_rectangle_frame"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/tvHomeWelcomeDesc"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tvHomeWelcomeDesc"
+        app:layout_constraintTop_toBottomOf="@+id/tvHomeWelcomeDesc"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:id="@+id/tvHomeScoreTitle"
+            android:layout_width="247dp"
+            android:layout_height="63dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/public_sans_bold"
+            android:text="Total Bins Received"
+            android:textColor="#FFFFFF"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/tvRecyclingPercentageChange"
+            android:layout_width="73dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="150dp"
+            android:layout_marginTop="68dp"
+            android:layout_marginEnd="27dp"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/public_sans_bold"
+            android:text="bins"
+            android:textColor="#FFFFFF"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/tvDashboardTotalBins"
+            android:layout_width="207dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="17dp"
+            android:layout_marginTop="55dp"
+            android:fontFamily="@font/public_sans_bold"
+            android:text="5000"
+            android:textColor="#FFFFFF"
+            android:textSize="40sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="682dp"
+        android:layout_height="193dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/blue_rectangle_frame"
+        app:layout_constraintBottom_toBottomOf="@+id/rlHomeWeight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.513"
+        app:layout_constraintStart_toEndOf="@+id/rlHomeWeight"
+        app:layout_constraintTop_toTopOf="@+id/tvHomeWelcome"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:layout_width="495dp"
+            android:layout_height="43dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
             android:layout_marginStart="25dp"
-            android:layout_marginTop="23dp"
-            android:layout_marginEnd="256dp"
-            android:layout_marginBottom="118dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="175dp"
             android:fontFamily="@font/public_sans_bold"
             android:text="Data for Specific Councils"
             android:textColor="#FFFFFF"
             android:textSize="30sp" />
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="246dp"
+        <TextView
+            android:id="@+id/tvHomeGraphTitle3"
+            android:layout_width="495dp"
+            android:layout_height="34dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="67dp"
+            android:layout_marginEnd="175dp"
+            android:fontFamily="@font/public_sans_bold"
+            android:text="Select Council:"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
+        <RelativeLayout
+            android:layout_width="652dp"
             android:layout_height="37dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="200dp"
-            android:layout_marginTop="129dp"
-            android:layout_marginEnd="173dp"
-            android:layout_marginBottom="15dp"
-            android:background="@drawable/button_blue"
-            android:text="View Council Analysis"
-            android:textColor="#FFFFFF" />
-
-        <RelativeLayout
-            android:layout_width="647dp"
-            android:layout_height="44dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
             android:layout_marginStart="25dp"
-            android:layout_marginTop="75dp"
-            android:layout_marginEnd="31dp"
-            android:layout_marginBottom="62dp"
+            android:layout_marginTop="101dp"
+            android:layout_marginEnd="16dp"
             android:background="@drawable/searchview_background">
 
             <Spinner
-                android:id="@+id/spAnalysisCouncil"
-                android:layout_width="match_parent"
+                android:id="@+id/spDashboardSpecificCouncil"
+                android:layout_width="614dp"
                 android:layout_height="match_parent"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="0dp"
+                android:layout_marginStart="19dp"
                 android:layout_marginTop="0dp"
-                android:layout_marginEnd="0dp"
-                android:layout_marginBottom="0dp"
-                android:backgroundTint="#000000"
-                android:contextClickable="false" />
+                android:layout_marginEnd="19dp" />
         </RelativeLayout>
 
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/relativeLayout4"
-        android:layout_width="702dp"
-        android:layout_height="231dp"
-        android:background="@drawable/blue_rectangle_frame"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/relativeLayout3"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/relativeLayout3"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout3"
-        app:layout_constraintVertical_bias="0.041">
-
-        <TextView
-            android:id="@+id/tvAnalysisRecycleScore6"
-            android:layout_width="419dp"
-            android:layout_height="40dp"
+        <Button
+            android:id="@+id/btViewCouncilAnalysis"
+            android:layout_width="247dp"
+            android:layout_height="35dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="23dp"
-            android:layout_marginEnd="256dp"
-            android:layout_marginBottom="118dp"
-            android:fontFamily="@font/public_sans_bold"
-            android:text="Data for Specific Bins"
+            android:layout_marginStart="222dp"
+            android:layout_marginTop="151dp"
+            android:layout_marginEnd="215dp"
+            android:background="@drawable/button_blue"
+            android:text="View Council Analysis"
             android:textColor="#FFFFFF"
-            android:textSize="30sp" />
+            android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/tvAnalysisRecycleScore5"
-            android:layout_width="419dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="62dp"
-            android:layout_marginTop="293dp"
-            android:layout_marginEnd="219dp"
-            android:layout_marginBottom="-152dp"
-            android:fontFamily="@font/public_sans_bold"
-            android:text="Data for Specific Councils"
-            android:textColor="#FFFFFF"
-            android:textSize="30sp" />
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_width="702dp"
-        android:layout_height="531dp"
+        android:layout_width="250dp"
+        android:layout_height="126dp"
         android:background="@drawable/blue_rectangle_frame"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/relativeLayout4"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/relativeLayout4"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout3"
-        app:layout_constraintVertical_bias="0.903">
+        app:layout_constraintBottom_toBottomOf="@+id/rlHomeWeight"
+        app:layout_constraintEnd_toStartOf="@+id/rlHomeWeight"
+        app:layout_constraintStart_toEndOf="@+id/rlHomeScore"
+        app:layout_constraintTop_toTopOf="@+id/rlHomeScore">
 
+        <TextView
+            android:id="@+id/tvRecyclingPercentageChange3"
+            android:layout_width="125dp"
+            android:layout_height="54dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="127dp"
+            android:layout_marginTop="68dp"
+            android:layout_marginEnd="-2dp"
+            android:fontFamily="@font/public_sans_bold"
+            android:text="bins"
+            android:textColor="#FFFFFF"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/tvDashboardContaminated"
+            android:layout_width="108dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="13dp"
+            android:layout_marginTop="55dp"
+            android:layout_marginEnd="129dp"
+            android:fontFamily="@font/public_sans_bold"
+            android:text="1805"
+            android:textColor="#FFFFFF"
+            android:textSize="40sp" />
+
+        <TextView
+            android:id="@+id/tvHomeScoreTitle3"
+            android:layout_width="232dp"
+            android:layout_height="45dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/public_sans_bold"
+            android:text="Contaminated Bins"
+            android:textColor="#FFFFFF"
+            android:textSize="25sp" />
     </RelativeLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

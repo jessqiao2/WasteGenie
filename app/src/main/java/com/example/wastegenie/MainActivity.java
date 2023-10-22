@@ -13,30 +13,22 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.wastegenie.Adapters.HomeAdapter;
 import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.LegendEntry;
 import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
@@ -95,6 +87,13 @@ public class MainActivity extends AppCompatActivity {
     double DevWeight;
     double OtherWeight;
     double TotalEwasteWeight;
+
+    // for statistics
+    TextView tvRecycleScore, tvContaminatedBins, tvTotalWeight;
+    int totalRecycledBins;
+    int totalBins;
+    int totalContaminatedBins;
+    int totalWeightAll;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -334,6 +333,7 @@ public class MainActivity extends AppCompatActivity {
                     // other formatting
                     barData.setBarWidth(0.7f); // set custom bar width
                     barChart.getDescription().setEnabled(false);
+                    barChart.setExtraBottomOffset(3f);
 
                     // legend formatting
                     Legend l = barChart.getLegend();
@@ -380,7 +380,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         /**
-         * Setting up waste breakdown table
+         * Setting up waste breakdown table and statistic data
          */
         tvElecPercent = findViewById(R.id.tvElecPercent);
         tvElecWeight = findViewById(R.id.tvElecWeight);
@@ -392,6 +392,10 @@ public class MainActivity extends AppCompatActivity {
         tvDevWeight = findViewById(R.id.tvLightingWeight);
         tvOtherPercent = findViewById(R.id.tvOtherPercent);
         tvOtherWeight = findViewById(R.id.tvOtherWeight);
+
+        tvRecycleScore = findViewById(R.id.tvRecyclingScore);
+        tvContaminatedBins = findViewById(R.id.tvContaminatedBins);
+        tvTotalWeight = findViewById(R.id.tvHomeTotalWeight);
 
         // connecting firebase data
         databaseTable = FirebaseDatabase.getInstance().getReference().child("1qHYUHw1GGaVy9oW_pT8LMAWjR9fODaJE1qWqhcSNHBs").child("Sheet1");
@@ -422,7 +426,31 @@ public class MainActivity extends AppCompatActivity {
                                 TotalEwasteWeight = TotalEwasteWeight + binData.geteWasteWeightKilos();
 
                         }
+
+                        // for the other statistics,
+                        if (binData.getStatus().equals("Bin Fully Recyclable ")) {
+                            totalRecycledBins = totalRecycledBins + 1;
+                        } else if (binData.getStatus().equals("Bin Flagged as Contaminated")) {
+                            totalContaminatedBins = totalContaminatedBins + 1;
+                            totalWeightAll = totalWeightAll + binData.geteWasteWeightKilos();
+                        } else {
+                            totalBins = totalBins + 1;
+                        }
+
+
                     }
+
+                    // for the other statistics
+                    tvRecycleScore.setText(String.valueOf((totalRecycledBins*100/totalBins) + "%"));
+                    tvContaminatedBins.setText(String.valueOf(totalContaminatedBins));
+                    tvTotalWeight.setText(String.valueOf(totalWeightAll));
+
+                    if ((totalRecycledBins * 100)/totalBins >= 50) {
+                        tvRecycleScore.setTextColor(Color.GREEN);
+                    } else {
+                        tvRecycleScore.setTextColor(Color.RED);
+                    }
+
 
                     DecimalFormat df = new DecimalFormat("0.00");
 

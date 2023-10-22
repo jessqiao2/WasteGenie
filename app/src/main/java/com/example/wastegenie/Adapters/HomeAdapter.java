@@ -1,4 +1,4 @@
-package com.example.wastegenie;
+package com.example.wastegenie.Adapters;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -12,16 +12,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.text.SimpleDateFormat;
+import com.example.wastegenie.BinData;
+import com.example.wastegenie.R;
+
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
 
 /**
  * This is the adapter for the home screen recyclerview showing the live tracking
