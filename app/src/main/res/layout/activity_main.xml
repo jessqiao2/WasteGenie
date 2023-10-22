@@ -7,6 +7,16 @@
     android:background="#F3F3F4"
     tools:context=".MainActivity">
 
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/bcWeeklyBreakdown"
+        android:layout_width="752dp"
+        android:layout_height="306dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/rlHomeWeight"
+        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintStart_toStartOf="@+id/rlHomeScore"
+        app:layout_constraintTop_toBottomOf="@+id/tvHomeGraphTitle"
+        app:layout_constraintVertical_bias="0.039" />
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
@@ -61,9 +71,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/public_sans_bold"
-        android:text="E-Waste Weekly Breakdown in Kg"
+        android:text="E-Waste Weekly Breakdown "
         android:textColor="#2995E2"
-        android:textSize="30sp"
+        android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/rlHomeWeight"
         app:layout_constraintHorizontal_bias="0.0"
@@ -73,8 +83,8 @@
 
     <RelativeLayout
         android:id="@+id/rlHomeWeight"
-        android:layout_width="373dp"
-        android:layout_height="169dp"
+        android:layout_width="367dp"
+        android:layout_height="125dp"
         android:layout_marginEnd="772dp"
         android:layout_marginBottom="732dp"
         android:background="@drawable/blue_rectangle_frame"
@@ -92,57 +102,51 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
             android:layout_marginStart="18dp"
-            android:layout_marginTop="21dp"
+            android:layout_marginTop="15dp"
             android:layout_marginEnd="30dp"
-            android:layout_marginBottom="108dp"
             android:fontFamily="@font/public_sans_bold"
             android:text="Total E-Waste Weight"
             android:textColor="#FFFFFF"
-            android:textSize="30sp" />
+            android:textSize="25sp" />
 
         <TextView
             android:id="@+id/tvRecyclingPercentage2"
-            android:layout_width="175dp"
-            android:layout_height="89dp"
+            android:layout_width="177dp"
+            android:layout_height="56dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
             android:layout_marginStart="17dp"
-            android:layout_marginTop="73dp"
-            android:layout_marginEnd="181dp"
-            android:layout_marginBottom="7dp"
+            android:layout_marginTop="57dp"
+            android:layout_marginEnd="179dp"
             android:fontFamily="@font/public_sans_bold"
             android:text="15.3K "
             android:textColor="#FFFFFF"
-            android:textSize="60sp" />
+            android:textSize="40sp" />
 
         <TextView
             android:id="@+id/tvRecyclingPercentageChange2"
-            android:layout_width="135dp"
-            android:layout_height="44dp"
+            android:layout_width="132dp"
+            android:layout_height="40dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="225dp"
-            android:layout_marginTop="102dp"
-            android:layout_marginEnd="13dp"
-            android:layout_marginBottom="17dp"
+            android:layout_marginStart="173dp"
+            android:layout_marginTop="71dp"
+            android:layout_marginEnd="68dp"
             android:fontFamily="@font/public_sans_bold"
             android:text="tonnes"
             android:textColor="#FFFFFF"
-            android:textSize="30sp" />
+            android:textSize="25sp" />
 
     </RelativeLayout>
 
 
     <RelativeLayout
         android:id="@+id/rlHomeScore"
-        android:layout_width="373dp"
-        android:layout_height="169dp"
+        android:layout_width="371dp"
+        android:layout_height="126dp"
         android:layout_marginTop="24dp"
         android:background="@drawable/blue_rectangle_frame"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -150,7 +154,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/tvHomeWelcomeDesc"
         app:layout_constraintTop_toBottomOf="@+id/tvHomeWelcomeDesc"
-        app:layout_constraintVertical_bias="0.009">
+        app:layout_constraintVertical_bias="0.0">
 
         <TextView
             android:id="@+id/tvHomeScoreTitle"
@@ -159,49 +163,44 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
             android:layout_marginStart="18dp"
-            android:layout_marginTop="21dp"
+            android:layout_marginTop="15dp"
             android:layout_marginEnd="94dp"
-            android:layout_marginBottom="107dp"
             android:fontFamily="@font/public_sans_bold"
             android:text="E-Recycling Score"
             android:textColor="#FFFFFF"
-            android:textSize="30sp" />
+            android:textSize="25sp" />
 
         <TextView
             android:id="@+id/tvRecyclingPercentageChange"
-            android:layout_width="135dp"
-            android:layout_height="44dp"
+            android:layout_width="147dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="198dp"
-            android:layout_marginTop="102dp"
-            android:layout_marginEnd="40dp"
+            android:layout_marginStart="172dp"
+            android:layout_marginTop="69dp"
+            android:layout_marginEnd="52dp"
             android:layout_marginBottom="23dp"
             android:fontFamily="@font/public_sans_bold"
             android:text="+15%"
             android:textColor="#388F3C"
-            android:textSize="30sp" />
+            android:textSize="25sp" />
 
         <TextView
             android:id="@+id/tvRecyclingPercentage"
             android:layout_width="175dp"
-            android:layout_height="89dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
             android:layout_marginStart="17dp"
-            android:layout_marginTop="71dp"
+            android:layout_marginTop="57dp"
             android:layout_marginEnd="181dp"
-            android:layout_marginBottom="9dp"
             android:fontFamily="@font/public_sans_bold"
             android:text="78%"
             android:textColor="#FFFFFF"
-            android:textSize="60sp" />
+            android:textSize="40sp" />
 
     </RelativeLayout>
 
@@ -363,6 +362,297 @@
         </RelativeLayout>
 
     </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="791dp"
+        android:layout_height="235dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/searchview_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/bcWeeklyBreakdown"
+        app:layout_constraintHorizontal_bias="0.55"
+        app:layout_constraintStart_toStartOf="@+id/bcWeeklyBreakdown"
+        app:layout_constraintTop_toBottomOf="@+id/bcWeeklyBreakdown"
+        app:layout_constraintVertical_bias="0.097">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="0dp">
+
+            <TableRow android:background="#81C1EE">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:fontFamily="@font/public_sans_bold"
+                    android:gravity="center_horizontal"
+                    android:padding="5sp"
+                    android:text="E-Waste Type"
+                    android:textColor="@color/white"
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:fontFamily="@font/public_sans_bold"
+                    android:gravity="center_horizontal"
+                    android:padding="5sp"
+                    android:text="Weight (Kg)"
+                    android:textColor="@color/white"
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:fontFamily="@font/public_sans_bold"
+                    android:gravity="center_horizontal"
+                    android:padding="5sp"
+                    android:text="Percentage (%)"
+                    android:textColor="@color/white"
+                    android:textSize="25sp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:id="@+id/tvHomeElecLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:fontFamily="@font/public_sans"
+                    android:gravity="center_horizontal"
+                    android:padding="5sp"
+                    android:text="Consumer Electronics"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/tvElecWeight"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:fontFamily="@font/public_sans"
+                    android:gravity="center_horizontal"
+                    android:padding="5sp"
+                    android:text="Calculating ..."
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/tvElecPercent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:fontFamily="@font/public_sans"
+                    android:gravity="center_horizontal"
+                    android:padding="5sp"
+                    android:text="Calculating ..."
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:fontFamily="@font/public_sans"
+                    android:gravity="center_horizontal"
+                    android:padding="5sp"
+                    android:text="Computer and Telecom"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/tvComputerWeight"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:fontFamily="@font/public_sans"
+                    android:gravity="center_horizontal"
+                    android:padding="5sp"
+                    android:text="Calculating ..."
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/tvComputerPercent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:fontFamily="@font/public_sans"
+                    android:gravity="center_horizontal"
+                    android:padding="5sp"
+                    android:text="Calculating ..."
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:fontFamily="@font/public_sans"
+                    android:gravity="center_horizontal"
+                    android:padding="5sp"
+                    android:text="Small Appliances"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/tvApplianceWeight"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:fontFamily="@font/public_sans"
+                    android:gravity="center_horizontal"
+                    android:padding="5sp"
+                    android:text="Calculating ..."
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/tvAppliancePercent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:fontFamily="@font/public_sans"
+                    android:gravity="center_horizontal"
+                    android:padding="5sp"
+                    android:text="Calculating ..."
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:fontFamily="@font/public_sans"
+                    android:gravity="center_horizontal"
+                    android:padding="5sp"
+                    android:text="Lighting Devices"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/tvLightingWeight"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:fontFamily="@font/public_sans"
+                    android:gravity="center_horizontal"
+                    android:padding="5sp"
+                    android:text="Calculating ..."
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/tvLightingPercent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:fontFamily="@font/public_sans"
+                    android:gravity="center_horizontal"
+                    android:padding="5sp"
+                    android:text="Calculating ..."
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:fontFamily="@font/public_sans"
+                    android:gravity="center_horizontal"
+                    android:padding="5sp"
+                    android:text="Other"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/tvOtherWeight"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:fontFamily="@font/public_sans"
+                    android:gravity="center_horizontal"
+                    android:padding="5sp"
+                    android:text="Calculating ..."
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/tvOtherPercent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:fontFamily="@font/public_sans"
+                    android:gravity="center_horizontal"
+                    android:padding="5sp"
+                    android:text="Calculating ..."
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+            </TableRow>
+        </TableLayout>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/public_sans"
+        android:rotation="270"
+        android:text="Number of Bins"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/bcWeeklyBreakdown"
+        app:layout_constraintHorizontal_bias="0.583"
+        app:layout_constraintStart_toStartOf="@+id/tvHomeGraphTitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvHomeGraphTitle"
+        app:layout_constraintVertical_bias="0.259" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

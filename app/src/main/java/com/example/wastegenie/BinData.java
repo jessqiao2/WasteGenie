@@ -27,6 +27,13 @@ public class BinData {
     String time;
     String truckId;
 
+
+
+
+
+
+
+
     public String getBinAddress() {
         return binAddress;
     }

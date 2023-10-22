@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,8 +18,25 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.LegendEntry;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.formatter.ValueFormatter;
+import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
@@ -25,6 +44,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -37,9 +57,44 @@ public class MainActivity extends AppCompatActivity {
 
     Spinner councilSpinner;
     Spinner truckSpinner;
-    Button btSearchTracking;
     CheckBox cbContamination;
     CheckBox cbRecycle;
+
+    // declare for barchart stuff
+    BarChart barChart;
+    DatabaseReference databaseBarChart;
+    int recycableCountMon;
+    int recycableCountTues;
+    int recycableCountWed;
+    int recycableCountThurs;
+    int recycableCountFri;
+    int recycableCountSat;
+    int recycableCountSun;
+    int contaminatedCountMon;
+    int contaminatedCountTues;
+    int contaminatedCountWed;
+    int contaminatedCountThurs;
+    int contaminatedCountFri;
+    int contaminatedCountSat;
+    int contaminatedCountSun;
+    int[] colorClassArray = new int[]{Color.BLUE, Color.CYAN};
+
+    ArrayList<IBarDataSet> iBarDataSets = new ArrayList<>();
+    BarData barData;
+
+    // for waste breakdown table
+    TextView tvElecWeight, tvElecPercent;
+    TextView tvCompWeight, tvCompPercent;
+    TextView tvAppWeight, tvAppPercent;
+    TextView tvDevWeight, tvDevPercent;
+    TextView tvOtherWeight, tvOtherPercent;
+    DatabaseReference databaseTable;
+    double ElecWeight;
+    double CompWeight;
+    double AppWeight;
+    double DevWeight;
+    double OtherWeight;
+    double TotalEwasteWeight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -156,13 +211,6 @@ public class MainActivity extends AppCompatActivity {
                 if (isChecked && cbRecycle.isChecked() == false) {
                     adapter.getContaminationFilter().filter("Bin Flagged as Contaminated");
 
-//                    // if both checkboxes are checked, return to normal
-//                    if (cbRecycle.isChecked() && cbContamination.isChecked()) {
-//                        adapter.getFilter().filter(truckSpinner.getSelectedItem().toString());
-//                    } else {
-//                        adapter.getContaminationFilter().filter("Bin Flagged as Contaminated");
-//                    }
-
                 } else {
                     // if the checkbox is unchecked, return to the original truck filter.
                     adapter.getFilter().filter(truckSpinner.getSelectedItem().toString());
@@ -184,6 +232,222 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * Setting up the graphs on the home screen
+         */
+        barChart = findViewById(R.id.bcWeeklyBreakdown);
+
+        databaseBarChart = FirebaseDatabase.getInstance().getReference().child("1qHYUHw1GGaVy9oW_pT8LMAWjR9fODaJE1qWqhcSNHBs").child("Sheet1");
+
+        databaseBarChart.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+
+                ArrayList<BarEntry> dataVals = new ArrayList<>();
+
+                if (task.isSuccessful()) {
+                    for (DataSnapshot dataSnapshot : task.getResult().getChildren()) {
+                        BinData binData = dataSnapshot.getValue(BinData.class);
+
+                        // find the number of recycled bins for latest week (Mon 23rd Oct - Sunday 29th Oct)
+                        // MONDAY:
+                        if (binData.getStatus().equals("Bin Fully Recyclable ") && (binData.getDate()).split("T")[0].equals("2023-10-23"))  {
+                            recycableCountMon = recycableCountMon + 1;
+                        } else if (binData.getStatus().equals("Bin Flagged as Contaminated") && (binData.getDate()).split("T")[0].equals("2023-10-23")) {
+                            contaminatedCountMon = contaminatedCountMon + 1;
+
+                        }
+
+                        // TUESDAY:
+                        if (binData.getStatus().equals("Bin Fully Recyclable ") && (binData.getDate()).split("T")[0].equals("2023-10-24"))  {
+                            recycableCountTues = recycableCountTues + 1;
+                        } else if (binData.getStatus().equals("Bin Flagged as Contaminated") && (binData.getDate()).split("T")[0].equals("2023-10-24")) {
+                            contaminatedCountTues = contaminatedCountTues + 1;
+
+                        }
+
+                        // WEDNESDAY:
+                        if (binData.getStatus().equals("Bin Fully Recyclable ") && (binData.getDate()).split("T")[0].equals("2023-10-25"))  {
+                            recycableCountWed = recycableCountWed + 1;
+                        } else if (binData.getStatus().equals("Bin Flagged as Contaminated") && (binData.getDate()).split("T")[0].equals("2023-10-25")) {
+                            contaminatedCountWed = contaminatedCountWed + 1;
+
+                        }
+
+                        // THURSDAY:
+                        if (binData.getStatus().equals("Bin Fully Recyclable ") && (binData.getDate()).split("T")[0].equals("2023-10-26"))  {
+                            recycableCountThurs = recycableCountThurs + 1;
+                        } else if (binData.getStatus().equals("Bin Flagged as Contaminated") && (binData.getDate()).split("T")[0].equals("2023-10-26")) {
+                            contaminatedCountThurs = contaminatedCountThurs + 1;
+
+                        }
+
+                        // FRIDAY:
+                        if (binData.getStatus().equals("Bin Fully Recyclable ") && (binData.getDate()).split("T")[0].equals("2023-10-27"))  {
+                            recycableCountFri = recycableCountFri + 1;
+                        } else if (binData.getStatus().equals("Bin Flagged as Contaminated") && (binData.getDate()).split("T")[0].equals("2023-10-27")) {
+                            contaminatedCountFri = contaminatedCountFri + 1;
+
+                        }
+
+                        // SATURDAY:
+                        if (binData.getStatus().equals("Bin Fully Recyclable ") && (binData.getDate()).split("T")[0].equals("2023-10-28"))  {
+                            recycableCountSat = recycableCountSat + 1;
+                        } else if (binData.getStatus().equals("Bin Flagged as Contaminated") && (binData.getDate()).split("T")[0].equals("2023-10-28")) {
+                            contaminatedCountSat = contaminatedCountSat + 1;
+
+
+                        }
+
+                        // SUNDAY:
+                        if (binData.getStatus().equals("Bin Fully Recyclable ") && (binData.getDate()).split("T")[0].equals("2023-10-29"))  {
+                            recycableCountSun = recycableCountSun + 1;
+                        } else if (binData.getStatus().equals("Bin Flagged as Contaminated") && (binData.getDate()).split("T")[0].equals("2023-10-29")) {
+                            contaminatedCountSun = contaminatedCountSun + 1;
+
+
+                        }
+
+
+                    }
+                    /**
+                     * Set bar chart values
+                     */
+                    Log.i("Recyclable countMon", String.valueOf(recycableCountMon));
+
+                    dataVals.add(new BarEntry(0, new float[]{recycableCountMon, contaminatedCountMon}));
+                    dataVals.add(new BarEntry(1, new float[]{recycableCountTues, contaminatedCountTues}));
+                    dataVals.add(new BarEntry(2, new float[]{recycableCountWed, contaminatedCountWed}));
+                    dataVals.add(new BarEntry(3, new float[]{recycableCountThurs, contaminatedCountThurs}));
+                    dataVals.add(new BarEntry(4, new float[]{recycableCountFri, contaminatedCountFri}));
+                    dataVals.add(new BarEntry(5, new float[]{recycableCountSat, contaminatedCountSat}));
+                    dataVals.add(new BarEntry(6, new float[]{recycableCountSun, contaminatedCountSun}));
+
+                    BarDataSet barDataSet = new BarDataSet(dataVals, "Bins Fully Recyclable");
+                    barDataSet.setColors(colorClassArray);
+
+                    // create a list of IDataSets to build ChartData object
+                    iBarDataSets.clear();
+                    iBarDataSets.add(barDataSet);
+                    barData = new BarData(iBarDataSets);
+
+                    // other formatting
+                    barData.setBarWidth(0.7f); // set custom bar width
+                    barChart.getDescription().setEnabled(false);
+
+                    // legend formatting
+                    Legend l = barChart.getLegend();
+                    LegendEntry l1=new LegendEntry("Recycled", Legend.LegendForm.DEFAULT,10f,2f,null, Color.BLUE);
+                    LegendEntry l2=new LegendEntry("Contaminated", Legend.LegendForm.DEFAULT,10f,2f,null, Color.CYAN);
+                    l.setCustom(new LegendEntry[]{l1,l2});
+
+                    l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
+                    l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
+                    l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
+                    l.setDrawInside(false);
+                    l.setTextSize(15);
+
+                    // set X-axis formatting
+                    final ArrayList<String> xLabel = new ArrayList<>();
+                    xLabel.add("Monday");
+                    xLabel.add("Tuesday");
+                    xLabel.add("Wednesday");
+                    xLabel.add("Thursday");
+                    xLabel.add("Friday");
+                    xLabel.add("Saturday");
+                    xLabel.add("Sunday");
+
+                    XAxis xAxis = barChart.getXAxis();
+                    xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+                    xAxis.setDrawGridLines(false);
+                    xAxis.setValueFormatter(new ValueFormatter() {
+                        @Override
+                        public String getFormattedValue(float value) {
+                            return xLabel.get((int) value);
+                        }
+                    });
+
+                    xAxis.setTextSize(15);
+
+                    // set barChart
+                    barChart.setData(barData);
+                    barChart.getBarData().setValueTextSize(15);
+                    barChart.setFitBars(true);
+                    barChart.invalidate();
+
+                }
+            }
+        });
+
+        /**
+         * Setting up waste breakdown table
+         */
+        tvElecPercent = findViewById(R.id.tvElecPercent);
+        tvElecWeight = findViewById(R.id.tvElecWeight);
+        tvCompPercent = findViewById(R.id.tvComputerPercent);
+        tvCompWeight = findViewById(R.id.tvComputerWeight);
+        tvAppPercent = findViewById(R.id.tvAppliancePercent);
+        tvAppWeight = findViewById(R.id.tvApplianceWeight);
+        tvDevPercent = findViewById(R.id.tvLightingPercent);
+        tvDevWeight = findViewById(R.id.tvLightingWeight);
+        tvOtherPercent = findViewById(R.id.tvOtherPercent);
+        tvOtherWeight = findViewById(R.id.tvOtherWeight);
+
+        // connecting firebase data
+        databaseTable = FirebaseDatabase.getInstance().getReference().child("1qHYUHw1GGaVy9oW_pT8LMAWjR9fODaJE1qWqhcSNHBs").child("Sheet1");
+        databaseTable.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (DataSnapshot dataSnapshot : task.getResult().getChildren()) {
+                        BinData binData = dataSnapshot.getValue(BinData.class);
+
+                        // find all data that has dates between Mon 23rd Oct - Sunday 29th Oct
+                        if ((binData.getDate()).split("T")[0].equals("2023-10-23")
+                            || (binData.getDate()).split("T")[0].equals("2023-10-24")
+                            || (binData.getDate()).split("T")[0].equals("2023-10-25")
+                            || (binData.getDate()).split("T")[0].equals("2023-10-26")
+                            || (binData.getDate()).split("T")[0].equals("2023-10-27")
+                            || (binData.getDate()).split("T")[0].equals("2023-10-28")
+                            || (binData.getDate()).split("T")[0].equals("2023-10-29")) {
+
+
+
+                                ElecWeight = ElecWeight + (binData.geteWasteWeightKilos() * ((double)binData.getConsumerElectronicsPercent()/100));
+                                CompWeight = CompWeight + (binData.geteWasteWeightKilos() * ((double)binData.getComputerTelecomPercent()/100));
+                                AppWeight = AppWeight + (binData.geteWasteWeightKilos() * ((double)binData.getSmallAppliancesPercent()/100));
+                                DevWeight = DevWeight + (binData.geteWasteWeightKilos() * ((double)binData.getLightingDevicesPercent()/100));
+                                OtherWeight = OtherWeight + (binData.geteWasteWeightKilos() * ((double)binData.getOtherPercent()/100));
+
+                                TotalEwasteWeight = TotalEwasteWeight + binData.geteWasteWeightKilos();
+
+                        }
+                    }
+
+                    DecimalFormat df = new DecimalFormat("0.00");
+
+                    tvElecWeight.setText(String.valueOf(df.format(ElecWeight)));
+                    tvCompWeight.setText(String.valueOf(df.format(CompWeight)));
+                    tvAppWeight.setText(String.valueOf(df.format(AppWeight)));
+                    tvDevWeight.setText(String.valueOf(df.format(DevWeight)));
+                    tvOtherWeight.setText(String.valueOf(df.format(OtherWeight)));
+
+                    double elecPercent = (ElecWeight/TotalEwasteWeight) * 100;
+                    double compPercent = (CompWeight/TotalEwasteWeight) * 100;
+                    double appPercent = (AppWeight/TotalEwasteWeight) * 100;
+                    double devPercent = (DevWeight/TotalEwasteWeight) * 100;
+                    double otherPercent = (OtherWeight/TotalEwasteWeight) * 100;
+
+                    tvElecPercent.setText(String.valueOf(df.format(elecPercent)));
+                    tvCompPercent.setText(String.valueOf(df.format(compPercent)));
+                    tvAppPercent.setText(String.valueOf(df.format(appPercent)));
+                    tvDevPercent.setText(String.valueOf(df.format(devPercent)));
+                    tvOtherPercent.setText(String.valueOf(df.format(otherPercent)));
+
+                }
+
+            }
+        });
 
 
 
@@ -229,5 +493,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+
+
 
 }
