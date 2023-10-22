@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -41,6 +43,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class TrackingActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     NavigationView navigationView;
+    Button btViewTruckRoute;
     private MapView mvTracking;
     private static final String MAPVIEW_BUNDLE_KEY = "MapViewBundleKey";
     DatabaseReference database;
@@ -53,6 +56,7 @@ public class TrackingActivity extends AppCompatActivity implements OnMapReadyCal
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tracking);
         setTitle("Tracking Page");
+        btViewTruckRoute = findViewById(R.id.btViewTruckRoute);
 
         Bundle mapViewBundle = null;
         if (savedInstanceState != null) {
@@ -62,14 +66,8 @@ public class TrackingActivity extends AppCompatActivity implements OnMapReadyCal
         mvTracking.onCreate(mapViewBundle);
         mvTracking.getMapAsync(this);
 
-
-        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
-
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://maps.googleapis.com/maps/api/geocode/")
-                .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -171,6 +169,15 @@ public class TrackingActivity extends AppCompatActivity implements OnMapReadyCal
                 }
 
                 return false;
+            }
+        });
+
+        btViewTruckRoute.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(TrackingActivity.this, RouteActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }

@@ -1,25 +1,37 @@
 package com.example.wastegenie;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import okhttp3.OkHttpClient;
+import okhttp3.ResponseBody;
 import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -29,6 +41,7 @@ public class RouteActivity extends AppCompatActivity {
 
     DatabaseReference database;
     ArrayList<String> addressList = new ArrayList<String>();
+    String key = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,32 +59,63 @@ public class RouteActivity extends AppCompatActivity {
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+        RouteService routeService = retrofit.create(RouteService.class);
+
+        try {
+            key = getPackageManager().getApplicationInfo(getPackageName(), PackageManager.GET_META_DATA).metaData.get("com.google.android.geo.API_KEY").toString();
+        } catch (PackageManager.NameNotFoundException e) {
+            throw new RuntimeException(e);
+        }
 
         // Get all stops taken by a particular truck
         database = FirebaseDatabase.getInstance().getReference().child("1qHYUHw1GGaVy9oW_pT8LMAWjR9fODaJE1qWqhcSNHBs").child("Sheet1");
         // will change hardcoded value later
-        database.orderByChild("truckId").equalTo("PA122").addChildEventListener(new ChildEventListener() {
+        database.orderByChild("truckId").equalTo("PA122").addValueEventListener(new ValueEventListener() {
             @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                BinData bindata = snapshot.getValue(BinData.class);
-                String address = bindata.getBinAddress();
-                addressList.add(address);
-            }
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ArrayList<HashMap<String, String>> binDataList = (ArrayList<HashMap<String, String>>) snapshot.getValue();
+                Log.d("snapshot", "works correctly");
 
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-            }
+                Gson gson = new Gson();
+                for (HashMap<String, String> hash : binDataList) {
+                    if (hash != null) {
+                        JsonElement jsonElement = gson.toJsonTree(hash);
+                        BinData binData = gson.fromJson(jsonElement, BinData.class);
+                        String address = binData.getBinAddress();
+                        addressList.add(address);
+                    }
+                }
+                String origin = addressList.get(0);
+                String destination = addressList.get(addressList.size() - 1);
+                String waypoints = null;
+                if (addressList.size() > 2) {
+                    waypoints = String.join(" | ", addressList.subList(1, addressList.size() - 1));
+                }
 
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-            }
+                Call<ResponseBody> routingCall = routeService.getRoute(origin, destination, waypoints, key);
+                routingCall.enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        JSONObject rawResponse = null;
+                        try {
+                            rawResponse = new JSONObject(response.body().string());
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
 
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                    }
+                });
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
 

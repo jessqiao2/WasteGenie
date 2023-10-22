@@ -129,12 +129,24 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="1124dp"
             android:fontFamily="@font/public_sans_bold"
-            android:text="Live Map of All Trucks and Contamination"
+            android:text="Track Specific Trucks"
             android:textColor="#FFFFFF"
             android:textSize="30sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btViewTruckRoute"
+            android:layout_width="264dp"
+            android:layout_height="54dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="18dp"
+            android:background="@drawable/button_blue"
+            android:text="View Truck Route"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
 
     </RelativeLayout>
 
