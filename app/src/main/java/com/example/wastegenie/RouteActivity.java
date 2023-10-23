@@ -81,8 +81,11 @@ public class RouteActivity extends AppCompatActivity {
                     if (hash != null) {
                         JsonElement jsonElement = gson.toJsonTree(hash);
                         BinData binData = gson.fromJson(jsonElement, BinData.class);
-                        String address = binData.getBinAddress();
-                        addressList.add(address);
+                        String collectionDate = binData.getDate().split("T")[0];
+                        if (binData.getStatus().equals("Bin Picked Up") && collectionDate.equals("2023-09-30")) {
+                            String address = binData.getBinAddress();
+                            addressList.add(address);
+                        }
                     }
                 }
                 String origin = addressList.get(0);
@@ -99,6 +102,7 @@ public class RouteActivity extends AppCompatActivity {
                         JSONObject rawResponse = null;
                         try {
                             rawResponse = new JSONObject(response.body().string());
+                            String polyline = rawResponse.getJSONArray("routes").getJSONObject(0).getJSONObject("overview_polyline").getString("points");
                         } catch (JSONException e) {
                             throw new RuntimeException(e);
                         } catch (IOException e) {
