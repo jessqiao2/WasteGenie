@@ -7,8 +7,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -23,7 +25,9 @@ import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
@@ -75,6 +79,14 @@ public class AnalysisActivity extends AppCompatActivity {
     LineChart lineChart;
     ArrayList<ILineDataSet> iLineDataSets = new ArrayList<>();
     LineData lineData;
+    int totalWeightMon;
+    int totalWeightTues;
+    int totalWeightWed;
+    int totalWeightThurs;
+    int totalWeightFri;
+    int totalWeightSat;
+    int totalWeightSun;
+
 
     // for spinners
     Spinner spSpecificCouncil;
@@ -144,6 +156,7 @@ public class AnalysisActivity extends AppCompatActivity {
          * Set up graphs
          */
         barChart = findViewById(R.id.bcDashboardWeekly);
+        lineChart = findViewById(R.id.lcDashboardWeekly);
 
         databaseChart = FirebaseDatabase.getInstance().getReference().child("1qHYUHw1GGaVy9oW_pT8LMAWjR9fODaJE1qWqhcSNHBs").child("Sheet1");
         databaseChart.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
@@ -151,6 +164,7 @@ public class AnalysisActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<DataSnapshot> task) {
 
                 ArrayList<BarEntry> dataVals = new ArrayList<>();
+                ArrayList<Entry> lineDataVals = new ArrayList<Entry>();
 
                 if (task.isSuccessful()) {
                     for (DataSnapshot dataSnapshot : task.getResult().getChildren()) {
@@ -163,6 +177,7 @@ public class AnalysisActivity extends AppCompatActivity {
                         } else if (binData.getStatus().equals("Bin Flagged as Contaminated") && (binData.getDate()).split("T")[0].equals("2023-10-23")) {
                             contaminatedCountMon = contaminatedCountMon + 1;
 
+                            totalWeightMon = totalWeightMon + binData.geteWasteWeightKilos();
                         }
 
                         // TUESDAY:
@@ -171,6 +186,7 @@ public class AnalysisActivity extends AppCompatActivity {
                         } else if (binData.getStatus().equals("Bin Flagged as Contaminated") && (binData.getDate()).split("T")[0].equals("2023-10-24")) {
                             contaminatedCountTues = contaminatedCountTues + 1;
 
+                            totalWeightTues = totalWeightTues + binData.geteWasteWeightKilos();
                         }
 
                         // WEDNESDAY:
@@ -179,6 +195,7 @@ public class AnalysisActivity extends AppCompatActivity {
                         } else if (binData.getStatus().equals("Bin Flagged as Contaminated") && (binData.getDate()).split("T")[0].equals("2023-10-25")) {
                             contaminatedCountWed = contaminatedCountWed + 1;
 
+                            totalWeightWed = totalWeightWed + binData.geteWasteWeightKilos();
                         }
 
                         // THURSDAY:
@@ -187,6 +204,7 @@ public class AnalysisActivity extends AppCompatActivity {
                         } else if (binData.getStatus().equals("Bin Flagged as Contaminated") && (binData.getDate()).split("T")[0].equals("2023-10-26")) {
                             contaminatedCountThurs = contaminatedCountThurs + 1;
 
+                            totalWeightThurs = totalWeightThurs + binData.geteWasteWeightKilos();
                         }
 
                         // FRIDAY:
@@ -195,6 +213,7 @@ public class AnalysisActivity extends AppCompatActivity {
                         } else if (binData.getStatus().equals("Bin Flagged as Contaminated") && (binData.getDate()).split("T")[0].equals("2023-10-27")) {
                             contaminatedCountFri = contaminatedCountFri + 1;
 
+                            totalWeightFri = totalWeightFri + binData.geteWasteWeightKilos();
                         }
 
                         // SATURDAY:
@@ -203,7 +222,7 @@ public class AnalysisActivity extends AppCompatActivity {
                         } else if (binData.getStatus().equals("Bin Flagged as Contaminated") && (binData.getDate()).split("T")[0].equals("2023-10-28")) {
                             contaminatedCountSat = contaminatedCountSat + 1;
 
-
+                            totalWeightSat = totalWeightSat + binData.geteWasteWeightKilos();
                         }
 
                         // SUNDAY:
@@ -212,6 +231,7 @@ public class AnalysisActivity extends AppCompatActivity {
                         } else if (binData.getStatus().equals("Bin Flagged as Contaminated") && (binData.getDate()).split("T")[0].equals("2023-10-29")) {
                             contaminatedCountSun = contaminatedCountSun + 1;
 
+                            totalWeightSun = totalWeightSun + binData.geteWasteWeightKilos();
                         }
 
 
@@ -219,8 +239,6 @@ public class AnalysisActivity extends AppCompatActivity {
                     /**
                      * Set bar chart values
                      */
-                    Log.i("Recyclable countMon", String.valueOf(recycableCountMon));
-
                     dataVals.add(new BarEntry(0, new float[]{recycableCountMon, contaminatedCountMon}));
                     dataVals.add(new BarEntry(1, new float[]{recycableCountTues, contaminatedCountTues}));
                     dataVals.add(new BarEntry(2, new float[]{recycableCountWed, contaminatedCountWed}));
@@ -282,17 +300,180 @@ public class AnalysisActivity extends AppCompatActivity {
                     barChart.setFitBars(true);
                     barChart.invalidate();
 
+                    /**
+                     * Set line chart values
+                     */
+                    lineDataVals.add(new Entry(0, totalWeightMon));
+                    lineDataVals.add(new Entry(1, totalWeightTues));
+                    lineDataVals.add(new Entry(2, totalWeightWed));
+                    lineDataVals.add(new Entry(3, totalWeightThurs));
+                    lineDataVals.add(new Entry(4, totalWeightFri));
+                    lineDataVals.add(new Entry(5, totalWeightSat));
+                    lineDataVals.add(new Entry(6, totalWeightSun));
+
+                    LineDataSet lineDataSet = new LineDataSet(lineDataVals, "E-Waste Contamination (Kg)");
+                    lineDataSet.setColors(Color.BLUE);
+
+                    // create a list of IDataSets to build ChartData object
+                    iLineDataSets.clear();
+                    iLineDataSets.add(lineDataSet);
+                    lineData = new LineData(iLineDataSets);
+
+                    // other formatting
+                    lineChart.getDescription().setEnabled(false);
+                    lineChart.setExtraBottomOffset(3f);
+                    lineChart.setExtraLeftOffset(5f);
+                    lineChart.setExtraRightOffset(5f);
+
+                    Legend lLine = lineChart.getLegend();
+
+                    lLine.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
+                    lLine.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
+                    lLine.setOrientation(Legend.LegendOrientation.HORIZONTAL);
+                    lLine.setDrawInside(false);
+                    lLine.setTextSize(15);
+
+                    // set X-axis formatting
+                    final ArrayList<String> xLabelLine = new ArrayList<>();
+                    xLabelLine.add("Monday");
+                    xLabelLine.add("Tuesday");
+                    xLabelLine.add("Wednesday");
+                    xLabelLine.add("Thursday");
+                    xLabelLine.add("Friday");
+                    xLabelLine.add("Saturday");
+                    xLabelLine.add("Sunday");
+
+                    XAxis xAxisLine = lineChart.getXAxis();
+                    xAxisLine.setPosition(XAxis.XAxisPosition.BOTTOM);
+                    xAxisLine.setDrawGridLines(false);
+                    xAxisLine.setValueFormatter(new ValueFormatter() {
+                        @Override
+                        public String getFormattedValue(float value) {
+                            return xLabelLine.get((int) value);
+                        }
+                    });
+
+                    xAxisLine.setTextSize(15);
+
+                    // set barChart
+                    lineChart.setData(lineData);
+                    lineChart.getLineData().setValueTextSize(15);
+                    lineChart.invalidate();
                 }
             }
         });
 
+        /**
+         * Setting up the spinner for councils
+         */
+        spSpecificCouncil = findViewById(R.id.spDashboardSpecificCouncil);
+        // Create an ArrayAdapter using the string array and a default spinner layout.
+        ArrayAdapter<CharSequence> councilAdapter = ArrayAdapter.createFromResource(
+                this,
+                R.array.councilArray,
+                android.R.layout.simple_spinner_item
+        );
+        // Specify the layout to use when the list of choices appears.
+        councilAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner.
+        spSpecificCouncil.setAdapter(councilAdapter);
 
+        // when user clicks "view council analysis" button
+        btCouncilAnalysis = findViewById(R.id.btViewCouncilAnalysis);
+        btCouncilAnalysis.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String councilChoice = spSpecificCouncil.getSelectedItem().toString();
+                Intent intent = new Intent(AnalysisActivity.this, CouncilAnalysisActivity.class);
+                intent.putExtra("Council Selection", councilChoice);
+                startActivity(intent);
+            }
+        });
 
+        /**
+         * Setting up corresponding spinners for the council's SPECIFIC trucks depending on what
+         * council the user chose
+         */
+        spSpecificBins = findViewById(R.id.SpDashboardBinName);
+        spCouncilForBins = findViewById(R.id.spCouncilforBins);
 
+        // Create an ArrayAdapter using the string array and a default spinner layout.
+        ArrayAdapter<CharSequence> councilForBinsAdapter = ArrayAdapter.createFromResource(
+                this,
+                R.array.councilArray,
+                android.R.layout.simple_spinner_item
+        );
+        // Specify the layout to use when the list of choices appears.
+        councilForBinsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner.
+        spCouncilForBins.setAdapter(councilForBinsAdapter);
 
+        spCouncilForBins.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                // if user selects parramatta council
+                if (spCouncilForBins.getSelectedItem().equals("Parramatta")) {
+                    ArrayAdapter<CharSequence> truckAdapter = ArrayAdapter.createFromResource(
+                            AnalysisActivity.this,
+                            R.array.parramattaBinsArray,
+                            android.R.layout.simple_spinner_item
+                    );
+                    truckAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spSpecificBins.setAdapter(truckAdapter);
 
+                    // if user selects sydney council
+                } else if (spCouncilForBins.getSelectedItem().equals("City of Sydney")) {
+                    ArrayAdapter<CharSequence> truckAdapter = ArrayAdapter.createFromResource(
+                            AnalysisActivity.this,
+                            R.array.sydneyBinsArray,
+                            android.R.layout.simple_spinner_item
+                    );
+                    truckAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spSpecificBins.setAdapter(truckAdapter);
+                } else if (spCouncilForBins.getSelectedItem().equals("Ku-ring-gai")) {
+                    ArrayAdapter<CharSequence> truckAdapter = ArrayAdapter.createFromResource(
+                            AnalysisActivity.this,
+                            R.array.kuRingGaiBinsArray,
+                            android.R.layout.simple_spinner_item
+                    );
+                    truckAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spSpecificBins.setAdapter(truckAdapter);
+                } else if (spCouncilForBins.getSelectedItem().equals("Burwood")) {
+                    ArrayAdapter<CharSequence> truckAdapter = ArrayAdapter.createFromResource(
+                            AnalysisActivity.this,
+                            R.array.burwoodBinsArray,
+                            android.R.layout.simple_spinner_item
+                    );
+                    truckAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spSpecificBins.setAdapter(truckAdapter);
+                } else if (spCouncilForBins.getSelectedItem().equals("Hornsby")) {
+                    ArrayAdapter<CharSequence> truckAdapter = ArrayAdapter.createFromResource(
+                            AnalysisActivity.this,
+                            R.array.hornsbyBinsArray,
+                            android.R.layout.simple_spinner_item
+                    );
+                    truckAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spSpecificBins.setAdapter(truckAdapter);
+                }
 
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        btBinAnalysis = findViewById(R.id.btViewBinAnalysis);
+        btBinAnalysis.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String binSelection = spSpecificBins.getSelectedItem().toString();
+                Intent intent = new Intent(AnalysisActivity.this, BinAnalysisActivity.class);
+                intent.putExtra("Bin Selection", binSelection);
+                startActivity(intent);
+            }
+        });
 
 
         /**

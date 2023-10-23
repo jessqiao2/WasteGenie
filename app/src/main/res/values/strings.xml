@@ -32,5 +32,81 @@
         <item>KU127</item>
     </string-array>
 
+    <string-array name="burwoodTrucksArray">
+        <item>BU128</item>
+        <item>BU129</item>
+    </string-array>
+
+    <string-array name="hornsbyTrucksArray">
+        <item>HN130</item>
+        <item>HN131</item>
+    </string-array>
+
+    // for each council's bin names
+    <string-array name="parramattaBinsArray">
+        <item>Parramatta Station</item>
+        <item>Parramatta Westfield</item>
+        <item>Parramatta Library</item>
+        <item>Riverside Theatres</item>
+        <item>Parramatta Medical Centre</item>
+        <item>Saint Patricks Cathedral</item>
+        <item>Club Parramatta</item>
+        <item>Old Government House</item>
+        <item>Parramatta Aquatic Centre </item>
+        <item>Parramatta High School</item>
+    </string-array>
+
+    <string-array name="sydneyBinsArray">
+        <item>Redfern Town Hall</item>
+        <item>Commonwealth Bank Redfern</item>
+        <item>Redfern Station</item>
+        <item>Charles Kernan Reserve </item>
+        <item>Abercrombie Business School</item>
+        <item>Carriageworks</item>
+        <item>Hollis Park</item>
+        <item>Forum Medical Centre </item>
+        <item>Newtown Station</item>
+        <item>Newtown Public School</item>
+    </string-array>
+
+    <string-array name="kuRingGaiBinsArray">
+        <item>Gordon Private Hospital</item>
+        <item>Gordon Station</item>
+        <item>Woolworths Gordon</item>
+        <item>Gordon Golf Club</item>
+        <item>Corner Browns Rd / Bushlands Ave </item>
+        <item>Twilight Aged Care Horton House </item>
+        <item>Uniting Church Australia </item>
+        <item>Ravenswood Girls </item>
+        <item>Greengate Park</item>
+        <item>Killara Gardens Aged Care Facility</item>
+    </string-array>
+
+    <string-array name="burwoodBinsArray">
+        <item>MLC School</item>
+        <item>Burwood Westfield</item>
+        <item>NSW SES Burwood Unit</item>
+        <item>St Ezekiel Moreno Nursing Home</item>
+        <item>Croydon Public School</item>
+        <item>Enfield Football Club</item>
+        <item>Iglesia Ni Cristo Croydon Park</item>
+        <item>Croydon Park Public School</item>
+        <item>Keith Smith Park</item>
+        <item>Croydon Station</item>
+    </string-array>
+
+    <string-array name="hornsbyBinsArray">
+        <item>Cheltenham Station</item>
+        <item>Beecroft Public School</item>
+        <item>Hotel Pennant Hills</item>
+        <item>Thornleigh Community Centre</item>
+        <item>Bramblewood Retirement Village</item>
+        <item>PCYC Hornsby / Ku-ring-gai</item>
+        <item>Hornsby RSL Club</item>
+        <item>TAFE NSW - Hornsby</item>
+        <item>Storey Park</item>
+        <item>St Lukes Anglican Church</item>
+    </string-array>
+
 
 </resources>

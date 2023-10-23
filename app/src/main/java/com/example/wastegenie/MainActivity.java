@@ -176,6 +176,22 @@ public class MainActivity extends AppCompatActivity {
                     );
                     truckAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     truckSpinner.setAdapter(truckAdapter);
+                } else if (councilSpinner.getSelectedItem().equals("Burwood")) {
+                    ArrayAdapter<CharSequence> truckAdapter = ArrayAdapter.createFromResource(
+                            MainActivity.this,
+                            R.array.burwoodTrucksArray,
+                            android.R.layout.simple_spinner_item
+                    );
+                    truckAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    truckSpinner.setAdapter(truckAdapter);
+                } else if (councilSpinner.getSelectedItem().equals("Hornsby")) {
+                    ArrayAdapter<CharSequence> truckAdapter = ArrayAdapter.createFromResource(
+                            MainActivity.this,
+                            R.array.hornsbyTrucksArray,
+                            android.R.layout.simple_spinner_item
+                    );
+                    truckAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    truckSpinner.setAdapter(truckAdapter);
                 }
 
             }
