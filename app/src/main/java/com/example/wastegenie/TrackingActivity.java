@@ -31,9 +31,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
-import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -62,7 +60,7 @@ public class TrackingActivity extends AppCompatActivity implements OnMapReadyCal
         if (savedInstanceState != null) {
             mapViewBundle = savedInstanceState.getBundle(MAPVIEW_BUNDLE_KEY);
         }
-        mvTracking = findViewById(R.id.mvTracking);
+        mvTracking = findViewById(R.id.mvRoute);
         mvTracking.onCreate(mapViewBundle);
         mvTracking.getMapAsync(this);
 
@@ -98,7 +96,7 @@ public class TrackingActivity extends AppCompatActivity implements OnMapReadyCal
                             LatLng binLoc = new LatLng(longLat.getDouble("lat"), longLat.getDouble("lng"));
                             map.addMarker(new MarkerOptions()
                                     .position(binLoc)
-                                    .title("Marker in Sydney"));
+                                    .title(bindata.getBinName()));
 
                         } catch (JSONException e) {
                             throw new RuntimeException(e);
@@ -182,7 +180,6 @@ public class TrackingActivity extends AppCompatActivity implements OnMapReadyCal
         });
     }
     @Override
-
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
@@ -197,11 +194,7 @@ public class TrackingActivity extends AppCompatActivity implements OnMapReadyCal
     @Override
     public void onMapReady(GoogleMap map) {
         this.map = map;
-        map.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
         LatLng sydney = new LatLng(-33.865143, 151.009900);
-        map.addMarker(new MarkerOptions()
-                .position(sydney)
-                .title("Marker in Sydney"));
         map.moveCamera(CameraUpdateFactory.newLatLng(sydney));
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 10));
     }

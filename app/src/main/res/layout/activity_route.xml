@@ -6,22 +6,76 @@
     android:layout_height="match_parent"
     tools:context=".TrackingActivity">
 
+    <RelativeLayout
+        android:id="@+id/rlTruckInfo"
+        android:layout_width="640dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/blue_rectangle_frame"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="@+id/tvTracking"
+        app:layout_constraintTop_toBottomOf="@+id/tvSpecificTracking">
+
+        <TextView
+            android:id="@+id/tvTruckID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="1124dp"
+            android:fontFamily="@font/public_sans_bold"
+            android:text="Truck ID:"
+            android:textColor="#1D8E21"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvLocationCouncil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvTruckID"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/public_sans_bold"
+            android:text="Location Council:"
+            android:textColor="#1D8E21"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
     <TextView
         android:id="@+id/tvSpecificTracking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="1124dp"
         android:fontFamily="@font/public_sans_bold"
         android:text="Specific Truck Tracking"
         android:textColor="#2995E2"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/tvTracking"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.13" />
+        app:layout_constraintTop_toBottomOf="@+id/tvTracking" />
+
+    <TextView
+        android:id="@+id/tvCurrentRoute"
+        android:layout_width="wrap_content"
+        android:layout_height="41dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="1124dp"
+        android:fontFamily="@font/public_sans_bold"
+        android:text="Current Truck Route"
+        android:textColor="#2995E2"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tvTracking"
+        app:layout_constraintTop_toBottomOf="@+id/rlTruckInfo" />
 
     <TextView
         android:id="@+id/tvTracking"
@@ -39,6 +93,19 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.045" />
 
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/mvRoute"
+        android:layout_width="640dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tvTracking"
+        app:layout_constraintTop_toBottomOf="@+id/tvCurrentRoute"
+        app:uiCompass="true"
+        app:uiScrollGestures="true"
+        app:uiZoomControls="true"
+        app:uiZoomGestures="true" />
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
@@ -57,21 +124,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:menu="@menu/navigation" />
-
-
-    <TextView
-        android:id="@+id/tvLiveMap"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="32dp"
-        android:fontFamily="@font/public_sans_bold"
-        android:text="Live Map of All Trucks and Contamination"
-        android:textColor="#FFFFFF"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTracking" />
 
 
     <!-- How to use the MapView:

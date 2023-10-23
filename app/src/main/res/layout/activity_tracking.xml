@@ -74,7 +74,7 @@
 
 
         <com.google.android.gms.maps.MapView
-            android:id="@+id/mvTracking"
+            android:id="@+id/mvRoute"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="32dp"
@@ -109,7 +109,7 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/rlTruckTracker"
+        android:id="@+id/rlTruckInfo"
         android:layout_width="0dp"
         android:layout_height="284dp"
         android:layout_marginStart="48dp"
@@ -158,9 +158,9 @@
         android:background="@drawable/blue_rectangle_frame"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="@+id/rlMaps"
-        app:layout_constraintEnd_toEndOf="@+id/rlTruckTracker"
-        app:layout_constraintStart_toStartOf="@+id/rlTruckTracker"
-        app:layout_constraintTop_toBottomOf="@+id/rlTruckTracker">
+        app:layout_constraintEnd_toEndOf="@+id/rlTruckInfo"
+        app:layout_constraintStart_toStartOf="@+id/rlTruckInfo"
+        app:layout_constraintTop_toBottomOf="@+id/rlTruckInfo">
 
         <TextView
             android:id="@+id/tvTopContamination"
