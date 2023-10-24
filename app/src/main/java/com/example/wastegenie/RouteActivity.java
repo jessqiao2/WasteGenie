@@ -14,6 +14,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -90,6 +91,7 @@ public class RouteActivity extends AppCompatActivity implements OnMapReadyCallba
                 ArrayList<HashMap<String, String>> binDataList = (ArrayList<HashMap<String, String>>) snapshot.getValue();
                 Log.d("snapshot", "works correctly");
 
+                ArrayList<BinData> routeBinList = new ArrayList<BinData>();
                 Gson gson = new Gson();
                 for (HashMap<String, String> hash : binDataList) {
                     if (hash != null) {
@@ -99,6 +101,7 @@ public class RouteActivity extends AppCompatActivity implements OnMapReadyCallba
                         if (binData.getStatus().equals("Bin Picked Up") && collectionDate.equals("2023-09-30")) {
                             String address = binData.getBinAddress();
                             addressList.add(address);
+                            routeBinList.add(binData);
                         }
                     }
                 }
@@ -136,6 +139,19 @@ public class RouteActivity extends AppCompatActivity implements OnMapReadyCallba
                             map.moveCamera(CameraUpdateFactory.newLatLngBounds(routeBounds, 100));
                             // map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(avgLat, avgLng), 13));
 
+                            for (int i = 0; i < addressList.size() - 1; i++){
+                                JSONObject startLoc = rawResponse.getJSONArray("routes").getJSONObject(0).getJSONArray("legs").getJSONObject(i).getJSONObject("start_location");
+                                LatLng waypointLL = new LatLng(startLoc.getDouble("lat"), startLoc.getDouble("lng"));
+                                map.addMarker(new MarkerOptions()
+                                        .position(waypointLL)
+                                        .title(routeBinList.get(i).getBinName()));
+                            }
+                            JSONObject endLoc = rawResponse.getJSONArray("routes").getJSONObject(0).getJSONArray("legs").getJSONObject(addressList.size() - 2).getJSONObject("end_location");
+                            LatLng endpointLL = new LatLng(endLoc.getDouble("lat"), endLoc.getDouble("lng"));
+                            map.addMarker(new MarkerOptions()
+                                    .position(endpointLL)
+                                    .title(routeBinList.get(routeBinList.size() - 1).getBinName())
+                                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
 
                         } catch (JSONException e) {
                             throw new RuntimeException(e);

@@ -29,6 +29,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 import okhttp3.ResponseBody;
@@ -85,32 +87,37 @@ public class TrackingActivity extends AppCompatActivity implements OnMapReadyCal
                 String address = bindata.getBinAddress();
                 addressList.add(address);
 
-                Call<ResponseBody> geocodingCall = geocodingService.getLongLat(address, key);
-                geocodingCall.enqueue(new Callback<ResponseBody>() {
-                    @Override
-                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        JSONObject rawResponse = null;
-                        try {
-                            rawResponse = new JSONObject(response.body().string());
-                            JSONObject longLat = rawResponse.getJSONArray("results").getJSONObject(0).getJSONObject("geometry").getJSONObject("location");
-                            LatLng binLoc = new LatLng(longLat.getDouble("lat"), longLat.getDouble("lng"));
-                            map.addMarker(new MarkerOptions()
-                                    .position(binLoc)
-                                    .title(bindata.getBinName()));
+                LocalDate today = LocalDate.of(2023, 10, 24);
+                LocalDate lastWeek = today.minus(1, ChronoUnit.WEEKS);
+                LocalDate addressDate = LocalDate.parse(bindata.getDate().split("T")[0]);
 
-                        } catch (JSONException e) {
-                            throw new RuntimeException(e);
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
+                if(addressDate.isBefore(today) && addressDate.isAfter(lastWeek)) {
+                    Call<ResponseBody> geocodingCall = geocodingService.getLongLat(address, key);
+                    geocodingCall.enqueue(new Callback<ResponseBody>() {
+                        @Override
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                            JSONObject rawResponse = null;
+                            try {
+                                rawResponse = new JSONObject(response.body().string());
+                                JSONObject longLat = rawResponse.getJSONArray("results").getJSONObject(0).getJSONObject("geometry").getJSONObject("location");
+                                LatLng binLoc = new LatLng(longLat.getDouble("lat"), longLat.getDouble("lng"));
+                                map.addMarker(new MarkerOptions()
+                                        .position(binLoc)
+                                        .title(bindata.getBinName()));
+
+                            } catch (JSONException e) {
+                                throw new RuntimeException(e);
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
                         }
-                    }
 
-                    @Override
-                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t) {
 
-                    }
-                });
-
+                        }
+                    });
+                }
             }
 
             @Override
