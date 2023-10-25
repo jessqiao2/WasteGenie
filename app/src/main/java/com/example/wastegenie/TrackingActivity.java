@@ -9,9 +9,13 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.wastegenie.Adapters.HomeAdapter;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -50,6 +54,9 @@ public class TrackingActivity extends AppCompatActivity implements OnMapReadyCal
     ArrayList<String> addressList = new ArrayList<String>();
     String key = null;
 
+    Spinner truckSpinner;
+    Spinner councilSpinner;
+
     GoogleMap map;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +72,17 @@ public class TrackingActivity extends AppCompatActivity implements OnMapReadyCal
         mvTracking = findViewById(R.id.mvRoute);
         mvTracking.onCreate(mapViewBundle);
         mvTracking.getMapAsync(this);
+
+        truckSpinner = findViewById(R.id.spTrackActivityTruckID);
+        ArrayAdapter<CharSequence> truckAdapter = ArrayAdapter.createFromResource(
+                TrackingActivity.this,
+                R.array.sydneyTrucksArray,
+                android.R.layout.simple_spinner_item
+        );
+        truckAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        truckSpinner.setAdapter(truckAdapter);
+
+
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://maps.googleapis.com/maps/api/geocode/")
@@ -181,6 +199,7 @@ public class TrackingActivity extends AppCompatActivity implements OnMapReadyCal
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(TrackingActivity.this, RouteActivity.class);
+                intent.putExtra("truckID", truckSpinner.getSelectedItem().toString());
                 startActivity(intent);
                 finish();
             }

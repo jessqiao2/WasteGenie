@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
          * Setting up corresponding spinners for the council's SPECIFIC trucks depending on what
          * council the user chose
          */
-        truckSpinner = findViewById(R.id.spHomeTrackTruckID);
+        truckSpinner = findViewById(R.id.spTrackActivityTruckID);
         councilSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

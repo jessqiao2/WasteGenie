@@ -35,8 +35,10 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -55,12 +57,16 @@ public class RouteActivity extends AppCompatActivity implements OnMapReadyCallba
     private MapView mvRoute;
     GoogleMap map;
     private static final String MAPVIEW_BUNDLE_KEY = "MapViewBundleKey";
+    String truckID = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_route);
         setTitle("Route Tracking Page");
+
+        Intent intentFromTracking = getIntent();
+        truckID = intentFromTracking.getStringExtra("truckID");
 
         Bundle mapViewBundle = null;
         if (savedInstanceState != null) {
@@ -85,26 +91,48 @@ public class RouteActivity extends AppCompatActivity implements OnMapReadyCallba
         // Get all stops taken by a particular truck
         database = FirebaseDatabase.getInstance().getReference().child("1qHYUHw1GGaVy9oW_pT8LMAWjR9fODaJE1qWqhcSNHBs").child("Sheet1");
         // will change hardcoded value later
-        database.orderByChild("truckId").equalTo("PA122").addValueEventListener(new ValueEventListener() {
+        database.orderByChild("truckId").equalTo(truckID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                ArrayList<HashMap<String, String>> binDataList = (ArrayList<HashMap<String, String>>) snapshot.getValue();
-                Log.d("snapshot", "works correctly");
-
-                ArrayList<BinData> routeBinList = new ArrayList<BinData>();
                 Gson gson = new Gson();
-                for (HashMap<String, String> hash : binDataList) {
-                    if (hash != null) {
-                        JsonElement jsonElement = gson.toJsonTree(hash);
-                        BinData binData = gson.fromJson(jsonElement, BinData.class);
-                        String collectionDate = binData.getDate().split("T")[0];
-                        if (binData.getStatus().equals("Bin Picked Up") && collectionDate.equals("2023-09-30")) {
-                            String address = binData.getBinAddress();
-                            addressList.add(address);
-                            routeBinList.add(binData);
+                ArrayList<BinData> binDataList = new ArrayList<BinData>();
+                ArrayList<BinData> routeBinList = new ArrayList<BinData>();
+
+
+                if(snapshot.getValue().getClass() == HashMap.class){
+                    Log.d("RouteActivity", "HashMap");
+                    HashMap<String, HashMap<String, String>> binDataHM = (HashMap<String, HashMap<String, String>>) snapshot.getValue();
+                    for(Map.Entry<String, HashMap<String, String>> entry : binDataHM.entrySet()) {
+                        HashMap hash = entry.getValue();
+                        if (hash != null) {
+                            JsonElement jsonElement = gson.toJsonTree(hash);
+                            BinData binData = gson.fromJson(jsonElement, BinData.class);
+                            binDataList.add(binData);
+                        }
+                    }
+                } else {
+                    ArrayList<HashMap<String, String>> binDataHMList = (ArrayList<HashMap<String, String>>) snapshot.getValue();
+                    Log.d("snapshot", "works correctly");
+                    for (HashMap<String, String> hash : binDataHMList) {
+                        if (hash != null) {
+                            JsonElement jsonElement = gson.toJsonTree(hash);
+                            BinData binData = gson.fromJson(jsonElement, BinData.class);
+                            binDataList.add(binData);
                         }
                     }
                 }
+
+                binDataList.sort(Comparator.comparing(BinData::getDate));
+                String mostRecentDate = binDataList.get(binDataList.size() - 1).getDate().split("T")[0];
+                for (BinData binData : binDataList){
+                    String collectionDate = binData.getDate().split("T")[0];
+                    if (binData.getStatus().equals("Bin Picked Up") && collectionDate.equals(mostRecentDate)) {
+                        String address = binData.getBinAddress();
+                        addressList.add(address);
+                        routeBinList.add(binData);
+                    }
+                }
+
                 String origin = addressList.get(0);
                 String destination = addressList.get(addressList.size() - 1);
                 String waypoints = null;
@@ -130,14 +158,11 @@ public class RouteActivity extends AppCompatActivity implements OnMapReadyCallba
                                 lngs.add(ll.longitude);
                             }
 
-                            // double avgLat = (lats.get(0) + lats.get(decodedLine.size() - 1))/2;
-                            // double avgLng = (lngs.get(0) + lngs.get(decodedLine.size() - 1))/2;
                             LatLngBounds routeBounds = new LatLngBounds(
                                     new LatLng(Collections.min(lats), Collections.min(lngs)),
                                             new LatLng(Collections.max(lats), Collections.max(lngs))
                             );
                             map.moveCamera(CameraUpdateFactory.newLatLngBounds(routeBounds, 100));
-                            // map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(avgLat, avgLng), 13));
 
                             for (int i = 0; i < addressList.size() - 1; i++){
                                 JSONObject startLoc = rawResponse.getJSONArray("routes").getJSONObject(0).getJSONArray("legs").getJSONObject(i).getJSONObject("start_location");
@@ -167,17 +192,12 @@ public class RouteActivity extends AppCompatActivity implements OnMapReadyCallba
                 });
             }
 
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
-
-        /* For creating the route:
-        https://developers.google.com/maps/documentation/directions/get-directions#DirectionsResponse
-        https://www.geeksforgeeks.org/how-to-draw-polyline-in-google-maps-in-android/
-         */
-
 
 
         /**

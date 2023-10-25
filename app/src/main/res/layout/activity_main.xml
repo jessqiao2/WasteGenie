@@ -224,7 +224,7 @@
             android:background="@drawable/searchview_background">
 
             <Spinner
-                android:id="@+id/spHomeTrackTruckID"
+                android:id="@+id/spTrackActivityTruckID"
                 android:layout_width="614dp"
                 android:layout_height="match_parent"
                 android:layout_alignParentStart="true"
