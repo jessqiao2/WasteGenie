@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -53,13 +54,26 @@ public class AnalysisActivity extends AppCompatActivity {
     DatabaseReference databaseStats;
 
     // for bar graph
-    Button btWeekly;
-    Button btMonthly;
+    RelativeLayout rlWeekly;
+    RelativeLayout rlMonthly;
+    TextView tvWeekly;
+    TextView tvMonthly;
     BarChart barChart;
+    BarChart barChartMonthly;
     DatabaseReference databaseChart;
     int[] colorClassArray = new int[]{Color.BLUE, Color.CYAN};
     ArrayList<IBarDataSet> iBarDataSets = new ArrayList<>();
     BarData barData;
+    ArrayList<IBarDataSet> iBarDataSetsMonthly = new ArrayList<>();
+    BarData barDataMonthly;
+    int recycableCountWeekOne;
+    int recycableCountWeekTwo;
+    int recycableCountWeekThree;
+    int recycableCountWeekFour;
+    int contaminatedCountWeekOne;
+    int contaminatedCountWeekTwo;
+    int contaminatedCountWeekThree;
+    int contaminatedCountWeekFour;
     int recycableCountMon;
     int recycableCountTues;
     int recycableCountWed;
@@ -79,6 +93,10 @@ public class AnalysisActivity extends AppCompatActivity {
     LineChart lineChart;
     ArrayList<ILineDataSet> iLineDataSets = new ArrayList<>();
     LineData lineData;
+
+    LineChart lineChartMonthly;
+    ArrayList<ILineDataSet> iLineDataSetsMonthly = new ArrayList<>();
+    LineData lineDataMonthly;
     int totalWeightMon;
     int totalWeightTues;
     int totalWeightWed;
@@ -86,7 +104,10 @@ public class AnalysisActivity extends AppCompatActivity {
     int totalWeightFri;
     int totalWeightSat;
     int totalWeightSun;
-
+    int totalWeightWeekOne;
+    int totalWeightWeekTwo;
+    int totalWeightWeekThree;
+    int totalWeightWeekFour;
 
     // for spinners
     Spinner spSpecificCouncil;
@@ -153,10 +174,42 @@ public class AnalysisActivity extends AppCompatActivity {
         });
 
         /**
-         * Set up graphs
+         * Set up graphs and buttons for weekly and monthly data
          */
+        tvWeekly = findViewById(R.id.tvDashboardWeekly);
+        tvMonthly = findViewById(R.id.tvDashboardMonthly);
+        rlWeekly = findViewById(R.id.rlWeekly);
+        rlMonthly = findViewById(R.id.rlMonthly);
+
         barChart = findViewById(R.id.bcDashboardWeekly);
         lineChart = findViewById(R.id.lcDashboardWeekly);
+        barChartMonthly = findViewById(R.id.bcDashboardMonthly);
+        lineChartMonthly = findViewById(R.id.lcDashboardMonthly);
+
+        // if user presses weekly, the colours will change
+        tvWeekly.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tvWeekly.setTextColor(Color.parseColor("#2995E2"));
+                tvMonthly.setTextColor(Color.parseColor("#87BBDF"));
+                rlWeekly.setVisibility(View.VISIBLE);
+                rlMonthly.setVisibility(View.INVISIBLE);
+
+            }
+        });
+
+        // if user clicks monthly, monthly data will be displayed
+        tvMonthly.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // light blue
+                tvWeekly.setTextColor(Color.parseColor("#87BBDF"));
+                // dark blue
+                tvMonthly.setTextColor(Color.parseColor("#2995E2"));
+                rlWeekly.setVisibility(View.INVISIBLE);
+                rlMonthly.setVisibility(View.VISIBLE);
+            }
+        });
 
         databaseChart = FirebaseDatabase.getInstance().getReference().child("1qHYUHw1GGaVy9oW_pT8LMAWjR9fODaJE1qWqhcSNHBs").child("Sheet1");
         databaseChart.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
@@ -166,12 +219,16 @@ public class AnalysisActivity extends AppCompatActivity {
                 ArrayList<BarEntry> dataVals = new ArrayList<>();
                 ArrayList<Entry> lineDataVals = new ArrayList<Entry>();
 
+                ArrayList<BarEntry> dataValsMonthly = new ArrayList<>();
+                ArrayList<Entry> lineDataValsMonthly = new ArrayList<Entry>();
+
                 if (task.isSuccessful()) {
                     for (DataSnapshot dataSnapshot : task.getResult().getChildren()) {
                         BinData binData = dataSnapshot.getValue(BinData.class);
 
-                        // calculate total bins contaminated vs not contaminated in the latest week (Mon 23rd Oct - Sunday 29th Oct)
-                        // MONDAY:
+                        /**
+                         * Set up weekly data
+                         */
                         if (binData.getStatus().equals("Bin Fully Recyclable ") && (binData.getDate()).split("T")[0].equals("2023-10-23"))  {
                             recycableCountMon = recycableCountMon + 1;
                         } else if (binData.getStatus().equals("Bin Flagged as Contaminated") && (binData.getDate()).split("T")[0].equals("2023-10-23")) {
@@ -233,12 +290,114 @@ public class AnalysisActivity extends AppCompatActivity {
 
                             totalWeightSun = totalWeightSun + binData.geteWasteWeightKilos();
                         }
+                        /**
+                         * Set up Monthly data
+                         */
 
+                        // calculate total bins contaminated vs not contaminated in the latest Month (Week 1,2,3,4)
+                        // 1-8 October:
+                        if (binData.getStatus().equals("Bin Fully Recyclable ")
+                                && ((binData.getDate()).split("T")[0].equals("2023-10-01")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-02")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-03")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-04")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-05")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-06")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-07")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-08"))) {
+                            recycableCountWeekOne = recycableCountWeekOne + 1;
+                        } else if (binData.getStatus().equals("Bin Flagged as Contaminated")
+                                && ((binData.getDate()).split("T")[0].equals("2023-10-01")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-02")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-03")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-04")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-05")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-06")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-07")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-08"))) {
+                            contaminatedCountWeekOne = contaminatedCountWeekOne + 1;
+
+                            totalWeightWeekOne = totalWeightWeekOne + binData.geteWasteWeightKilos();
+                        }
+
+                        // 9-16 October
+                        if (binData.getStatus().equals("Bin Fully Recyclable ")
+                                && ((binData.getDate()).split("T")[0].equals("2023-10-09")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-10")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-11")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-12")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-13")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-14")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-15")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-16"))) {
+                            recycableCountWeekTwo = recycableCountWeekTwo + 1;
+                        } else if (binData.getStatus().equals("Bin Flagged as Contaminated")
+                                && ((binData.getDate()).split("T")[0].equals("2023-10-09")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-10")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-11")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-12")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-13")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-14")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-15")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-16"))) {
+                            contaminatedCountWeekTwo = contaminatedCountWeekTwo + 1;
+
+                            totalWeightWeekTwo = totalWeightWeekTwo + binData.geteWasteWeightKilos();
+                        }
+
+                        // 17-24 October
+                        if (binData.getStatus().equals("Bin Fully Recyclable ")
+                                && ((binData.getDate()).split("T")[0].equals("2023-10-17")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-18")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-19")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-20")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-21")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-22")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-23")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-24"))) {
+                            recycableCountWeekThree = recycableCountWeekThree + 1;
+                        } else if (binData.getStatus().equals("Bin Flagged as Contaminated")
+                                && ((binData.getDate()).split("T")[0].equals("2023-10-17")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-18")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-19")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-20")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-21")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-22")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-23")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-24"))) {
+                            contaminatedCountWeekThree = contaminatedCountWeekThree + 1;
+
+                            totalWeightWeekThree = totalWeightWeekThree + binData.geteWasteWeightKilos();
+                        }
+
+                        // 25-31 October
+                        if (binData.getStatus().equals("Bin Fully Recyclable ")
+                                && ((binData.getDate()).split("T")[0].equals("2023-10-25")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-26")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-27")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-28")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-29")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-30")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-31"))) {
+                            recycableCountWeekFour = recycableCountWeekFour + 1;
+                        } else if (binData.getStatus().equals("Bin Flagged as Contaminated")
+                                && ((binData.getDate()).split("T")[0].equals("2023-10-25")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-26")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-27")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-28")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-29")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-30")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-31"))) {
+                            contaminatedCountWeekFour = contaminatedCountWeekFour + 1;
+
+                            totalWeightWeekFour = totalWeightWeekFour + binData.geteWasteWeightKilos();
+                        }
 
                     }
                     /**
-                     * Set bar chart values
+                     * Set weekly bar chart values
                      */
+
                     dataVals.add(new BarEntry(0, new float[]{recycableCountMon, contaminatedCountMon}));
                     dataVals.add(new BarEntry(1, new float[]{recycableCountTues, contaminatedCountTues}));
                     dataVals.add(new BarEntry(2, new float[]{recycableCountWed, contaminatedCountWed}));
@@ -359,6 +518,124 @@ public class AnalysisActivity extends AppCompatActivity {
                     lineChart.setData(lineData);
                     lineChart.getLineData().setValueTextSize(15);
                     lineChart.invalidate();
+
+                    /**
+                     * Set up monthly chart values
+                     */
+
+                    dataValsMonthly.add(new BarEntry(0, new float[]{recycableCountWeekOne, contaminatedCountWeekOne}));
+                    dataValsMonthly.add(new BarEntry(1, new float[]{recycableCountWeekTwo, contaminatedCountWeekTwo}));
+                    dataValsMonthly.add(new BarEntry(2, new float[]{recycableCountWeekThree, contaminatedCountWeekThree}));
+                    dataValsMonthly.add(new BarEntry(3, new float[]{recycableCountWeekFour, contaminatedCountWeekFour}));
+
+                    BarDataSet barDataSetMonthly = new BarDataSet(dataValsMonthly, "Bins Fully Recyclable");
+                    barDataSetMonthly.setColors(colorClassArray);
+
+                    // create a list of IDataSets to build ChartData object
+                    iBarDataSetsMonthly.clear();
+                    iBarDataSetsMonthly.add(barDataSetMonthly);
+                    barDataMonthly = new BarData(iBarDataSetsMonthly);
+
+                    // other formatting
+                    //barDataMonthly.setBarWidth(0.7f); // set custom bar width
+                    barChartMonthly.getDescription().setEnabled(false);
+                    barChartMonthly.setExtraBottomOffset(4f);
+
+                    // legend formatting
+                    Legend lMonthly = barChartMonthly.getLegend();
+                    LegendEntry l1Monthly=new LegendEntry("Recycled", Legend.LegendForm.DEFAULT,10f,2f,null, Color.BLUE);
+                    LegendEntry l2Monthly=new LegendEntry("Contaminated", Legend.LegendForm.DEFAULT,10f,2f,null, Color.CYAN);
+                    lMonthly.setCustom(new LegendEntry[]{l1Monthly,l2Monthly});
+
+                    lMonthly.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
+                    lMonthly.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
+                    lMonthly.setOrientation(Legend.LegendOrientation.HORIZONTAL);
+                    lMonthly.setDrawInside(false);
+                    lMonthly.setTextSize(15);
+
+                        // set X-axis formatting
+                    final ArrayList<String> xLabelMonthly = new ArrayList<>();
+                    xLabelMonthly.add("1-8 Oct");
+                    xLabelMonthly.add("9-16 Oct");
+                    xLabelMonthly.add("17-24 Oct");
+                    xLabelMonthly.add("25-31 Oct");
+
+                    XAxis xAxisMonthly = barChartMonthly.getXAxis();
+                    xAxisMonthly.setPosition(XAxis.XAxisPosition.BOTTOM);
+                    xAxisMonthly.setDrawGridLines(false);
+                    xAxisMonthly.setValueFormatter(new ValueFormatter() {
+                        @Override
+                        public String getFormattedValue(float value) {
+                            return xLabelMonthly.get((int) value);
+                        }
+                    });
+                    xAxisMonthly.setLabelCount(xLabelMonthly.size(), false);
+                    xAxisMonthly.setGranularityEnabled(true);
+
+                    xAxisMonthly.setTextSize(15);
+
+                        // set barChart
+                    barChartMonthly.setData(barDataMonthly);
+                    barChartMonthly.getBarData().setValueTextSize(15);
+                    barChartMonthly.setFitBars(true);
+                    barChartMonthly.invalidate();
+
+                    /**
+                     * Set line chart values
+                     */
+                    lineDataValsMonthly.add(new Entry(0, totalWeightWeekOne));
+                    lineDataValsMonthly.add(new Entry(1, totalWeightWeekTwo));
+                    lineDataValsMonthly.add(new Entry(2, totalWeightWeekThree));
+                    lineDataValsMonthly.add(new Entry(3, totalWeightWeekFour));
+
+                    LineDataSet lineDataSetMonthly = new LineDataSet(lineDataValsMonthly, "E-Waste Contamination (Kg)");
+                    lineDataSetMonthly.setColors(Color.BLUE);
+
+                    // create a list of IDataSets to build ChartData object
+                    iLineDataSetsMonthly.clear();
+                    iLineDataSetsMonthly.add(lineDataSetMonthly);
+                    lineDataMonthly = new LineData(iLineDataSetsMonthly);
+
+                    // other formatting
+                    lineChartMonthly.getDescription().setEnabled(false);
+                    lineChartMonthly.setExtraBottomOffset(3f);
+                    lineChartMonthly.setExtraLeftOffset(7f);
+                    lineChartMonthly.setExtraRightOffset(10f);
+
+                    Legend lLineMonthly = lineChartMonthly.getLegend();
+
+                    lLineMonthly.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
+                    lLineMonthly.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
+                    lLineMonthly.setOrientation(Legend.LegendOrientation.HORIZONTAL);
+                    lLineMonthly.setDrawInside(false);
+                    lLineMonthly.setTextSize(15);
+
+                        // set X-axis formatting
+                    final ArrayList<String> xLabelLineMonthly = new ArrayList<>();
+                    xLabelLineMonthly.add("1-8 Oct");
+                    xLabelLineMonthly.add("9-16 Oct");
+                    xLabelLineMonthly.add("17-24 Oct");
+                    xLabelLineMonthly.add("25-31 Oct");
+
+                    XAxis xAxisLineMonthly = lineChartMonthly.getXAxis();
+                    xAxisLineMonthly.setPosition(XAxis.XAxisPosition.BOTTOM);
+                    xAxisLineMonthly.setDrawGridLines(false);
+                    xAxisLineMonthly.setValueFormatter(new ValueFormatter() {
+                        @Override
+                        public String getFormattedValue(float value) {
+                            return xLabelLineMonthly.get((int) value);
+                        }
+                    });
+
+                    lineChartMonthly.getXAxis().setLabelCount(4, /*force: */true);
+
+                    xAxisLineMonthly.setTextSize(15);
+
+                    // set barChart
+                    lineChartMonthly.setData(lineDataMonthly);
+                    lineChartMonthly.getLineData().setValueTextSize(15);
+                    lineChartMonthly.invalidate();
+
                 }
             }
         });

@@ -171,8 +171,10 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/rlMonthly"
         android:layout_width="816dp"
         android:layout_height="547dp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/rlHomeTrack"
         app:layout_constraintEnd_toEndOf="@+id/rlHomeWeight"
         app:layout_constraintHorizontal_bias="0.629"
@@ -181,7 +183,7 @@
         app:layout_constraintVertical_bias="1.0">
 
         <com.github.mikephil.charting.charts.BarChart
-            android:id="@+id/bcDashboardWeekly"
+            android:id="@+id/bcDashboardMonthly"
             android:layout_width="778dp"
             android:layout_height="274dp"
             android:layout_alignParentStart="true"
@@ -197,7 +199,7 @@
             app:layout_constraintVertical_bias="0.025" />
 
         <com.github.mikephil.charting.charts.LineChart
-            android:id="@+id/lcDashboardWeekly"
+            android:id="@+id/lcDashboardMonthly"
             android:layout_width="778dp"
             android:layout_height="266dp"
             android:layout_alignParentEnd="true"
@@ -206,7 +208,7 @@
             android:layout_marginBottom="3dp" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/tvNumberBinsMonth"
             android:layout_width="170dp"
             android:layout_height="38dp"
             android:layout_alignParentStart="true"
@@ -223,7 +225,7 @@
             android:textSize="15sp" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/tvWeightMonth"
             android:layout_width="170dp"
             android:layout_height="38dp"
             android:layout_alignParentStart="true"
@@ -604,6 +606,79 @@
             android:text="Contaminated Bins"
             android:textColor="#FFFFFF"
             android:textSize="25sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlWeekly"
+        android:layout_width="816dp"
+        android:layout_height="547dp"
+        app:layout_constraintBottom_toBottomOf="@+id/rlHomeTrack"
+        app:layout_constraintEnd_toEndOf="@+id/rlHomeWeight"
+        app:layout_constraintHorizontal_bias="0.629"
+        app:layout_constraintStart_toStartOf="@+id/rlHomeScore"
+        app:layout_constraintTop_toTopOf="@+id/relativeLayout"
+        app:layout_constraintVertical_bias="1.0">
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/bcDashboardWeekly"
+            android:layout_width="778dp"
+            android:layout_height="274dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="7dp"
+            android:layout_marginBottom="286dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.675"
+            app:layout_constraintVertical_bias="0.025" />
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/lcDashboardWeekly"
+            android:layout_width="778dp"
+            android:layout_height="266dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="3dp" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="170dp"
+            android:layout_height="38dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="-58dp"
+            android:layout_marginTop="95dp"
+            android:layout_marginEnd="703dp"
+            android:layout_marginBottom="414dp"
+            android:fontFamily="@font/public_sans"
+            android:rotation="270"
+            android:text="Number of Bins"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="170dp"
+            android:layout_height="38dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="-67dp"
+            android:layout_marginTop="347dp"
+            android:layout_marginEnd="703dp"
+            android:layout_marginBottom="162dp"
+            android:fontFamily="@font/public_sans"
+            android:rotation="270"
+            android:text="E-Waste Weight (Kg)"
+            android:textSize="15sp" />
+
+
     </RelativeLayout>
 
 
