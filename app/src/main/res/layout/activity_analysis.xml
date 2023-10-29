@@ -22,6 +22,398 @@
         app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
         app:layout_constraintVertical_bias="0.118">
 
+        <RelativeLayout
+            android:layout_width="634dp"
+            android:layout_height="294dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="68dp"
+            android:layout_marginEnd="22dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/searchview_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/bcWeeklyBreakdown"
+            app:layout_constraintHorizontal_bias="0.55"
+            app:layout_constraintStart_toStartOf="@+id/bcWeeklyBreakdown"
+            app:layout_constraintVertical_bias="0.097">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="0dp">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#81C1EE">
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="6"
+                        android:fontFamily="@font/public_sans_bold"
+                        android:gravity="center_horizontal"
+                        android:padding="5sp"
+                        android:text="Bin Name"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="6"
+                        android:fontFamily="@font/public_sans_bold"
+                        android:gravity="center_horizontal"
+                        android:padding="5sp"
+                        android:text="Council"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:fontFamily="@font/public_sans_bold"
+                        android:gravity="center_horizontal"
+                        android:padding="5sp"
+                        android:text="Monthly Count"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tbMonthlyTopBins1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                    <TextView
+                        android:id="@+id/tvTopWeeklyBinName1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="6"
+                        android:fontFamily="@font/public_sans"
+                        android:gravity="center_horizontal"
+                        android:padding="5sp"
+                        android:text="Newtown Gardens"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textView7"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="6"
+                        android:fontFamily="@font/public_sans"
+                        android:gravity="center_horizontal"
+                        android:padding="5sp"
+                        android:text="City of Sydney Council"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tvWeeklyCount1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:fontFamily="@font/public_sans"
+                        android:gravity="center_horizontal"
+                        android:padding="5sp"
+                        android:text="6"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tbMonthlyTopBins2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                    <TextView
+                        android:id="@+id/tvTopWeeklyBinName2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="6"
+                        android:fontFamily="@font/public_sans"
+                        android:gravity="center_horizontal"
+                        android:padding="5sp"
+                        android:text="Killara Gardens Facility"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textView8"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="6"
+                        android:fontFamily="@font/public_sans"
+                        android:gravity="center_horizontal"
+                        android:padding="5sp"
+                        android:text="Ku-ring-gai Council"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tvWeeklyCount2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:fontFamily="@font/public_sans"
+                        android:gravity="center_horizontal"
+                        android:padding="5sp"
+                        android:text="6"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tbMonthlyTopBins3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                    <TextView
+                        android:id="@+id/tvTopWeeklyBinName3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="6"
+                        android:fontFamily="@font/public_sans"
+                        android:gravity="center_horizontal"
+                        android:padding="5sp"
+                        android:text="Parramatta Library"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textView9"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="6"
+                        android:fontFamily="@font/public_sans"
+                        android:gravity="center_horizontal"
+                        android:padding="5sp"
+                        android:text="Parramatta Council"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tvWeeklyCount3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:fontFamily="@font/public_sans"
+                        android:gravity="center_horizontal"
+                        android:padding="5sp"
+                        android:text="5"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tbMonthlyTopBins4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                    <TextView
+                        android:id="@+id/tvTopWeeklyBinName4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="6"
+                        android:fontFamily="@font/public_sans"
+                        android:gravity="center_horizontal"
+                        android:padding="5sp"
+                        android:text="Parramatta Station"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textView10"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="6"
+                        android:fontFamily="@font/public_sans"
+                        android:gravity="center_horizontal"
+                        android:padding="5sp"
+                        android:text="Parramatta Council"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                    <TextView
+
+                        android:id="@+id/tvWeeklyCount4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:fontFamily="@font/public_sans"
+                        android:gravity="center_horizontal"
+                        android:padding="5sp"
+                        android:text="5"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tbMonthlyTopBins5"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                    <TextView
+                        android:id="@+id/tvTopWeeklyBinName5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="6"
+                        android:fontFamily="@font/public_sans"
+                        android:gravity="center_horizontal"
+                        android:padding="5sp"
+                        android:text="Riverside Theatres"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="6"
+                        android:fontFamily="@font/public_sans"
+                        android:gravity="center_horizontal"
+                        android:padding="5sp"
+                        android:text="Parramatta Council"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tvWeeklyCount5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:fontFamily="@font/public_sans"
+                        android:gravity="center_horizontal"
+                        android:padding="5sp"
+                        android:text="5"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tbMonthlyTopBins6"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                    <TextView
+                        android:id="@+id/tvTopWeeklyBinName6"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="6"
+                        android:fontFamily="@font/public_sans"
+                        android:gravity="center_horizontal"
+                        android:padding="5sp"
+                        android:text="Carriageworks"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textView12"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="6"
+                        android:fontFamily="@font/public_sans"
+                        android:gravity="center_horizontal"
+                        android:padding="5sp"
+                        android:text="City of Sydney Council"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tvWeeklyCount6"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:fontFamily="@font/public_sans"
+                        android:gravity="center_horizontal"
+                        android:padding="5sp"
+                        android:text="5"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tbMonthlyTopBins7"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                    <TextView
+                        android:id="@+id/tvTopWeeklyBinName7"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="6"
+                        android:fontFamily="@font/public_sans"
+                        android:gravity="center_horizontal"
+                        android:padding="5sp"
+                        android:text="Forum Medical Centre"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textView13"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="6"
+                        android:fontFamily="@font/public_sans"
+                        android:gravity="center_horizontal"
+                        android:padding="5sp"
+                        android:text="City of Sydney Council"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tvWeeklyCount7"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:fontFamily="@font/public_sans"
+                        android:gravity="center_horizontal"
+                        android:padding="5sp"
+                        android:text="5"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                </TableRow>
+            </TableLayout>
+        </RelativeLayout>
+
         <TextView
             android:layout_width="633dp"
             android:layout_height="wrap_content"
@@ -32,22 +424,9 @@
             android:layout_marginTop="17dp"
             android:layout_marginEnd="26dp"
             android:fontFamily="@font/public_sans_bold"
-            android:text="Top Weekly E-Waste Contamination Bins"
+            android:text="Top Monthly E-Waste Contamination Bins"
             android:textColor="#FFFFFF"
             android:textSize="30sp" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvTopWeeklyContamBins"
-            android:layout_width="642dp"
-            android:layout_height="278dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="21dp"
-            android:layout_marginTop="75dp"
-            android:layout_marginEnd="18dp"
-            android:layout_marginBottom="29dp" />
 
     </RelativeLayout>
 

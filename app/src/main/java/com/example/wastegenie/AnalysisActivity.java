@@ -2,6 +2,7 @@ package com.example.wastegenie;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -17,7 +18,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.wastegenie.Adapters.AnalysisAdapter;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
@@ -117,17 +117,12 @@ public class AnalysisActivity extends AppCompatActivity {
     Button btCouncilAnalysis;
     Button btBinAnalysis;
 
-    // for recyclerview
-    RecyclerView recyclerView;
-    DatabaseReference databaseRecyclerView;
-    AnalysisAdapter adapter;
-    ArrayList<BinData> list;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_analysis);
         setTitle("Analysis Page");
+
 
         /**
          * Set up statistics
@@ -553,7 +548,7 @@ public class AnalysisActivity extends AppCompatActivity {
                     lMonthly.setDrawInside(false);
                     lMonthly.setTextSize(15);
 
-                        // set X-axis formatting
+                    // set X-axis formatting
                     final ArrayList<String> xLabelMonthly = new ArrayList<>();
                     xLabelMonthly.add("1-8 Oct");
                     xLabelMonthly.add("9-16 Oct");
@@ -574,7 +569,7 @@ public class AnalysisActivity extends AppCompatActivity {
 
                     xAxisMonthly.setTextSize(15);
 
-                        // set barChart
+                    // set barChart
                     barChartMonthly.setData(barDataMonthly);
                     barChartMonthly.getBarData().setValueTextSize(15);
                     barChartMonthly.setFitBars(true);
@@ -751,6 +746,8 @@ public class AnalysisActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
 
 
         /**
