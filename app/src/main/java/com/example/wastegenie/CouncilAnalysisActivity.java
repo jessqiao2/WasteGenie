@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -99,6 +100,64 @@ public class CouncilAnalysisActivity extends AppCompatActivity {
     int totalWeightWeekThree;
     int totalWeightWeekFour;
 
+    // for council bins table
+    TextView tvBinName1;
+    TextView tvBinName2;
+    TextView tvBinName3;
+    TextView tvBinName4;
+    TextView tvBinName5;
+    TextView tvBinName6;
+    TextView tvBinName7;
+    TextView tvBinName8;
+    TextView tvBinName9;
+    TextView tvBinName10;
+
+    TextView tvBinLocation1;
+    TextView tvBinLocation2;
+    TextView tvBinLocation3;
+    TextView tvBinLocation4;
+    TextView tvBinLocation5;
+    TextView tvBinLocation6;
+    TextView tvBinLocation7;
+    TextView tvBinLocation8;
+    TextView tvBinLocation9;
+    TextView tvBinLocation10;
+
+    TextView tvBinCount1;
+    TextView tvBinCount2;
+    TextView tvBinCount3;
+    TextView tvBinCount4;
+    TextView tvBinCount5;
+    TextView tvBinCount6;
+    TextView tvBinCount7;
+    TextView tvBinCount8;
+    TextView tvBinCount9;
+    TextView tvBinCount10;
+
+    int contaminatedBin1;
+    int contaminatedBin2;
+    int contaminatedBin3;
+    int contaminatedBin4;
+    int contaminatedBin5;
+    int contaminatedBin6;
+    int contaminatedBin7;
+    int contaminatedBin8;
+    int contaminatedBin9;
+    int contaminatedBin10;
+    int contaminatedMonthBin1;
+    int contaminatedMonthBin2;
+    int contaminatedMonthBin3;
+    int contaminatedMonthBin4;
+    int contaminatedMonthBin5;
+    int contaminatedMonthBin6;
+    int contaminatedMonthBin7;
+    int contaminatedMonthBin8;
+    int contaminatedMonthBin9;
+    int contaminatedMonthBin10;
+
+    Button btAlertCouncil;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -114,6 +173,140 @@ public class CouncilAnalysisActivity extends AppCompatActivity {
         tvCouncilAddress = findViewById(R.id.tvCouncilAnalysisAddress);
         tvCouncilName.setText(councilChoice);
 
+        tvBinName1 = findViewById(R.id.tvCouncilAnalysisBin1);
+        tvBinName2 = findViewById(R.id.tvCouncilAnalysisBin2);
+        tvBinName3 = findViewById(R.id.tvCouncilAnalysisBin3);
+        tvBinName4 = findViewById(R.id.tvCouncilAnalysisBin4);
+        tvBinName5 = findViewById(R.id.tvCouncilAnalysisBin5);
+        tvBinName6 = findViewById(R.id.tvCouncilAnalysisBin6);
+        tvBinName7 = findViewById(R.id.tvCouncilAnalysisBin7);
+        tvBinName8 = findViewById(R.id.tvCouncilAnalysisBin8);
+        tvBinName9 = findViewById(R.id.tvCouncilAnalysisBin9);
+        tvBinName10 = findViewById(R.id.tvCouncilAnalysisBin10);
+
+        tvBinLocation1 = findViewById(R.id.tvCouncilAnalysisLocation1);
+        tvBinLocation2 = findViewById(R.id.tvCouncilAnalysisLocation2);
+        tvBinLocation3 = findViewById(R.id.tvCouncilAnalysisLocation3);
+        tvBinLocation4 = findViewById(R.id.tvCouncilAnalysisLocation4);
+        tvBinLocation5 = findViewById(R.id.tvCouncilAnalysisLocation5);
+        tvBinLocation6 = findViewById(R.id.tvCouncilAnalysisLocation6);
+        tvBinLocation7 = findViewById(R.id.tvCouncilAnalysisLocation7);
+        tvBinLocation8 = findViewById(R.id.tvCouncilAnalysisLocation8);
+        tvBinLocation9 = findViewById(R.id.tvCouncilAnalysisLocation9);
+        tvBinLocation10 = findViewById(R.id.tvCouncilAnalysisLocation10);
+
+        if (councilChoice.equals("Parramatta")) {
+            tvBinName1.setText(getResources().getStringArray(R.array.parramattaBinsArray)[0]);
+            tvBinName2.setText(getResources().getStringArray(R.array.parramattaBinsArray)[1]);
+            tvBinName3.setText(getResources().getStringArray(R.array.parramattaBinsArray)[2]);
+            tvBinName4.setText(getResources().getStringArray(R.array.parramattaBinsArray)[3]);
+            tvBinName5.setText(getResources().getStringArray(R.array.parramattaBinsArray)[4]);
+            tvBinName6.setText(getResources().getStringArray(R.array.parramattaBinsArray)[5]);
+            tvBinName7.setText(getResources().getStringArray(R.array.parramattaBinsArray)[6]);
+            tvBinName8.setText(getResources().getStringArray(R.array.parramattaBinsArray)[7]);
+            tvBinName9.setText(getResources().getStringArray(R.array.parramattaBinsArray)[8]);
+            tvBinName10.setText(getResources().getStringArray(R.array.parramattaBinsArray)[9]);
+        } else if (councilChoice.equals("City of Sydney")) {
+            tvBinName1.setText(getResources().getStringArray(R.array.sydneyBinsArray)[0]);
+            tvBinName2.setText(getResources().getStringArray(R.array.sydneyBinsArray)[1]);
+            tvBinName3.setText(getResources().getStringArray(R.array.sydneyBinsArray)[2]);
+            tvBinName4.setText(getResources().getStringArray(R.array.sydneyBinsArray)[3]);
+            tvBinName5.setText(getResources().getStringArray(R.array.sydneyBinsArray)[4]);
+            tvBinName6.setText(getResources().getStringArray(R.array.sydneyBinsArray)[5]);
+            tvBinName7.setText(getResources().getStringArray(R.array.sydneyBinsArray)[6]);
+            tvBinName8.setText(getResources().getStringArray(R.array.sydneyBinsArray)[7]);
+            tvBinName9.setText(getResources().getStringArray(R.array.sydneyBinsArray)[8]);
+            tvBinName10.setText(getResources().getStringArray(R.array.sydneyBinsArray)[9]);
+        } else if (councilChoice.equals("Ku-ring-gai")) {
+            tvBinName1.setText(getResources().getStringArray(R.array.kuRingGaiBinsArray)[0]);
+            tvBinName2.setText(getResources().getStringArray(R.array.kuRingGaiBinsArray)[1]);
+            tvBinName3.setText(getResources().getStringArray(R.array.kuRingGaiBinsArray)[2]);
+            tvBinName4.setText(getResources().getStringArray(R.array.kuRingGaiBinsArray)[3]);
+            tvBinName5.setText(getResources().getStringArray(R.array.kuRingGaiBinsArray)[4]);
+            tvBinName6.setText(getResources().getStringArray(R.array.kuRingGaiBinsArray)[5]);
+            tvBinName7.setText(getResources().getStringArray(R.array.kuRingGaiBinsArray)[6]);
+            tvBinName8.setText(getResources().getStringArray(R.array.kuRingGaiBinsArray)[7]);
+            tvBinName9.setText(getResources().getStringArray(R.array.kuRingGaiBinsArray)[8]);
+            tvBinName10.setText(getResources().getStringArray(R.array.kuRingGaiBinsArray)[9]);
+        } else if (councilChoice.equals("Burwood")) {
+            tvBinName1.setText(getResources().getStringArray(R.array.burwoodBinsArray)[0]);
+            tvBinName2.setText(getResources().getStringArray(R.array.burwoodBinsArray)[1]);
+            tvBinName3.setText(getResources().getStringArray(R.array.burwoodBinsArray)[2]);
+            tvBinName4.setText(getResources().getStringArray(R.array.burwoodBinsArray)[3]);
+            tvBinName5.setText(getResources().getStringArray(R.array.burwoodBinsArray)[4]);
+            tvBinName6.setText(getResources().getStringArray(R.array.burwoodBinsArray)[5]);
+            tvBinName7.setText(getResources().getStringArray(R.array.burwoodBinsArray)[6]);
+            tvBinName8.setText(getResources().getStringArray(R.array.burwoodBinsArray)[7]);
+            tvBinName9.setText(getResources().getStringArray(R.array.burwoodBinsArray)[8]);
+            tvBinName10.setText(getResources().getStringArray(R.array.burwoodBinsArray)[9]);
+        } else if (councilChoice.equals("Hornsby")) {
+            tvBinName1.setText(getResources().getStringArray(R.array.hornsbyBinsArray)[0]);
+            tvBinName2.setText(getResources().getStringArray(R.array.hornsbyBinsArray)[1]);
+            tvBinName3.setText(getResources().getStringArray(R.array.hornsbyBinsArray)[2]);
+            tvBinName4.setText(getResources().getStringArray(R.array.hornsbyBinsArray)[3]);
+            tvBinName5.setText(getResources().getStringArray(R.array.hornsbyBinsArray)[4]);
+            tvBinName6.setText(getResources().getStringArray(R.array.hornsbyBinsArray)[5]);
+            tvBinName7.setText(getResources().getStringArray(R.array.hornsbyBinsArray)[6]);
+            tvBinName8.setText(getResources().getStringArray(R.array.hornsbyBinsArray)[7]);
+            tvBinName9.setText(getResources().getStringArray(R.array.hornsbyBinsArray)[8]);
+            tvBinName10.setText(getResources().getStringArray(R.array.hornsbyBinsArray)[9]);
+        } else if (councilChoice.equals("Strathfield")) {
+            tvBinName1.setText(getResources().getStringArray(R.array.strathfieldBinsArray)[0]);
+            tvBinName2.setText(getResources().getStringArray(R.array.strathfieldBinsArray)[1]);
+            tvBinName3.setText(getResources().getStringArray(R.array.strathfieldBinsArray)[2]);
+            tvBinName4.setText(getResources().getStringArray(R.array.strathfieldBinsArray)[3]);
+            tvBinName5.setText(getResources().getStringArray(R.array.strathfieldBinsArray)[4]);
+            tvBinName6.setText(getResources().getStringArray(R.array.strathfieldBinsArray)[5]);
+            tvBinName7.setText(getResources().getStringArray(R.array.strathfieldBinsArray)[6]);
+            tvBinName8.setText(getResources().getStringArray(R.array.strathfieldBinsArray)[7]);
+            tvBinName9.setText(getResources().getStringArray(R.array.strathfieldBinsArray)[8]);
+            tvBinName10.setText(getResources().getStringArray(R.array.strathfieldBinsArray)[9]);
+        } else if (councilChoice.equals("Northern Beaches")) {
+            tvBinName1.setText(getResources().getStringArray(R.array.northernBeachesBinsArray)[0]);
+            tvBinName2.setText(getResources().getStringArray(R.array.northernBeachesBinsArray)[1]);
+            tvBinName3.setText(getResources().getStringArray(R.array.northernBeachesBinsArray)[2]);
+            tvBinName4.setText(getResources().getStringArray(R.array.northernBeachesBinsArray)[3]);
+            tvBinName5.setText(getResources().getStringArray(R.array.northernBeachesBinsArray)[4]);
+            tvBinName6.setText(getResources().getStringArray(R.array.northernBeachesBinsArray)[5]);
+            tvBinName7.setText(getResources().getStringArray(R.array.northernBeachesBinsArray)[6]);
+            tvBinName8.setText(getResources().getStringArray(R.array.northernBeachesBinsArray)[7]);
+            tvBinName9.setText(getResources().getStringArray(R.array.northernBeachesBinsArray)[8]);
+            tvBinName10.setText(getResources().getStringArray(R.array.northernBeachesBinsArray)[9]);
+        } else if (councilChoice.equals("Randwick")) {
+            tvBinName1.setText(getResources().getStringArray(R.array.randwickBinsArray)[0]);
+            tvBinName2.setText(getResources().getStringArray(R.array.randwickBinsArray)[1]);
+            tvBinName3.setText(getResources().getStringArray(R.array.randwickBinsArray)[2]);
+            tvBinName4.setText(getResources().getStringArray(R.array.randwickBinsArray)[3]);
+            tvBinName5.setText(getResources().getStringArray(R.array.randwickBinsArray)[4]);
+            tvBinName6.setText(getResources().getStringArray(R.array.randwickBinsArray)[5]);
+            tvBinName7.setText(getResources().getStringArray(R.array.randwickBinsArray)[6]);
+            tvBinName8.setText(getResources().getStringArray(R.array.randwickBinsArray)[7]);
+            tvBinName9.setText(getResources().getStringArray(R.array.randwickBinsArray)[8]);
+            tvBinName10.setText(getResources().getStringArray(R.array.randwickBinsArray)[9]);
+        } else if (councilChoice.equals("Mosman")) {
+            tvBinName1.setText(getResources().getStringArray(R.array.mosmanBinsArray)[0]);
+            tvBinName2.setText(getResources().getStringArray(R.array.mosmanBinsArray)[1]);
+            tvBinName3.setText(getResources().getStringArray(R.array.mosmanBinsArray)[2]);
+            tvBinName4.setText(getResources().getStringArray(R.array.mosmanBinsArray)[3]);
+            tvBinName5.setText(getResources().getStringArray(R.array.mosmanBinsArray)[4]);
+            tvBinName6.setText(getResources().getStringArray(R.array.mosmanBinsArray)[5]);
+            tvBinName7.setText(getResources().getStringArray(R.array.mosmanBinsArray)[6]);
+            tvBinName8.setText(getResources().getStringArray(R.array.mosmanBinsArray)[7]);
+            tvBinName9.setText(getResources().getStringArray(R.array.mosmanBinsArray)[8]);
+            tvBinName10.setText(getResources().getStringArray(R.array.mosmanBinsArray)[9]);
+        } else if (councilChoice.equals("Hunters Hill")) {
+            tvBinName1.setText(getResources().getStringArray(R.array.huntersHillBinsArray)[0]);
+            tvBinName2.setText(getResources().getStringArray(R.array.huntersHillBinsArray)[1]);
+            tvBinName3.setText(getResources().getStringArray(R.array.huntersHillBinsArray)[2]);
+            tvBinName4.setText(getResources().getStringArray(R.array.huntersHillBinsArray)[3]);
+            tvBinName5.setText(getResources().getStringArray(R.array.huntersHillBinsArray)[4]);
+            tvBinName6.setText(getResources().getStringArray(R.array.huntersHillBinsArray)[5]);
+            tvBinName7.setText(getResources().getStringArray(R.array.huntersHillBinsArray)[6]);
+            tvBinName8.setText(getResources().getStringArray(R.array.huntersHillBinsArray)[7]);
+            tvBinName9.setText(getResources().getStringArray(R.array.huntersHillBinsArray)[8]);
+            tvBinName10.setText(getResources().getStringArray(R.array.huntersHillBinsArray)[9]);
+        }
+
         // connecting firebase data
         database = FirebaseDatabase.getInstance().getReference().child("1qHYUHw1GGaVy9oW_pT8LMAWjR9fODaJE1qWqhcSNHBs").child("Sheet1");
         database.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
@@ -125,8 +318,31 @@ public class CouncilAnalysisActivity extends AppCompatActivity {
 
                         if (binData.getCouncilName().contains(councilChoice)) {
                             councilLocation = binData.getCouncilAddress();
-                            Log.i("Council Analysis location", councilLocation);
                         }
+
+                        // set the bin location according to the bin name
+                        if (binData.getBinName().contains(tvBinName1.getText())) {
+                            tvBinLocation1.setText(binData.getBinAddress());
+                        } else if (binData.getBinName().contains(tvBinName2.getText())) {
+                            tvBinLocation2.setText(binData.getBinAddress());
+                        } else if (binData.getBinName().contains(tvBinName3.getText())) {
+                            tvBinLocation3.setText(binData.getBinAddress());
+                        } else if (binData.getBinName().contains(tvBinName4.getText())) {
+                            tvBinLocation4.setText(binData.getBinAddress());
+                        } else if (binData.getBinName().contains(tvBinName5.getText())) {
+                            tvBinLocation5.setText(binData.getBinAddress());
+                        } else if (binData.getBinName().contains(tvBinName6.getText())) {
+                            tvBinLocation6.setText(binData.getBinAddress());
+                        } else if (binData.getBinName().contains(tvBinName7.getText())) {
+                            tvBinLocation7.setText(binData.getBinAddress());
+                        } else if (binData.getBinName().contains(tvBinName8.getText())) {
+                            tvBinLocation8.setText(binData.getBinAddress());
+                        } else if (binData.getBinName().contains(tvBinName9.getText())) {
+                            tvBinLocation9.setText(binData.getBinAddress());
+                        } else if (binData.getBinName().contains(tvBinName10.getText())) {
+                            tvBinLocation10.setText(binData.getBinAddress());
+                        }
+
                     }
                     tvCouncilAddress.setText(councilLocation);
                 }
@@ -136,6 +352,18 @@ public class CouncilAnalysisActivity extends AppCompatActivity {
         /**
          * Set up graphs and buttons for weekly and monthly data
          */
+
+        tvBinCount1 = findViewById(R.id.tvCouncilAnalysisCount1);
+        tvBinCount2 = findViewById(R.id.tvCouncilAnalysisCount2);
+        tvBinCount3 = findViewById(R.id.tvCouncilAnalysisCount3);
+        tvBinCount4 = findViewById(R.id.tvCouncilAnalysisCount4);
+        tvBinCount5 = findViewById(R.id.tvCouncilAnalysisCount5);
+        tvBinCount6 = findViewById(R.id.tvCouncilAnalysisCount6);
+        tvBinCount7 = findViewById(R.id.tvCouncilAnalysisCount7);
+        tvBinCount8 = findViewById(R.id.tvCouncilAnalysisCount8);
+        tvBinCount9 = findViewById(R.id.tvCouncilAnalysisCount9);
+        tvBinCount10 = findViewById(R.id.tvCouncilAnalysisCount10);
+
         tvWeekly = findViewById(R.id.tvCouncilAnalysisWeekly);
         tvMonthly = findViewById(R.id.tvCouncilAnalysisMonthly);
         rlWeekly = findViewById(R.id.rlCouncilAnalysisWeekly);
@@ -155,6 +383,17 @@ public class CouncilAnalysisActivity extends AppCompatActivity {
                 rlWeekly.setVisibility(View.VISIBLE);
                 rlMonthly.setVisibility(View.INVISIBLE);
 
+                tvBinCount1.setText(String.valueOf(contaminatedBin1));
+                tvBinCount2.setText(String.valueOf(contaminatedBin2));
+                tvBinCount3.setText(String.valueOf(contaminatedBin3));
+                tvBinCount4.setText(String.valueOf(contaminatedBin4));
+                tvBinCount5.setText(String.valueOf(contaminatedBin5));
+                tvBinCount6.setText(String.valueOf(contaminatedBin6));
+                tvBinCount7.setText(String.valueOf(contaminatedBin7));
+                tvBinCount8.setText(String.valueOf(contaminatedBin8));
+                tvBinCount9.setText(String.valueOf(contaminatedBin9));
+                tvBinCount10.setText(String.valueOf(contaminatedBin10));
+
             }
         });
 
@@ -168,6 +407,18 @@ public class CouncilAnalysisActivity extends AppCompatActivity {
                 tvMonthly.setTextColor(Color.parseColor("#2995E2"));
                 rlWeekly.setVisibility(View.INVISIBLE);
                 rlMonthly.setVisibility(View.VISIBLE);
+
+                tvBinCount1.setText(String.valueOf(contaminatedMonthBin1));
+                tvBinCount2.setText(String.valueOf(contaminatedMonthBin2));
+                tvBinCount3.setText(String.valueOf(contaminatedMonthBin3));
+                tvBinCount4.setText(String.valueOf(contaminatedMonthBin4));
+                tvBinCount5.setText(String.valueOf(contaminatedMonthBin5));
+                tvBinCount6.setText(String.valueOf(contaminatedMonthBin6));
+                tvBinCount7.setText(String.valueOf(contaminatedMonthBin7));
+                tvBinCount8.setText(String.valueOf(contaminatedMonthBin8));
+                tvBinCount9.setText(String.valueOf(contaminatedMonthBin9));
+                tvBinCount10.setText(String.valueOf(contaminatedMonthBin10));
+
             }
         });
 
@@ -353,11 +604,114 @@ public class CouncilAnalysisActivity extends AppCompatActivity {
                                 contaminatedCountWeekFour = contaminatedCountWeekFour + 1;
 
                                 totalWeightWeekFour = totalWeightWeekFour + binData.geteWasteWeightKilos();
+
                             }
+
+                            /**
+                             * Set up table bin contamination count - weekly
+                             */
+
+                            if (binData.getStatus().equals("Bin Flagged as Contaminated")
+                                && ((binData.getDate()).split("T")[0].equals("2023-10-25")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-26")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-27")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-28")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-29")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-30")
+                                || (binData.getDate()).split("T")[0].equals("2023-10-31"))) {
+
+                                if (binData.getBinName().contains(tvBinName1.getText())) {
+                                    contaminatedBin1 = contaminatedBin1 + 1;
+                                } else if (binData.getBinName().contains(tvBinName2.getText())) {
+                                    contaminatedBin2 = contaminatedBin2 + 1;
+                                } else if (binData.getBinName().contains(tvBinName3.getText())) {
+                                    contaminatedBin3 = contaminatedBin3 + 1;
+                                } else if (binData.getBinName().contains(tvBinName4.getText())) {
+                                    contaminatedBin4 = contaminatedBin4 + 1;
+                                } else if (binData.getBinName().contains(tvBinName5.getText())) {
+                                    contaminatedBin5 = contaminatedBin5 + 1;
+                                } else if (binData.getBinName().contains(tvBinName6.getText())) {
+                                    contaminatedBin6 = contaminatedBin6 + 1;
+                                } else if (binData.getBinName().contains(tvBinName7.getText())) {
+                                    contaminatedBin7 = contaminatedBin7 + 1;
+                                } else if (binData.getBinName().contains(tvBinName8.getText())) {
+                                    contaminatedBin8 = contaminatedBin8 + 1;
+                                } else if (binData.getBinName().contains(tvBinName9.getText())) {
+                                    contaminatedBin9 = contaminatedBin9 + 1;
+                                } else if (binData.getBinName().contains(tvBinName10.getText())) {
+                                    contaminatedBin10 = contaminatedBin10 + 1;
+                                }
+
+                            }
+
+                            /**
+                             * Set up contaminated bin count for table - monthly
+                             */
+                            if (binData.getStatus().equals("Bin Flagged as Contaminated")) {
+                                if (binData.getBinName().contains(tvBinName1.getText())) {
+                                    contaminatedMonthBin1 = contaminatedMonthBin1 + 1;
+                                } else if (binData.getBinName().contains(tvBinName2.getText())) {
+                                    contaminatedMonthBin2 = contaminatedMonthBin2 + 1;
+                                } else if (binData.getBinName().contains(tvBinName3.getText())) {
+                                    contaminatedMonthBin3 = contaminatedMonthBin3 + 1;
+                                } else if (binData.getBinName().contains(tvBinName4.getText())) {
+                                    contaminatedMonthBin4 = contaminatedMonthBin4 + 1;
+                                } else if (binData.getBinName().contains(tvBinName5.getText())) {
+                                    contaminatedMonthBin5 = contaminatedMonthBin5 + 1;
+                                } else if (binData.getBinName().contains(tvBinName6.getText())) {
+                                    contaminatedMonthBin6 = contaminatedMonthBin6 + 1;
+                                } else if (binData.getBinName().contains(tvBinName7.getText())) {
+                                    contaminatedMonthBin7 = contaminatedMonthBin7 + 1;
+                                } else if (binData.getBinName().contains(tvBinName8.getText())) {
+                                    contaminatedMonthBin8 = contaminatedMonthBin8 + 1;
+                                } else if (binData.getBinName().contains(tvBinName9.getText())) {
+                                    contaminatedMonthBin9 = contaminatedMonthBin9 + 1;
+                                } else if (binData.getBinName().contains(tvBinName10.getText())) {
+                                    contaminatedMonthBin10 = contaminatedMonthBin10 + 1;
+                                }
+                            }
+
                         } else {
                             Log.i("CouncilAnalysis", "bin name does not match selection");
                         }
+
+                        // if weekly is selected, contamination count will be calculated depending on
+                        // weekly data
+                        if (tvWeekly.getCurrentTextColor() == Color.parseColor("#2995E2")) {
+
+                        }
+                        tvWeekly.setTextColor(Color.parseColor("#2995E2"));
+
                     }
+                    /**
+                     * Set table bin contamination count values
+                     */
+                    // if weekly is selected
+                    if (tvWeekly.getCurrentTextColor() == Color.parseColor("#2995E2")) {
+                        tvBinCount1.setText(String.valueOf(contaminatedBin1));
+                        tvBinCount2.setText(String.valueOf(contaminatedBin2));
+                        tvBinCount3.setText(String.valueOf(contaminatedBin3));
+                        tvBinCount4.setText(String.valueOf(contaminatedBin4));
+                        tvBinCount5.setText(String.valueOf(contaminatedBin5));
+                        tvBinCount6.setText(String.valueOf(contaminatedBin6));
+                        tvBinCount7.setText(String.valueOf(contaminatedBin7));
+                        tvBinCount8.setText(String.valueOf(contaminatedBin8));
+                        tvBinCount9.setText(String.valueOf(contaminatedBin9));
+                        tvBinCount10.setText(String.valueOf(contaminatedBin10));
+                    } else {
+                        tvBinCount1.setText(String.valueOf(contaminatedMonthBin1));
+                        tvBinCount2.setText(String.valueOf(contaminatedMonthBin2));
+                        tvBinCount3.setText(String.valueOf(contaminatedMonthBin3));
+                        tvBinCount4.setText(String.valueOf(contaminatedMonthBin4));
+                        tvBinCount5.setText(String.valueOf(contaminatedMonthBin5));
+                        tvBinCount6.setText(String.valueOf(contaminatedMonthBin6));
+                        tvBinCount7.setText(String.valueOf(contaminatedMonthBin7));
+                        tvBinCount8.setText(String.valueOf(contaminatedMonthBin8));
+                        tvBinCount9.setText(String.valueOf(contaminatedMonthBin9));
+                        tvBinCount10.setText(String.valueOf(contaminatedMonthBin10));
+                    }
+
+
                     /**
                      * Set weekly bar chart values
                      */
@@ -603,16 +957,20 @@ public class CouncilAnalysisActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * Button to alert council
+         */
 
-
-
-
-
-
-
-
-
-
+        btAlertCouncil = findViewById(R.id.btCouncilAnalysisAlertCouncil);
+        btAlertCouncil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String chosenCouncil = tvCouncilName.getText().toString();
+                Intent intent = new Intent(CouncilAnalysisActivity.this, AlertAnalysisActivity.class);
+                intent.putExtra("Analysis Council", chosenCouncil);
+                startActivity(intent);
+            }
+        });
 
 
         /**

@@ -9,13 +9,452 @@
 
 
     <RelativeLayout
-        android:id="@+id/rlHomeTrack"
-        android:layout_width="809dp"
-        android:layout_height="390dp"
-        android:layout_marginBottom="76dp"
+        android:layout_width="678dp"
+        android:layout_height="223dp"
+        android:background="@drawable/searchview_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/relativeLayout8"
+        app:layout_constraintStart_toStartOf="@+id/relativeLayout9"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout8"
+        app:layout_constraintVertical_bias="0.097">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="0dp">
+
+            <TableRow android:background="#81C1EE">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:fontFamily="@font/public_sans_bold"
+                    android:gravity="center_horizontal"
+                    android:padding="5sp"
+                    android:text="E-Waste Type"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:fontFamily="@font/public_sans_bold"
+                    android:gravity="center_horizontal"
+                    android:padding="5sp"
+                    android:text="Weight (Kg)"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:fontFamily="@font/public_sans_bold"
+                    android:gravity="center_horizontal"
+                    android:padding="5sp"
+                    android:text="Percentage (%)"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:id="@+id/tvHomeElecLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:fontFamily="@font/public_sans"
+                    android:gravity="center_horizontal"
+                    android:padding="5sp"
+                    android:text="Consumer Electronics"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvBinAnalysisConsumerElectWeight"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:fontFamily="@font/public_sans"
+                    android:gravity="center_horizontal"
+                    android:padding="5sp"
+                    android:text="Calculating ..."
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvBinAnalysisConsumerElectPerc"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:fontFamily="@font/public_sans"
+                    android:gravity="center_horizontal"
+                    android:padding="5sp"
+                    android:text="Calculating ..."
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:fontFamily="@font/public_sans"
+                    android:gravity="center_horizontal"
+                    android:padding="5sp"
+                    android:text="Computer and Telecom"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvBinAnalysisCompTeleWeight"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:fontFamily="@font/public_sans"
+                    android:gravity="center_horizontal"
+                    android:padding="5sp"
+                    android:text="Calculating ..."
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvBinAnalysisCompTelePerc"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:fontFamily="@font/public_sans"
+                    android:gravity="center_horizontal"
+                    android:padding="5sp"
+                    android:text="Calculating ..."
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:fontFamily="@font/public_sans"
+                    android:gravity="center_horizontal"
+                    android:padding="5sp"
+                    android:text="Small Appliances"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvBinAnalysisSmallAppWeight"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:fontFamily="@font/public_sans"
+                    android:gravity="center_horizontal"
+                    android:padding="5sp"
+                    android:text="Calculating ..."
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvBinAnalysisSmallAppPerc"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:fontFamily="@font/public_sans"
+                    android:gravity="center_horizontal"
+                    android:padding="5sp"
+                    android:text="Calculating ..."
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:fontFamily="@font/public_sans"
+                    android:gravity="center_horizontal"
+                    android:padding="5sp"
+                    android:text="Lighting Devices"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvBinAnalysisLightingDevWeight"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:fontFamily="@font/public_sans"
+                    android:gravity="center_horizontal"
+                    android:padding="5sp"
+                    android:text="Calculating ..."
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvBinAnalysisLightingDevPerc"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:fontFamily="@font/public_sans"
+                    android:gravity="center_horizontal"
+                    android:padding="5sp"
+                    android:text="Calculating ..."
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:fontFamily="@font/public_sans"
+                    android:gravity="center_horizontal"
+                    android:padding="5sp"
+                    android:text="Other"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvBinAnalysisOtherWeight"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:fontFamily="@font/public_sans"
+                    android:gravity="center_horizontal"
+                    android:padding="5sp"
+                    android:text="Calculating ..."
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvBinAnalysisOtherPerc"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:fontFamily="@font/public_sans"
+                    android:gravity="center_horizontal"
+                    android:padding="5sp"
+                    android:text="Calculating ..."
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+            </TableRow>
+        </TableLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout8"
+        android:layout_width="215dp"
+        android:layout_height="235dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/blue_rectangle_frame"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/rlCouncilAnalysisWeekly">
+        app:layout_constraintEnd_toEndOf="@+id/rlHomeScore"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/rlHomeScore"
+        app:layout_constraintTop_toBottomOf="@+id/tvHomeGraphTitle"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:layout_width="274dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="7dp"
+            android:fontFamily="@font/public_sans_bold"
+            android:text="Contamination Rate"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/tvBinAnalysisContaminationRate"
+            android:layout_width="189dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginBottom="87dp"
+            android:fontFamily="@font/public_sans_bold"
+            android:text="..."
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="60sp" />
+
+        <TextView
+            android:id="@+id/tvBinAnalysisContaminationCount2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="45dp"
+            android:layout_marginBottom="30dp"
+            android:fontFamily="@font/public_sans_bold"
+            android:text="of pick-ups"
+            android:textColor="#FFFFFF"
+            android:textSize="25sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout9"
+        android:layout_width="215dp"
+        android:layout_height="235dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/blue_rectangle_frame"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/rlHomeScore"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/rlHomeScore"
+        app:layout_constraintTop_toBottomOf="@+id/tvHomeGraphTitle"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:layout_width="274dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="7dp"
+            android:fontFamily="@font/public_sans_bold"
+            android:text="Contamination Count"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/tvAnalysisBinContaminationCount"
+            android:layout_width="185dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginBottom="87dp"
+            android:fontFamily="@font/public_sans_bold"
+            android:text="..."
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="60sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="86dp"
+            android:layout_marginEnd="79dp"
+            android:layout_marginBottom="22dp"
+            android:fontFamily="@font/public_sans_bold"
+            android:text="bins"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="25sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="215dp"
+        android:layout_height="237dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/blue_rectangle_frame"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/rlHomeScore"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="@+id/rlHomeScore"
+        app:layout_constraintTop_toBottomOf="@+id/tvHomeGraphTitle"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:id="@+id/tvBinAnalysisWeight"
+            android:layout_width="185dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginBottom="87dp"
+            android:fontFamily="@font/public_sans_bold"
+            android:text="..."
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="60sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="50dp"
+            android:layout_marginBottom="29dp"
+            android:fontFamily="@font/public_sans_bold"
+            android:text="kilograms"
+            android:textColor="#FFFFFF"
+            android:textSize="25sp" />
+
+        <TextView
+            android:layout_width="274dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="7dp"
+            android:fontFamily="@font/public_sans_bold"
+            android:text="E-Waste Weight"
+            android:textColor="#FFFFFF"
+            android:textSize="25sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlHomeTrack"
+        android:layout_width="802dp"
+        android:layout_height="269dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/blue_rectangle_frame"
+        app:layout_constraintEnd_toEndOf="@+id/rlBinAnalysisWeekly"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/rlBinAnalysisWeekly"
+        app:layout_constraintTop_toBottomOf="@+id/rlBinAnalysisWeekly">
 
         <TextView
             android:layout_width="633dp"
@@ -46,17 +485,16 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/rlCouncilAnalysisWeekly"
+        android:id="@+id/rlBinAnalysisWeekly"
         android:layout_width="816dp"
         android:layout_height="547dp"
-        app:layout_constraintBottom_toTopOf="@+id/rlHomeTrack"
+        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/rlHomeScore"
-        app:layout_constraintTop_toTopOf="@+id/tvHomeWelcome"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.github.mikephil.charting.charts.BarChart
-            android:id="@+id/bcDashboardWeekly"
+            android:id="@+id/bcBinAnalysisWeekly"
             android:layout_width="778dp"
             android:layout_height="274dp"
             android:layout_alignParentStart="true"
@@ -72,7 +510,7 @@
             app:layout_constraintVertical_bias="0.025" />
 
         <com.github.mikephil.charting.charts.LineChart
-            android:id="@+id/lcDashboardWeekly"
+            android:id="@+id/lcBinAnalysisWeekly"
             android:layout_width="778dp"
             android:layout_height="266dp"
             android:layout_alignParentEnd="true"
@@ -81,7 +519,6 @@
             android:layout_marginBottom="3dp" />
 
         <TextView
-            android:id="@+id/textView"
             android:layout_width="170dp"
             android:layout_height="38dp"
             android:layout_alignParentStart="true"
@@ -98,7 +535,76 @@
             android:textSize="15sp" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:layout_width="170dp"
+            android:layout_height="38dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="-67dp"
+            android:layout_marginTop="347dp"
+            android:layout_marginEnd="703dp"
+            android:layout_marginBottom="162dp"
+            android:fontFamily="@font/public_sans"
+            android:rotation="270"
+            android:text="E-Waste Weight (Kg)"
+            android:textSize="15sp" />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlBinAnalysisMonthly"
+        android:layout_width="816dp"
+        android:layout_height="547dp"
+        android:layout_marginTop="10dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/rlHomeScore"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/bcBinAnalysisMonthly"
+            android:layout_width="778dp"
+            android:layout_height="274dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="7dp"
+            android:layout_marginBottom="286dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.675"
+            app:layout_constraintVertical_bias="0.025" />
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/lcBinAnalysisMonthly"
+            android:layout_width="778dp"
+            android:layout_height="266dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="3dp" />
+
+        <TextView
+            android:layout_width="170dp"
+            android:layout_height="38dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="-58dp"
+            android:layout_marginTop="95dp"
+            android:layout_marginEnd="703dp"
+            android:layout_marginBottom="414dp"
+            android:fontFamily="@font/public_sans"
+            android:rotation="270"
+            android:text="Number of Bins"
+            android:textSize="15sp" />
+
+        <TextView
             android:layout_width="170dp"
             android:layout_height="38dp"
             android:layout_alignParentStart="true"
@@ -180,8 +686,7 @@
 
 
     <TextView
-
-        android:id="@+id/tvCouncilAnalysisWeekly"
+        android:id="@+id/tvBinAnalysisWeekly"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -195,16 +700,18 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
+        android:id="@+id/tvBinAnalysisMonthly"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:fontFamily="@font/public_sans_bold"
         android:text="Monthly"
+
         android:textColor="#87BBDF"
         android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tvCouncilAnalysisWeekly"
-        app:layout_constraintStart_toEndOf="@+id/tvCouncilAnalysisWeekly"
-        app:layout_constraintTop_toTopOf="@+id/tvCouncilAnalysisWeekly"
+        app:layout_constraintBottom_toBottomOf="@+id/tvBinAnalysisWeekly"
+        app:layout_constraintStart_toEndOf="@+id/tvBinAnalysisWeekly"
+        app:layout_constraintTop_toTopOf="@+id/tvBinAnalysisWeekly"
         app:layout_constraintVertical_bias="0.0" />
 
     <RelativeLayout
@@ -230,20 +737,20 @@
             android:layout_marginTop="6dp"
             android:layout_marginEnd="433dp"
             android:fontFamily="@font/public_sans_bold"
-            android:text="Truck ID:"
-            android:textColor="#FFFFFF"
+            android:text="Bin Name:"
+            android:textColor="#278C2B"
             android:textSize="25sp" />
 
         <TextView
-            android:id="@+id/tvCouncilAnalysisCouncil"
-            android:layout_width="248dp"
+            android:id="@+id/tvBinAnalysisBinName"
+            android:layout_width="508dp"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="156dp"
             android:layout_marginTop="6dp"
-            android:layout_marginEnd="288dp"
+            android:layout_marginEnd="23dp"
             android:fontFamily="@font/public_sans_bold"
             android:text="Loading ..."
             android:textColor="#FFFFFF"
@@ -261,7 +768,7 @@
             android:layout_marginEnd="435dp"
             android:fontFamily="@font/public_sans_bold"
             android:text="Council:"
-            android:textColor="#FFFFFF"
+            android:textColor="#278C2B"
             android:textSize="25sp" />
 
         <TextView
@@ -275,63 +782,39 @@
             android:layout_marginTop="87dp"
             android:layout_marginEnd="434dp"
             android:fontFamily="@font/public_sans_bold"
-            android:text="Bin Name:"
-            android:textColor="#FFFFFF"
+            android:text="Truck ID:"
+            android:textColor="#278C2B"
             android:textSize="25sp" />
 
         <TextView
-            android:id="@+id/tvHomeScoreTitle6"
-            android:layout_width="248dp"
+            android:id="@+id/tvBinAnalysisTruck"
+            android:layout_width="508dp"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="156dp"
             android:layout_marginTop="88dp"
-            android:layout_marginEnd="290dp"
+            android:layout_marginEnd="23dp"
             android:fontFamily="@font/public_sans_bold"
             android:text="Loading ..."
             android:textColor="#FFFFFF"
             android:textSize="25sp" />
 
         <TextView
-            android:layout_width="248dp"
+            android:id="@+id/tvBinAnalysisCouncil"
+            android:layout_width="508dp"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="156dp"
             android:layout_marginTop="48dp"
-            android:layout_marginEnd="290dp"
+            android:layout_marginEnd="23dp"
             android:fontFamily="@font/public_sans_bold"
             android:text="Loading ..."
             android:textColor="#FFFFFF"
             android:textSize="25sp" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/relativeLayout4"
-        android:layout_width="685dp"
-        android:layout_height="251dp"
-        android:background="@drawable/blue_rectangle_frame"
-        tools:layout_editor_absoluteX="355dp"
-        tools:layout_editor_absoluteY="387dp">
-
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="633dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="17dp"
-            android:layout_marginEnd="36dp"
-            android:fontFamily="@font/public_sans_bold"
-            android:text="Contamination Count"
-            android:textColor="#FFFFFF"
-            android:textSize="30sp" />
 
     </RelativeLayout>
 

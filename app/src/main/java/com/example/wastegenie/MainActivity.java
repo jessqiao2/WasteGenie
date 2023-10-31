@@ -192,6 +192,46 @@ public class MainActivity extends AppCompatActivity {
                     );
                     truckAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     truckSpinner.setAdapter(truckAdapter);
+                } else if (councilSpinner.getSelectedItem().equals("Strathfield")) {
+                    ArrayAdapter<CharSequence> truckAdapter = ArrayAdapter.createFromResource(
+                            MainActivity.this,
+                            R.array.strathfieldTrucksArray,
+                            android.R.layout.simple_spinner_item
+                    );
+                    truckAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    truckSpinner.setAdapter(truckAdapter);
+                } else if (councilSpinner.getSelectedItem().equals("Northern Beaches")) {
+                    ArrayAdapter<CharSequence> truckAdapter = ArrayAdapter.createFromResource(
+                            MainActivity.this,
+                            R.array.northernBeachesTrucksArray,
+                            android.R.layout.simple_spinner_item
+                    );
+                    truckAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    truckSpinner.setAdapter(truckAdapter);
+                } else if (councilSpinner.getSelectedItem().equals("Randwick")) {
+                    ArrayAdapter<CharSequence> truckAdapter = ArrayAdapter.createFromResource(
+                            MainActivity.this,
+                            R.array.randwickTrucksArray,
+                            android.R.layout.simple_spinner_item
+                    );
+                    truckAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    truckSpinner.setAdapter(truckAdapter);
+                } else if (councilSpinner.getSelectedItem().equals("Mosman")) {
+                    ArrayAdapter<CharSequence> truckAdapter = ArrayAdapter.createFromResource(
+                            MainActivity.this,
+                            R.array.mosmanTrucksArray,
+                            android.R.layout.simple_spinner_item
+                    );
+                    truckAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    truckSpinner.setAdapter(truckAdapter);
+                } else if (councilSpinner.getSelectedItem().equals("Hunters Hill")) {
+                    ArrayAdapter<CharSequence> truckAdapter = ArrayAdapter.createFromResource(
+                            MainActivity.this,
+                            R.array.huntersHillTrucksArray,
+                            android.R.layout.simple_spinner_item
+                    );
+                    truckAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    truckSpinner.setAdapter(truckAdapter);
                 }
 
             }

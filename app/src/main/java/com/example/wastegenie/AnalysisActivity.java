@@ -726,6 +726,46 @@ public class AnalysisActivity extends AppCompatActivity {
                     );
                     truckAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     spSpecificBins.setAdapter(truckAdapter);
+                } else if (spCouncilForBins.getSelectedItem().equals("Strathfield")) {
+                    ArrayAdapter<CharSequence> truckAdapter = ArrayAdapter.createFromResource(
+                            AnalysisActivity.this,
+                            R.array.strathfieldBinsArray,
+                            android.R.layout.simple_spinner_item
+                    );
+                    truckAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spSpecificBins.setAdapter(truckAdapter);
+                } else if (spCouncilForBins.getSelectedItem().equals("Northern Beaches")) {
+                    ArrayAdapter<CharSequence> truckAdapter = ArrayAdapter.createFromResource(
+                            AnalysisActivity.this,
+                            R.array.northernBeachesBinsArray,
+                            android.R.layout.simple_spinner_item
+                    );
+                    truckAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spSpecificBins.setAdapter(truckAdapter);
+                } else if (spCouncilForBins.getSelectedItem().equals("Randwick")) {
+                    ArrayAdapter<CharSequence> truckAdapter = ArrayAdapter.createFromResource(
+                            AnalysisActivity.this,
+                            R.array.randwickBinsArray,
+                            android.R.layout.simple_spinner_item
+                    );
+                    truckAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spSpecificBins.setAdapter(truckAdapter);
+                } else if (spCouncilForBins.getSelectedItem().equals("Mosman")) {
+                    ArrayAdapter<CharSequence> truckAdapter = ArrayAdapter.createFromResource(
+                            AnalysisActivity.this,
+                            R.array.mosmanBinsArray,
+                            android.R.layout.simple_spinner_item
+                    );
+                    truckAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spSpecificBins.setAdapter(truckAdapter);
+                } else if (spCouncilForBins.getSelectedItem().equals("Hunters Hill")) {
+                    ArrayAdapter<CharSequence> truckAdapter = ArrayAdapter.createFromResource(
+                            AnalysisActivity.this,
+                            R.array.huntersHillBinsArray,
+                            android.R.layout.simple_spinner_item
+                    );
+                    truckAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spSpecificBins.setAdapter(truckAdapter);
                 }
 
             }

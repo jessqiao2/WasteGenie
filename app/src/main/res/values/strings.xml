@@ -42,6 +42,31 @@
         <item>HN131</item>
     </string-array>
 
+    <string-array name="strathfieldTrucksArray">
+        <item>SF111</item>
+        <item>SF112</item>
+    </string-array>
+
+    <string-array name="northernBeachesTrucksArray">
+        <item>NB130</item>
+        <item>NB131</item>
+    </string-array>
+
+    <string-array name="randwickTrucksArray">
+        <item>RW110</item>
+        <item>RW120</item>
+    </string-array>
+
+    <string-array name="mosmanTrucksArray">
+        <item>MO112</item>
+        <item>MO113</item>
+    </string-array>
+
+    <string-array name="huntersHillTrucksArray">
+        <item>HH100</item>
+        <item>HH120</item>
+    </string-array>
+
     // for each council's bin names
     <string-array name="parramattaBinsArray">
         <item>Parramatta Station</item>
@@ -106,6 +131,71 @@
         <item>TAFE NSW - Hornsby</item>
         <item>Storey Park</item>
         <item>St Lukes Anglican Church</item>
+    </string-array>
+
+    <string-array name="strathfieldBinsArray">
+        <item>Strathfield Plaza</item>
+        <item>DFO Homebush</item>
+        <item>Strathfield Library</item>
+        <item>ACU Strathfield</item>
+        <item>Marie Bashir Public Council</item>
+        <item>Australia Post Strathfield</item>
+        <item>Strathfield Park</item>
+        <item>Meriden School</item>
+        <item>Southend Tennis Centre</item>
+        <item>Chalmers Road School</item>
+    </string-array>
+
+    <string-array name="northernBeachesBinsArray">
+        <item>Manlys Art Gallery and Museum</item>
+        <item>Manly Waterworks</item>
+        <item>Boathouse Kiosk</item>
+        <item>Hartspace</item>
+        <item>The Pines Manly</item>
+        <item>Little A Library</item>
+        <item>Grasshopper Soccer Sydney Northern Beaches</item>
+        <item>Brookvale Occasional Child Care Centre</item>
+        <item>Brookvale Childrens Centre</item>
+        <item>St Augustines College - Sydney</item>
+    </string-array>
+
+    <string-array name="randwickBinsArray">
+        <item>UNSW College</item>
+        <item>Anytime Fitness Kingsford</item>
+        <item>Crystal Car Wash Kingsford</item>
+        <item>Charleys Lebanese Pizzeria</item>
+        <item>The Juniors Kingsford</item>
+        <item>UNSW Village</item>
+        <item>Fig Tree Hall</item>
+        <item>Wallace Wurth Building</item>
+        <item>Sydney Childrens Hospital, Randwick</item>
+        <item>Randwick Specialist Centre</item>
+    </string-array>
+
+    <string-array name="mosmanBinsArray">
+        <item>Balmoral Beach Club</item>
+        <item>Bathers Pavilion</item>
+        <item>Public Dining Room</item>
+        <item>The Boathouse Balmoral Beach</item>
+        <item>Balmoral Oval</item>
+        <item>Avenue Road Cafe Mosman</item>
+        <item>Heirloom Specialty Coffee</item>
+        <item>Sues Home Care Nursing Service</item>
+        <item>Mosman Village Church</item>
+        <item>Rosso Cavallino Mosman</item>
+    </string-array>
+
+    <string-array name="huntersHillBinsArray">
+        <item>McDonalds Gladesville</item>
+        <item>Dan Murphys Gladesville</item>
+        <item>Gladesville Guitar Factory</item>
+        <item>Coles Gladesville</item>
+        <item>Tennis Ranch</item>
+        <item>Little Zaks Academy Hunters Hill</item>
+        <item>Villa Maria Catholic Primary School</item>
+        <item>St Josephs College Hunters Hill</item>
+        <item>Douglass Hanly Moir Pathology Hunters Hill</item>
+        <item>Shell Coles Express Hunters Hill</item>
     </string-array>
 
 

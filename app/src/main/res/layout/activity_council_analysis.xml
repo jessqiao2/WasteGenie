@@ -82,15 +82,15 @@
 
     <RelativeLayout
         android:id="@+id/rlHomeTrack"
-        android:layout_width="809dp"
-        android:layout_height="318dp"
+        android:layout_width="814dp"
+        android:layout_height="231dp"
         android:background="@drawable/blue_rectangle_frame"
         app:layout_constraintBottom_toBottomOf="@+id/relativeLayout4"
         app:layout_constraintEnd_toEndOf="@+id/rlCouncilAnalysisWeekly"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/rlCouncilAnalysisWeekly"
         app:layout_constraintTop_toBottomOf="@+id/rlCouncilAnalysisWeekly"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintVertical_bias="0.423">
 
         <TextView
             android:layout_width="633dp"
@@ -98,9 +98,9 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="17dp"
-            android:layout_marginEnd="26dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="31dp"
             android:fontFamily="@font/public_sans_bold"
             android:text="Closest E-Waste Disposal Sites"
             android:textColor="#FFFFFF"
@@ -108,16 +108,14 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvCouncilAnalysisDisposal"
-            android:layout_width="642dp"
-            android:layout_height="278dp"
+            android:layout_width="767dp"
+            android:layout_height="145dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="23dp"
-            android:layout_marginTop="75dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="29dp" />
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="64dp"
+            android:layout_marginEnd="25dp" />
 
     </RelativeLayout>
 
@@ -368,15 +366,561 @@
 
     <RelativeLayout
         android:id="@+id/relativeLayout4"
-        android:layout_width="685dp"
-        android:layout_height="544dp"
+        android:layout_width="688dp"
+        android:layout_height="504dp"
         android:background="@drawable/blue_rectangle_frame"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/rlHomeScore"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/tvHomeGraphTitle"
         app:layout_constraintTop_toBottomOf="@+id/tvCouncilAnalysisWeekly"
-        app:layout_constraintVertical_bias="0.12">
+        app:layout_constraintVertical_bias="0.222">
+
+        <TableLayout
+            android:layout_width="642dp"
+            android:layout_height="42dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="67dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="395dp">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#81C1EE">
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:fontFamily="@font/public_sans_bold"
+                    android:gravity="center_horizontal"
+                    android:padding="5sp"
+                    android:text="Bin Name"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:fontFamily="@font/public_sans_bold"
+                    android:gravity="center_horizontal"
+                    android:padding="5sp"
+                    android:text="Bin Location"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:fontFamily="@font/public_sans_bold"
+                    android:gravity="center_horizontal"
+                    android:padding="5sp"
+                    android:text="Contaminated Count"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+            </TableRow>
+
+        </TableLayout>
+
+        <ScrollView
+            android:layout_width="645dp"
+            android:layout_height="370dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="107dp"
+            android:layout_marginEnd="21dp"
+            android:layout_marginBottom="27dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/searchview_background">
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="0dp">
+
+
+                    <TableRow
+                        android:id="@+id/tbMonthlyTopBins1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+
+                        <TextView
+                            android:id="@+id/tvCouncilAnalysisBin1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="6"
+                            android:fontFamily="@font/public_sans"
+                            android:gravity="center_horizontal"
+                            android:padding="5sp"
+                            android:text="Loading ..."
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvCouncilAnalysisLocation1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="6"
+                            android:fontFamily="@font/public_sans"
+                            android:gravity="center_horizontal"
+                            android:padding="5sp"
+                            android:text="Loading ..."
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/tvCouncilAnalysisCount1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="6"
+                            android:fontFamily="@font/public_sans"
+                            android:gravity="center_horizontal"
+                            android:padding="5sp"
+                            android:text="Calculating ..."
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tbMonthlyTopBins2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+
+                        <TextView
+                            android:id="@+id/tvCouncilAnalysisBin2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="6"
+                            android:fontFamily="@font/public_sans"
+                            android:gravity="center_horizontal"
+                            android:padding="5sp"
+                            android:text="Loading ..."
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvCouncilAnalysisLocation2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="6"
+                            android:fontFamily="@font/public_sans"
+                            android:gravity="center_horizontal"
+                            android:padding="5sp"
+                            android:text="Loading ..."
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/tvCouncilAnalysisCount2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="6"
+                            android:fontFamily="@font/public_sans"
+                            android:gravity="center_horizontal"
+                            android:padding="5sp"
+                            android:text="Calculating ..."
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tbMonthlyTopBins3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+
+                        <TextView
+                            android:id="@+id/tvCouncilAnalysisBin3"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="6"
+                            android:fontFamily="@font/public_sans"
+                            android:gravity="center_horizontal"
+                            android:padding="5sp"
+                            android:text="Loading ..."
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvCouncilAnalysisLocation3"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="6"
+                            android:fontFamily="@font/public_sans"
+                            android:gravity="center_horizontal"
+                            android:padding="5sp"
+                            android:text="Loading ..."
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/tvCouncilAnalysisCount3"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="6"
+                            android:fontFamily="@font/public_sans"
+                            android:gravity="center_horizontal"
+                            android:padding="5sp"
+                            android:text="Calculating ..."
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tbMonthlyTopBins4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+
+                        <TextView
+                            android:id="@+id/tvCouncilAnalysisBin4"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="6"
+                            android:fontFamily="@font/public_sans"
+                            android:gravity="center_horizontal"
+                            android:padding="5sp"
+                            android:text="Loading ..."
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvCouncilAnalysisLocation4"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="6"
+                            android:fontFamily="@font/public_sans"
+                            android:gravity="center_horizontal"
+                            android:padding="5sp"
+                            android:text="Loading ..."
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/tvCouncilAnalysisCount4"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="6"
+                            android:fontFamily="@font/public_sans"
+                            android:gravity="center_horizontal"
+                            android:padding="5sp"
+                            android:text="Calculating ..."
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+
+                        <TextView
+
+                            android:id="@+id/tvCouncilAnalysisBin5"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="6"
+                            android:fontFamily="@font/public_sans"
+                            android:gravity="center_horizontal"
+                            android:padding="5sp"
+                            android:text="Loading ..."
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvCouncilAnalysisLocation5"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="6"
+                            android:fontFamily="@font/public_sans"
+                            android:gravity="center_horizontal"
+                            android:padding="5sp"
+                            android:text="Loading ..."
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/tvCouncilAnalysisCount5"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="6"
+                            android:fontFamily="@font/public_sans"
+                            android:gravity="center_horizontal"
+                            android:padding="5sp"
+                            android:text="Calculating ..."
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+
+                        <TextView
+                            android:id="@+id/tvCouncilAnalysisBin6"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="6"
+                            android:fontFamily="@font/public_sans"
+                            android:gravity="center_horizontal"
+                            android:padding="5sp"
+                            android:text="Loading ..."
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvCouncilAnalysisLocation6"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="6"
+                            android:fontFamily="@font/public_sans"
+                            android:gravity="center_horizontal"
+                            android:padding="5sp"
+                            android:text="Loading ..."
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/tvCouncilAnalysisCount6"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="6"
+                            android:fontFamily="@font/public_sans"
+                            android:gravity="center_horizontal"
+                            android:padding="5sp"
+                            android:text="Calculating ..."
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+
+                        <TextView
+                            android:id="@+id/tvCouncilAnalysisBin7"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="6"
+                            android:fontFamily="@font/public_sans"
+                            android:gravity="center_horizontal"
+                            android:padding="5sp"
+                            android:text="Loading ..."
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvCouncilAnalysisLocation7"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="6"
+                            android:fontFamily="@font/public_sans"
+                            android:gravity="center_horizontal"
+                            android:padding="5sp"
+                            android:text="Loading ..."
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/tvCouncilAnalysisCount7"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="6"
+                            android:fontFamily="@font/public_sans"
+                            android:gravity="center_horizontal"
+                            android:padding="5sp"
+                            android:text="Calculating ..."
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
+
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+
+                        <TextView
+                            android:id="@+id/tvCouncilAnalysisBin8"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="6"
+                            android:fontFamily="@font/public_sans"
+                            android:gravity="center_horizontal"
+                            android:padding="5sp"
+                            android:text="Loading ..."
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvCouncilAnalysisLocation8"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="6"
+                            android:fontFamily="@font/public_sans"
+                            android:gravity="center_horizontal"
+                            android:padding="5sp"
+                            android:text="Loading ..."
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/tvCouncilAnalysisCount8"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="6"
+                            android:fontFamily="@font/public_sans"
+                            android:gravity="center_horizontal"
+                            android:padding="5sp"
+                            android:text="Calculating ..."
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
+
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+
+                        <TextView
+                            android:id="@+id/tvCouncilAnalysisBin9"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="6"
+                            android:fontFamily="@font/public_sans"
+                            android:gravity="center_horizontal"
+                            android:padding="5sp"
+                            android:text="Loading ..."
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvCouncilAnalysisLocation9"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="6"
+                            android:fontFamily="@font/public_sans"
+                            android:gravity="center_horizontal"
+                            android:padding="5sp"
+                            android:text="Loading ..."
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/tvCouncilAnalysisCount9"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="6"
+                            android:fontFamily="@font/public_sans"
+                            android:gravity="center_horizontal"
+                            android:padding="5sp"
+                            android:text="Calculating ..."
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
+
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+
+                        <TextView
+                            android:id="@+id/tvCouncilAnalysisBin10"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="6"
+                            android:fontFamily="@font/public_sans"
+                            android:gravity="center_horizontal"
+                            android:padding="5sp"
+                            android:text="Loading ..."
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvCouncilAnalysisLocation10"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="6"
+                            android:fontFamily="@font/public_sans"
+                            android:gravity="center_horizontal"
+                            android:padding="5sp"
+                            android:text="Loading ..."
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/tvCouncilAnalysisCount10"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="6"
+                            android:fontFamily="@font/public_sans"
+                            android:gravity="center_horizontal"
+                            android:padding="5sp"
+                            android:text="Calculating ..."
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
+
+
+                    </TableRow>
+                </TableLayout>
+
+
+            </RelativeLayout>
+        </ScrollView>
 
         <TextView
             android:id="@+id/textView6"
@@ -393,535 +937,21 @@
             android:textColor="#FFFFFF"
             android:textSize="30sp" />
 
-        <RelativeLayout
-            android:layout_width="635dp"
-            android:layout_height="389dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="68dp"
-            android:layout_marginEnd="25dp"
-            android:layout_marginBottom="87dp"
-            android:background="@drawable/searchview_background"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/bcWeeklyBreakdown"
-            app:layout_constraintHorizontal_bias="0.55"
-            app:layout_constraintStart_toStartOf="@+id/bcWeeklyBreakdown"
-            app:layout_constraintVertical_bias="0.097">
-
-            <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="0dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginEnd="0dp">
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="#81C1EE">
-
-                    <TextView
-                        android:id="@+id/textView5"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="6"
-                        android:fontFamily="@font/public_sans_bold"
-                        android:gravity="center_horizontal"
-                        android:padding="5sp"
-                        android:text="Bin Name"
-                        android:textColor="@color/white"
-                        android:textSize="20sp" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="6"
-                        android:fontFamily="@font/public_sans_bold"
-                        android:gravity="center_horizontal"
-                        android:padding="5sp"
-                        android:text="Bin Location"
-                        android:textColor="@color/white"
-                        android:textSize="20sp" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="6"
-                        android:fontFamily="@font/public_sans_bold"
-                        android:gravity="center_horizontal"
-                        android:padding="5sp"
-                        android:text="Contaminated Count"
-                        android:textColor="@color/white"
-                        android:textSize="20sp" />
-
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/tbMonthlyTopBins1"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-
-                    <TextView
-                        android:id="@+id/tvCouncilAnalysisBin1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="6"
-                        android:fontFamily="@font/public_sans"
-                        android:gravity="center_horizontal"
-                        android:padding="5sp"
-                        android:text="Loading ..."
-                        android:textAlignment="center"
-                        android:textColor="@color/black"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tvCouncilAnalysisLocation1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="6"
-                        android:fontFamily="@font/public_sans"
-                        android:gravity="center_horizontal"
-                        android:padding="5sp"
-                        android:text="Loading ..."
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/tvCouncilAnalysisCount1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="6"
-                        android:fontFamily="@font/public_sans"
-                        android:gravity="center_horizontal"
-                        android:padding="5sp"
-                        android:text="Calculating ..."
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
-
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/tbMonthlyTopBins2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-
-                    <TextView
-                        android:id="@+id/tvCouncilAnalysisBin2"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="6"
-                        android:fontFamily="@font/public_sans"
-                        android:gravity="center_horizontal"
-                        android:padding="5sp"
-                        android:text="Loading ..."
-                        android:textAlignment="center"
-                        android:textColor="@color/black"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tvCouncilAnalysisLocation2"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="6"
-                        android:fontFamily="@font/public_sans"
-                        android:gravity="center_horizontal"
-                        android:padding="5sp"
-                        android:text="Loading ..."
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/tvCouncilAnalysisCount2"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="6"
-                        android:fontFamily="@font/public_sans"
-                        android:gravity="center_horizontal"
-                        android:padding="5sp"
-                        android:text="Calculating ..."
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
-
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/tbMonthlyTopBins3"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-
-                    <TextView
-                        android:id="@+id/tvCouncilAnalysisBin3"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="6"
-                        android:fontFamily="@font/public_sans"
-                        android:gravity="center_horizontal"
-                        android:padding="5sp"
-                        android:text="Loading ..."
-                        android:textAlignment="center"
-                        android:textColor="@color/black"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tvCouncilAnalysisLocation3"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="6"
-                        android:fontFamily="@font/public_sans"
-                        android:gravity="center_horizontal"
-                        android:padding="5sp"
-                        android:text="Loading ..."
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/tvCouncilAnalysisCount3"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="6"
-                        android:fontFamily="@font/public_sans"
-                        android:gravity="center_horizontal"
-                        android:padding="5sp"
-                        android:text="Calculating ..."
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
-
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/tbMonthlyTopBins4"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-
-                    <TextView
-                        android:id="@+id/tvCouncilAnalysisBin4"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="6"
-                        android:fontFamily="@font/public_sans"
-                        android:gravity="center_horizontal"
-                        android:padding="5sp"
-                        android:text="Loading ..."
-                        android:textAlignment="center"
-                        android:textColor="@color/black"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tvCouncilAnalysisLocation4"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="6"
-                        android:fontFamily="@font/public_sans"
-                        android:gravity="center_horizontal"
-                        android:padding="5sp"
-                        android:text="Loading ..."
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/tvCouncilAnalysisCount4"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="6"
-                        android:fontFamily="@font/public_sans"
-                        android:gravity="center_horizontal"
-                        android:padding="5sp"
-                        android:text="Calculating ..."
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-
-                    <TextView
-
-                        android:id="@+id/tvCouncilAnalysisBin5"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="6"
-                        android:fontFamily="@font/public_sans"
-                        android:gravity="center_horizontal"
-                        android:padding="5sp"
-                        android:text="Loading ..."
-                        android:textAlignment="center"
-                        android:textColor="@color/black"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tvCouncilAnalysisLocation5"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="6"
-                        android:fontFamily="@font/public_sans"
-                        android:gravity="center_horizontal"
-                        android:padding="5sp"
-                        android:text="Loading ..."
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/tvCouncilAnalysisCount5"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="6"
-                        android:fontFamily="@font/public_sans"
-                        android:gravity="center_horizontal"
-                        android:padding="5sp"
-                        android:text="Calculating ..."
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-
-                    <TextView
-                        android:id="@+id/tvCouncilAnalysisBin6"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="6"
-                        android:fontFamily="@font/public_sans"
-                        android:gravity="center_horizontal"
-                        android:padding="5sp"
-                        android:text="Loading ..."
-                        android:textAlignment="center"
-                        android:textColor="@color/black"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tvCouncilAnalysisLocation6"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="6"
-                        android:fontFamily="@font/public_sans"
-                        android:gravity="center_horizontal"
-                        android:padding="5sp"
-                        android:text="Loading ..."
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/tvCouncilAnalysisCount6"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="6"
-                        android:fontFamily="@font/public_sans"
-                        android:gravity="center_horizontal"
-                        android:padding="5sp"
-                        android:text="Calculating ..."
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-
-                    <TextView
-                        android:id="@+id/tvCouncilAnalysisBin7"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="6"
-                        android:fontFamily="@font/public_sans"
-                        android:gravity="center_horizontal"
-                        android:padding="5sp"
-                        android:text="Loading ..."
-                        android:textAlignment="center"
-                        android:textColor="@color/black"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tvCouncilAnalysisLocation7"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="6"
-                        android:fontFamily="@font/public_sans"
-                        android:gravity="center_horizontal"
-                        android:padding="5sp"
-                        android:text="Loading ..."
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/tvCouncilAnalysisCount7"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="6"
-                        android:fontFamily="@font/public_sans"
-                        android:gravity="center_horizontal"
-                        android:padding="5sp"
-                        android:text="Calculating ..."
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
-
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-
-                    <TextView
-                        android:id="@+id/tvCouncilAnalysisBin8"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="6"
-                        android:fontFamily="@font/public_sans"
-                        android:gravity="center_horizontal"
-                        android:padding="5sp"
-                        android:text="Loading ..."
-                        android:textAlignment="center"
-                        android:textColor="@color/black"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tvCouncilAnalysisLocation8"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="6"
-                        android:fontFamily="@font/public_sans"
-                        android:gravity="center_horizontal"
-                        android:padding="5sp"
-                        android:text="Loading ..."
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/tvCouncilAnalysisCount8"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="6"
-                        android:fontFamily="@font/public_sans"
-                        android:gravity="center_horizontal"
-                        android:padding="5sp"
-                        android:text="Calculating ..."
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
-
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-
-                    <TextView
-                        android:id="@+id/tvCouncilAnalysisBin9"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="6"
-                        android:fontFamily="@font/public_sans"
-                        android:gravity="center_horizontal"
-                        android:padding="5sp"
-                        android:text="Loading ..."
-                        android:textAlignment="center"
-                        android:textColor="@color/black"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tvCouncilAnalysisLocation9"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="6"
-                        android:fontFamily="@font/public_sans"
-                        android:gravity="center_horizontal"
-                        android:padding="5sp"
-                        android:text="Loading ..."
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/tvCouncilAnalysisCount9"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="6"
-                        android:fontFamily="@font/public_sans"
-                        android:gravity="center_horizontal"
-                        android:padding="5sp"
-                        android:text="Calculating ..."
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
-
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-
-                    <TextView
-                        android:id="@+id/tvCouncilAnalysisBin10"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="6"
-                        android:fontFamily="@font/public_sans"
-                        android:gravity="center_horizontal"
-                        android:padding="5sp"
-                        android:text="Loading ..."
-                        android:textAlignment="center"
-                        android:textColor="@color/black"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tvCouncilAnalysisLocation10"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="6"
-                        android:fontFamily="@font/public_sans"
-                        android:gravity="center_horizontal"
-                        android:padding="5sp"
-                        android:text="Loading ..."
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/tvCouncilAnalysisCount10"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="6"
-                        android:fontFamily="@font/public_sans"
-                        android:gravity="center_horizontal"
-                        android:padding="5sp"
-                        android:text="Calculating ..."
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
-
-
-                </TableRow>
-            </TableLayout>
-        </RelativeLayout>
-
     </RelativeLayout>
+
+    <Button
+        android:id="@+id/btCouncilAnalysisAlertCouncil"
+        android:layout_width="270dp"
+        android:layout_height="48dp"
+        android:background="@android:color/holo_red_dark"
+        android:text="Alert Council"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/relativeLayout4"
+        app:layout_constraintEnd_toEndOf="@+id/rlHomeTrack"
+        app:layout_constraintStart_toStartOf="@+id/rlHomeTrack"
+        app:layout_constraintTop_toBottomOf="@+id/rlHomeTrack"
+        app:layout_constraintVertical_bias="1.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
