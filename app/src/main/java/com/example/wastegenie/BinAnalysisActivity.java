@@ -34,6 +34,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class BinAnalysisActivity extends AppCompatActivity {
@@ -212,24 +213,26 @@ public class BinAnalysisActivity extends AppCompatActivity {
                 int contaminationRate = contaminatedWeeklyTotal*100/(contaminatedWeeklyTotal + recycledWeeklyTotal);
                 tvContaminationRate.setText(String.valueOf(contaminationRate) + "%");
 
+                DecimalFormat formatter = new DecimalFormat("#0.00");
+
                 // ewaste weight
                 int eWasteWeight = totalWeightMon + totalWeightTues + totalWeightWed + totalWeightThurs + totalWeightFri + totalWeightSat + totalWeightSun;
                 tvEwasteWeight.setText(String.valueOf(eWasteWeight));
 
-                tvConsumerElecWeight.setText(String.valueOf(consumerElecWeightWeekly));
-                tvConsumerElecPerc.setText(String.valueOf((consumerElecWeightWeekly*100)/eWasteWeight));
+                tvConsumerElecWeight.setText(formatter.format(consumerElecWeightWeekly));
+                tvConsumerElecPerc.setText(formatter.format((consumerElecWeightWeekly*100)/eWasteWeight));
 
-                tvComputerTeleWeight.setText(String.valueOf(computerTeleWeightWeekly));
-                tvComputerTelePerc.setText(String.valueOf((computerTeleWeightWeekly*100)/eWasteWeight));
+                tvComputerTeleWeight.setText(formatter.format(computerTeleWeightWeekly));
+                tvComputerTelePerc.setText(formatter.format((computerTeleWeightWeekly*100)/eWasteWeight));
 
-                tvSmallAppWeight.setText(String.valueOf(smallAppWeightWeekly));
-                tvSmallAppPerc.setText(String.valueOf((smallAppWeightWeekly*100)/eWasteWeight));
+                tvSmallAppWeight.setText(formatter.format(smallAppWeightWeekly));
+                tvSmallAppPerc.setText(formatter.format((smallAppWeightWeekly*100)/eWasteWeight));
 
-                tvLightingDevWeight.setText(String.valueOf(lightingDevWeightWeekly));
-                tvLightingDevPerc.setText(String.valueOf((lightingDevWeightWeekly*100)/eWasteWeight));
+                tvLightingDevWeight.setText(formatter.format(lightingDevWeightWeekly));
+                tvLightingDevPerc.setText(formatter.format((lightingDevWeightWeekly*100)/eWasteWeight));
 
-                tvOtherWeight.setText(String.valueOf(otherWeightWeekly));
-                tvOtherPerc.setText(String.valueOf((otherWeightWeekly*100)/eWasteWeight));
+                tvOtherWeight.setText(formatter.format(otherWeightWeekly));
+                tvOtherPerc.setText(formatter.format((otherWeightWeekly*100)/eWasteWeight));
 
             }
         });
@@ -257,20 +260,22 @@ public class BinAnalysisActivity extends AppCompatActivity {
                 int eWasteWeight = totalWeightWeekOne + totalWeightWeekTwo + totalWeightWeekThree + totalWeightWeekFour;
                 tvEwasteWeight.setText(String.valueOf(eWasteWeight));
 
-                tvConsumerElecWeight.setText(String.valueOf(consumerElecWeightMonthly));
-                tvConsumerElecPerc.setText(String.valueOf((consumerElecWeightMonthly*100)/eWasteWeight));
+                DecimalFormat formatter = new DecimalFormat("#0.00");
 
-                tvComputerTeleWeight.setText(String.valueOf(computerTeleWeightMonthly));
-                tvComputerTelePerc.setText(String.valueOf((computerTeleWeightMonthly*100)/eWasteWeight));
+                tvConsumerElecWeight.setText(formatter.format(consumerElecWeightMonthly));
+                tvConsumerElecPerc.setText(formatter.format((consumerElecWeightMonthly*100)/eWasteWeight));
 
-                tvSmallAppWeight.setText(String.valueOf(smallAppWeightMonthly));
-                tvSmallAppPerc.setText(String.valueOf((smallAppWeightMonthly*100)/eWasteWeight));
+                tvComputerTeleWeight.setText(formatter.format(computerTeleWeightMonthly));
+                tvComputerTelePerc.setText(formatter.format((computerTeleWeightMonthly*100)/eWasteWeight));
 
-                tvLightingDevWeight.setText(String.valueOf(lightingDevWeightMonthly));
-                tvLightingDevPerc.setText(String.valueOf((lightingDevWeightMonthly*100)/eWasteWeight));
+                tvSmallAppWeight.setText(formatter.format(smallAppWeightMonthly));
+                tvSmallAppPerc.setText(formatter.format((smallAppWeightMonthly*100)/eWasteWeight));
 
-                tvOtherWeight.setText(String.valueOf(otherWeightMonthly));
-                tvOtherPerc.setText(String.valueOf((otherWeightMonthly*100)/eWasteWeight));
+                tvLightingDevWeight.setText(formatter.format(lightingDevWeightMonthly));
+                tvLightingDevPerc.setText(formatter.format((lightingDevWeightMonthly*100)/eWasteWeight));
+
+                tvOtherWeight.setText(formatter.format(otherWeightMonthly));
+                tvOtherPerc.setText(formatter.format((otherWeightMonthly*100)/eWasteWeight));
             }
         });
 
@@ -511,6 +516,8 @@ public class BinAnalysisActivity extends AppCompatActivity {
 
                     }
 
+                    DecimalFormat formatter = new DecimalFormat("#0.00");
+
                     /**
                      * Set up weekly and monthly data
                      */
@@ -530,20 +537,20 @@ public class BinAnalysisActivity extends AppCompatActivity {
                         int eWasteWeight = totalWeightMon + totalWeightTues + totalWeightWed + totalWeightThurs + totalWeightFri + totalWeightSat + totalWeightSun;
                         tvEwasteWeight.setText(String.valueOf(eWasteWeight));
 
-                        tvConsumerElecWeight.setText(String.valueOf(consumerElecWeightWeekly));
-                        tvConsumerElecPerc.setText(String.valueOf((consumerElecWeightWeekly*100)/eWasteWeight));
+                        tvConsumerElecWeight.setText(formatter.format(consumerElecWeightWeekly));
+                        tvConsumerElecPerc.setText(formatter.format((consumerElecWeightWeekly*100)/eWasteWeight));
 
-                        tvComputerTeleWeight.setText(String.valueOf(computerTeleWeightWeekly));
-                        tvComputerTelePerc.setText(String.valueOf((computerTeleWeightWeekly*100)/eWasteWeight));
+                        tvComputerTeleWeight.setText(formatter.format(computerTeleWeightWeekly));
+                        tvComputerTelePerc.setText(formatter.format((computerTeleWeightWeekly*100)/eWasteWeight));
 
-                        tvSmallAppWeight.setText(String.valueOf(smallAppWeightWeekly));
-                        tvSmallAppPerc.setText(String.valueOf((smallAppWeightWeekly*100)/eWasteWeight));
+                        tvSmallAppWeight.setText(formatter.format(smallAppWeightWeekly));
+                        tvSmallAppPerc.setText(formatter.format((smallAppWeightWeekly*100)/eWasteWeight));
 
-                        tvLightingDevWeight.setText(String.valueOf(lightingDevWeightWeekly));
-                        tvLightingDevPerc.setText(String.valueOf((lightingDevWeightWeekly*100)/eWasteWeight));
+                        tvLightingDevWeight.setText(formatter.format(lightingDevWeightWeekly));
+                        tvLightingDevPerc.setText(formatter.format((lightingDevWeightWeekly*100)/eWasteWeight));
 
-                        tvOtherWeight.setText(String.valueOf(otherWeightWeekly));
-                        tvOtherPerc.setText(String.valueOf((otherWeightWeekly*100)/eWasteWeight));
+                        tvOtherWeight.setText(formatter.format(otherWeightWeekly));
+                        tvOtherPerc.setText(formatter.format((otherWeightWeekly*100)/eWasteWeight));
 
                     } else {
                         int contaminatedMonthlyTotal = contaminatedCountWeekOne + contaminatedCountWeekTwo + contaminatedCountWeekThree + contaminatedCountWeekFour;
@@ -558,20 +565,20 @@ public class BinAnalysisActivity extends AppCompatActivity {
                         int eWasteWeight = totalWeightWeekOne + totalWeightWeekTwo + totalWeightWeekThree + totalWeightWeekFour;
                         tvEwasteWeight.setText(String.valueOf(eWasteWeight));
 
-                        tvConsumerElecWeight.setText(String.valueOf(consumerElecWeightMonthly));
-                        tvConsumerElecPerc.setText(String.valueOf((consumerElecWeightMonthly*100)/eWasteWeight));
+                        tvConsumerElecWeight.setText(formatter.format(consumerElecWeightMonthly));
+                        tvConsumerElecPerc.setText(formatter.format((consumerElecWeightMonthly*100)/eWasteWeight));
 
-                        tvComputerTeleWeight.setText(String.valueOf(computerTeleWeightMonthly));
-                        tvComputerTelePerc.setText(String.valueOf((computerTeleWeightMonthly*100)/eWasteWeight));
+                        tvComputerTeleWeight.setText(formatter.format(computerTeleWeightMonthly));
+                        tvComputerTelePerc.setText(formatter.format((computerTeleWeightMonthly*100)/eWasteWeight));
 
-                        tvSmallAppWeight.setText(String.valueOf(smallAppWeightMonthly));
-                        tvSmallAppPerc.setText(String.valueOf((smallAppWeightMonthly*100)/eWasteWeight));
+                        tvSmallAppWeight.setText(formatter.format(smallAppWeightMonthly));
+                        tvSmallAppPerc.setText(formatter.format((smallAppWeightMonthly*100)/eWasteWeight));
 
-                        tvLightingDevWeight.setText(String.valueOf(lightingDevWeightMonthly));
-                        tvLightingDevPerc.setText(String.valueOf((lightingDevWeightMonthly*100)/eWasteWeight));
+                        tvLightingDevWeight.setText(formatter.format(lightingDevWeightMonthly));
+                        tvLightingDevPerc.setText(formatter.format((lightingDevWeightMonthly*100)/eWasteWeight));
 
-                        tvOtherWeight.setText(String.valueOf(otherWeightMonthly));
-                        tvOtherPerc.setText(String.valueOf((otherWeightMonthly*100)/eWasteWeight));
+                        tvOtherWeight.setText(formatter.format(otherWeightMonthly));
+                        tvOtherPerc.setText(formatter.format((otherWeightMonthly*100)/eWasteWeight));
 
                     }
 
