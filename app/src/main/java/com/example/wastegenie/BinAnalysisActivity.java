@@ -2,6 +2,8 @@ package com.example.wastegenie;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -9,10 +11,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.wastegenie.Adapters.BinAnalysisAdapter;
+import com.example.wastegenie.Adapters.HomeAdapter;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
@@ -128,6 +133,16 @@ public class BinAnalysisActivity extends AppCompatActivity {
     double lightingDevWeightMonthly;
     double otherWeightMonthly;
 
+    /**
+     * Recyclerview
+     */
+    RecyclerView recyclerView;
+    DatabaseReference databaseRecycler;
+    BinAnalysisAdapter adapter;
+    ArrayList<DropOffData> list;
+
+    Button btAlertCouncil;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -138,6 +153,7 @@ public class BinAnalysisActivity extends AppCompatActivity {
          */
         Intent intent = getIntent();
         String binChoice = intent.getStringExtra("Bin Selection");
+        String councilChoice = intent.getStringExtra("Council for Bin Selection");
 
         tvBinName = findViewById(R.id.tvBinAnalysisBinName);
         tvBinCouncil = findViewById(R.id.tvBinAnalysisCouncil);
@@ -178,6 +194,35 @@ public class BinAnalysisActivity extends AppCompatActivity {
                 }
             }
         });
+
+        /**
+         * Set up the recyclerview
+         */
+        recyclerView = findViewById(R.id.rvBinAnalysisDisposalSites);
+        databaseRecycler = FirebaseDatabase.getInstance().getReference().child("1qHYUHw1GGaVy9oW_pT8LMAWjR9fODaJE1qWqhcSNHBs").child("Sheet2");
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        list = new ArrayList<>();
+        adapter = new BinAnalysisAdapter(this, list);
+
+        recyclerView.setAdapter(adapter);
+
+        databaseRecycler.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (DataSnapshot dataSnapshot : task.getResult().getChildren()) {
+                        DropOffData siteData = dataSnapshot.getValue(DropOffData.class);
+                        list.add(siteData);
+                    }
+                    adapter.getFilter().filter(councilChoice);
+                    adapter.notifyDataSetChanged();
+                }
+            }
+        });
+
+
 
         /**
          * Setting up weekly and monthly stats
@@ -832,6 +877,21 @@ public class BinAnalysisActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * Button to alert council
+         */
+
+        btAlertCouncil = findViewById(R.id.btBinAnalysisAlertCouncil);
+        btAlertCouncil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String chosenCouncil = tvBinCouncil.getText().toString();
+                Intent intent = new Intent(BinAnalysisActivity.this, AlertAnalysisActivity.class);
+                intent.putExtra("Analysis Council", chosenCouncil);
+                startActivity(intent);
+            }
+        });
+
 
 
 
@@ -853,6 +913,9 @@ public class BinAnalysisActivity extends AppCompatActivity {
                     finish();
                     return true;
                 } else if (id == R.id.analysis) {
+                    Intent intent = new Intent(BinAnalysisActivity.this, AnalysisActivity.class);
+                    startActivity(intent);
+                    finish();
                     return true;
                 } else if (id == R.id.tracking) {
                     Intent intent = new Intent(BinAnalysisActivity.this, TrackingActivity.class);

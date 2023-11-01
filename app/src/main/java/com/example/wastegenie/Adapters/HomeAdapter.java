@@ -167,39 +167,5 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> 
         }
     };
 
-//    /**
-//     * Create another filter for when user selects the checkbox for fully recycled bins
-//     */
-//
-//    public Filter getRecycledFilter() {
-//        return recycledFilter;
-//    }
-//
-//    private final Filter recycledFilter = new Filter() {
-//
-//        @Override
-//        protected FilterResults performFiltering(CharSequence recycledFilter) {
-//            ArrayList<BinData> filteredTruckList = new ArrayList<>();
-//
-//            for (BinData bindata : list) {
-//                if (bindata.getStatus().equals(recycledFilter))
-//                    filteredTruckList.add(bindata);
-//            }
-//
-//            FilterResults results = new FilterResults();
-//            results.values = filteredTruckList;
-//            results.count = filteredTruckList.size();
-//            return results;
-//        }
-//
-//        @Override
-//        protected void publishResults(CharSequence constraint, FilterResults results) {
-//            list.clear();
-//            list.addAll((ArrayList)results.values);
-//            notifyDataSetChanged();
-//        }
-//    };
-
-
 
 }
