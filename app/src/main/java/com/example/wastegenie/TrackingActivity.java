@@ -36,6 +36,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -48,6 +49,7 @@ public class TrackingActivity extends AppCompatActivity implements OnMapReadyCal
 
     NavigationView navigationView;
     Button btViewTruckRoute;
+    Button btViewCouncilRoute;
     private MapView mvTracking;
     private static final String MAPVIEW_BUNDLE_KEY = "MapViewBundleKey";
     DatabaseReference database;
@@ -64,6 +66,7 @@ public class TrackingActivity extends AppCompatActivity implements OnMapReadyCal
         setContentView(R.layout.activity_tracking);
         setTitle("Tracking Page");
         btViewTruckRoute = findViewById(R.id.btViewTruckRoute);
+        btViewCouncilRoute = findViewById(R.id.btViewCouncilRoute);
 
         Bundle mapViewBundle = null;
         if (savedInstanceState != null) {
@@ -76,11 +79,20 @@ public class TrackingActivity extends AppCompatActivity implements OnMapReadyCal
         truckSpinner = findViewById(R.id.spTrackActivityTruckID);
         ArrayAdapter<CharSequence> truckAdapter = ArrayAdapter.createFromResource(
                 TrackingActivity.this,
-                R.array.sydneyTrucksArray,
+                R.array.allTrucksArray,
                 android.R.layout.simple_spinner_item
         );
         truckAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         truckSpinner.setAdapter(truckAdapter);
+
+        councilSpinner = findViewById(R.id.spTrackActivityCouncil);
+        ArrayAdapter<CharSequence> councilAdapter = ArrayAdapter.createFromResource(
+                TrackingActivity.this,
+                R.array.councilArray,
+                android.R.layout.simple_spinner_item
+        );
+        councilAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        councilSpinner.setAdapter(councilAdapter);
 
 
 
@@ -200,6 +212,16 @@ public class TrackingActivity extends AppCompatActivity implements OnMapReadyCal
             public void onClick(View view) {
                 Intent intent = new Intent(TrackingActivity.this, RouteActivity.class);
                 intent.putExtra("truckID", truckSpinner.getSelectedItem().toString());
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        btViewCouncilRoute.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(TrackingActivity.this, CouncilTracking.class);
+                intent.putExtra("council", councilSpinner.getSelectedItem().toString());
                 startActivity(intent);
                 finish();
             }

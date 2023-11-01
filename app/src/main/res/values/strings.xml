@@ -17,6 +17,30 @@
     </string-array>
 
     // for each council's truck id's
+    <string-array name="allTrucksArray">
+        <item>BU128</item>
+        <item>BU129</item>
+        <item>HH100</item>
+        <item>HH120</item>
+        <item>HN130</item>
+        <item>HN131</item>
+        <item>KU126</item>
+        <item>KU127</item>
+        <item>MO112</item>
+        <item>MO113</item>
+        <item>NB130</item>
+        <item>NB131</item>
+        <item>PA122</item>
+        <item>PA123</item>
+        <item>RW110</item>
+        <item>RW120</item>
+        <item>SF111</item>
+        <item>SF112</item>
+        <item>SY124</item>
+        <item>SY125</item>
+    </string-array>
+
+    // for list of all bin names
     <string-array name="parramattaTrucksArray">
         <item>PA122</item>
         <item>PA123</item>
@@ -66,6 +90,7 @@
         <item>HH100</item>
         <item>HH120</item>
     </string-array>
+
 
     // for each council's bin names
     <string-array name="parramattaBinsArray">

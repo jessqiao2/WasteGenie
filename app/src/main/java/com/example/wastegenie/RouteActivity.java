@@ -2,14 +2,20 @@ package com.example.wastegenie;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.wastegenie.Adapters.RouteAdapter;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -19,6 +25,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -33,6 +41,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -58,15 +68,93 @@ public class RouteActivity extends AppCompatActivity implements OnMapReadyCallba
     GoogleMap map;
     private static final String MAPVIEW_BUNDLE_KEY = "MapViewBundleKey";
     String truckID = null;
+    TextView tvTruckIDDisplay;
+    TextView tvCouncilDisplay;
+    RouteAdapter adapter;
+    ArrayList<BinData> list;
+    RecyclerView recyclerView;
+    CheckBox cbContamination;
+    CheckBox cbRecycle;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_route);
         setTitle("Route Tracking Page");
+        tvTruckIDDisplay = findViewById(R.id.tvCouncilDisplayCT);
+        tvCouncilDisplay = findViewById(R.id.tvTrucksDisplayCT);
+
+        recyclerView = findViewById(R.id.rvRouteSpecificTruck);
+        database = FirebaseDatabase.getInstance().getReference().child("1qHYUHw1GGaVy9oW_pT8LMAWjR9fODaJE1qWqhcSNHBs").child("Sheet1");
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        list = new ArrayList<>();
+        adapter = new RouteAdapter(this, list);
+        recyclerView.setAdapter(adapter);
 
         Intent intentFromTracking = getIntent();
         truckID = intentFromTracking.getStringExtra("truckID");
+        tvTruckIDDisplay.setText(truckID);
+
+        switch(truckID.substring(0, 2)){
+            case("BU"):
+                tvCouncilDisplay.setText("Burwood");
+                break;
+            case("HH"):
+                tvCouncilDisplay.setText("Hunters Hill");
+                break;
+            case("HN"):
+                tvCouncilDisplay.setText("Hornsby");
+                break;
+            case("KU"):
+                tvCouncilDisplay.setText("Ku-ring-gai");
+                break;
+            case("MO"):
+                tvCouncilDisplay.setText("Mosman");
+                break;
+            case("NB"):
+                tvCouncilDisplay.setText("Northern Beaches");
+                break;
+            case("PA"):
+                tvCouncilDisplay.setText("Parramatta");
+                break;
+            case("RW"):
+                tvCouncilDisplay.setText("Randwick");
+                break;
+            case("SF"):
+                tvCouncilDisplay.setText("Strathfield");
+                break;
+            case("SY"):
+                tvCouncilDisplay.setText("City of Sydney");
+                break;
+            default:
+
+        }
+
+        database.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (task.isSuccessful()) {
+                    LocalDate today = LocalDate.of(2023, 10, 24);
+                    LocalDate lastWeek = today.minus(1, ChronoUnit.WEEKS);
+                    for (DataSnapshot dataSnapshot : task.getResult().getChildren()) {
+                        BinData binData = dataSnapshot.getValue(BinData.class);
+                        LocalDate addressDate = LocalDate.parse(binData.getDate().split("T")[0]);
+
+                        if(addressDate.isBefore(today) && addressDate.isAfter(lastWeek)) {
+                            list.add(binData);
+                        }
+
+
+                    }
+
+                    adapter.notifyDataSetChanged();
+                adapter.getFilter().filter(truckID);
+                }
+            }
+        });
 
         Bundle mapViewBundle = null;
         if (savedInstanceState != null) {
@@ -199,6 +287,37 @@ public class RouteActivity extends AppCompatActivity implements OnMapReadyCallba
             }
         });
 
+
+        // Checkbox for contamination
+        cbContamination = findViewById(R.id.cbRouteContaminated);
+        cbContamination.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked && cbRecycle.isChecked() == false) {
+                    adapter.getContaminationFilter().filter("Bin Flagged as Contaminated");
+
+                } else {
+                    // if the checkbox is unchecked, return to the original truck filter.
+                    adapter.getFilter().filter(truckID);
+                    adapter.notifyDataSetChanged();
+                }
+            }
+        });
+
+        // Checkbox for fully recycled
+        cbRecycle = findViewById(R.id.cbRouteRecycle);
+        cbRecycle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked && cbContamination.isChecked() == false) {
+                    adapter.getContaminationFilter().filter("Bin Fully Recyclable ");
+                } else {
+                    // if the checkbox is unchecked, return to the original truck filter.
+                    adapter.getFilter().filter(truckID);
+                    adapter.notifyDataSetChanged();
+                }
+            }
+        });
 
         /**
          * Set up navigation view

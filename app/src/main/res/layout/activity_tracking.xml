@@ -109,9 +109,9 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/rlTruckInfo"
+        android:id="@+id/rlLiveTrackingSpecific"
         android:layout_width="0dp"
-        android:layout_height="284dp"
+        android:layout_height="304dp"
         android:layout_marginStart="48dp"
         android:layout_marginTop="64dp"
         android:layout_marginEnd="64dp"
@@ -129,13 +129,37 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="60dp"
-            android:layout_marginBottom="148dp"
+            android:layout_marginBottom="160dp"
             android:background="@drawable/searchview_background">
 
             <Spinner
                 android:id="@+id/spTrackActivityTruckID"
+                android:layout_width="614dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="19dp"
+                android:layout_marginEnd="19dp"
+                android:scrollbarSize="4dp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="652dp"
+            android:layout_height="37dp"
+            android:layout_below="@+id/tvTrackTrucks"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="92dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginBottom="84dp"
+            android:background="@drawable/searchview_background">
+
+            <Spinner
+                android:id="@+id/spTrackActivityCouncil"
                 android:layout_width="614dp"
                 android:layout_height="match_parent"
                 android:layout_alignParentStart="true"
@@ -153,7 +177,7 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="1124dp"
             android:fontFamily="@font/public_sans_bold"
-            android:text="Track Specific Trucks"
+            android:text="Track Specific Trucks or Council Routes"
             android:textColor="#FFFFFF"
             android:textSize="30sp"
             android:textStyle="bold"
@@ -162,13 +186,26 @@
 
         <Button
             android:id="@+id/btViewTruckRoute"
-            android:layout_width="264dp"
-            android:layout_height="54dp"
+            android:layout_width="332dp"
+            android:layout_height="52dp"
             android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="18dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginBottom="16dp"
             android:background="@drawable/button_blue"
             android:text="View Truck Route"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btViewCouncilRoute"
+            android:layout_width="332dp"
+            android:layout_height="52dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="36dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/button_blue"
+            android:text="View Council Routes"
             android:textColor="#FFFFFF"
             android:textSize="20sp" />
 
@@ -182,9 +219,9 @@
         android:background="@drawable/blue_rectangle_frame"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="@+id/rlMaps"
-        app:layout_constraintEnd_toEndOf="@+id/rlTruckInfo"
-        app:layout_constraintStart_toStartOf="@+id/rlTruckInfo"
-        app:layout_constraintTop_toBottomOf="@+id/rlTruckInfo">
+        app:layout_constraintEnd_toEndOf="@+id/rlLiveTrackingSpecific"
+        app:layout_constraintStart_toStartOf="@+id/rlLiveTrackingSpecific"
+        app:layout_constraintTop_toBottomOf="@+id/rlLiveTrackingSpecific">
 
         <TextView
             android:id="@+id/tvTopContamination"

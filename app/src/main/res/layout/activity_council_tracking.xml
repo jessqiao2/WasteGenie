@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CouncilTracking">
+
+    <TextView
+        android:id="@+id/tvCouncilRoutes"
+        android:layout_width="wrap_content"
+        android:layout_height="41dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/public_sans_bold"
+        android:text="Council Routes"
+        android:textColor="#2995E2"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/tvCouncilTracking"
+        app:layout_constraintTop_toBottomOf="@+id/rlLiveTrackingSpecific" />
+
+    <TextView
+        android:id="@+id/tvCouncilTracking"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/public_sans_bold"
+        android:text="Council Tracking View"
+        android:textColor="#2995E2"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.272"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.045" />
+
+    <TextView
+        android:id="@+id/tvTrackingSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="1124dp"
+        android:fontFamily="@font/public_sans_bold"
+        android:text="Specific Truck Tracking"
+        android:textColor="#2995E2"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tvCouncilTracking"
+        app:layout_constraintTop_toBottomOf="@+id/tvCouncilTracking" />
+
+    <RelativeLayout
+        android:id="@+id/rlLiveTrackingSpecific"
+        android:layout_width="720dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/blue_rectangle_frame"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="@+id/tvCouncilTracking"
+        app:layout_constraintTop_toBottomOf="@+id/tvTrackingSubtitle">
+
+        <TextView
+            android:id="@+id/tvCouncil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="1124dp"
+            android:fontFamily="@font/public_sans_bold"
+            android:text="Council:"
+            android:textColor="#1D8E21"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvCouncilDisplayCT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="250dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="1124dp"
+            android:fontFamily="@font/public_sans_bold"
+            android:text="Council"
+            android:textColor="#FFFFFF"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvTrucksDisplayCT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvCouncil"
+            android:layout_marginStart="250dp"
+            android:layout_marginEnd="1124dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/public_sans_bold"
+            android:text="Trucks"
+            android:textColor="#FFFFFF"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvTrucks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvCouncil"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/public_sans_bold"
+            android:text="Trucks:"
+            android:textColor="#1D8E21"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/mvCouncilTracking"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/rlLiveTrackingSpecific"
+        app:layout_constraintStart_toStartOf="@+id/tvCouncilTracking"
+        app:layout_constraintTop_toBottomOf="@+id/tvCouncilRoutes"
+        app:uiCompass="true"
+        app:uiScrollGestures="true"
+        app:uiZoomControls="true"
+        app:uiZoomGestures="true" />
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="#0460A1"
+        app:headerLayout="@layout/nav_header"
+        app:itemIconSize="35dp"
+        app:itemIconTint="@color/white"
+        app:itemTextAppearance="@style/TextAppearance.AppCompat.Large"
+        app:itemTextColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/navigation" />
+</androidx.constraintlayout.widget.ConstraintLayout>
