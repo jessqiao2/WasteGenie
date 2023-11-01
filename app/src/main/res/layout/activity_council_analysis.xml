@@ -82,15 +82,15 @@
 
     <RelativeLayout
         android:id="@+id/rlHomeTrack"
-        android:layout_width="814dp"
-        android:layout_height="231dp"
+        android:layout_width="818dp"
+        android:layout_height="293dp"
         android:background="@drawable/blue_rectangle_frame"
-        app:layout_constraintBottom_toBottomOf="@+id/relativeLayout4"
+        app:layout_constraintBottom_toBottomOf="@+id/btCouncilAnalysisAlertCouncil"
         app:layout_constraintEnd_toEndOf="@+id/rlCouncilAnalysisWeekly"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/rlCouncilAnalysisWeekly"
-        app:layout_constraintTop_toBottomOf="@+id/rlCouncilAnalysisWeekly"
-        app:layout_constraintVertical_bias="0.423">
+        app:layout_constraintTop_toBottomOf="@+id/rlCouncilAnalysisMonthChart"
+        app:layout_constraintVertical_bias="1.0">
 
         <TextView
             android:layout_width="633dp"
@@ -104,18 +104,18 @@
             android:fontFamily="@font/public_sans_bold"
             android:text="Closest E-Waste Disposal Sites"
             android:textColor="#FFFFFF"
-            android:textSize="30sp" />
+            android:textSize="25sp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvCouncilAnalysisDisposal"
-            android:layout_width="767dp"
-            android:layout_height="145dp"
+            android:layout_width="780dp"
+            android:layout_height="224dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="64dp"
-            android:layout_marginEnd="25dp" />
+            android:layout_marginTop="54dp"
+            android:layout_marginEnd="18dp" />
 
     </RelativeLayout>
 
@@ -367,25 +367,23 @@
     <RelativeLayout
         android:id="@+id/relativeLayout4"
         android:layout_width="688dp"
-        android:layout_height="504dp"
+        android:layout_height="461dp"
         android:background="@drawable/blue_rectangle_frame"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/rlHomeScore"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/tvHomeGraphTitle"
         app:layout_constraintTop_toBottomOf="@+id/tvCouncilAnalysisWeekly"
-        app:layout_constraintVertical_bias="0.222">
+        app:layout_constraintVertical_bias="0.08">
 
         <TableLayout
-            android:layout_width="642dp"
-            android:layout_height="42dp"
+            android:layout_width="646dp"
+            android:layout_height="37dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
             android:layout_marginStart="0dp"
-            android:layout_marginTop="67dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginBottom="395dp">
+            android:layout_marginTop="45dp"
+            android:layout_marginEnd="20dp">
 
             <TableRow
                 android:layout_width="match_parent"
@@ -401,7 +399,7 @@
                     android:gravity="center_horizontal"
                     android:padding="5sp"
                     android:text="Bin Name"
-                    android:textColor="@color/white"
+                    android:textColor="#278C2B"
                     android:textSize="20sp" />
 
                 <TextView
@@ -412,7 +410,7 @@
                     android:gravity="center_horizontal"
                     android:padding="5sp"
                     android:text="Bin Location"
-                    android:textColor="@color/white"
+                    android:textColor="#278C2B"
                     android:textSize="20sp" />
 
                 <TextView
@@ -423,7 +421,7 @@
                     android:gravity="center_horizontal"
                     android:padding="5sp"
                     android:text="Contaminated Count"
-                    android:textColor="@color/white"
+                    android:textColor="#278C2B"
                     android:textSize="20sp" />
 
             </TableRow>
@@ -431,16 +429,14 @@
         </TableLayout>
 
         <ScrollView
-            android:layout_width="645dp"
-            android:layout_height="370dp"
+            android:layout_width="648dp"
+            android:layout_height="351dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
             android:layout_marginStart="22dp"
-            android:layout_marginTop="107dp"
-            android:layout_marginEnd="21dp"
-            android:layout_marginBottom="27dp">
+            android:layout_marginTop="80dp"
+            android:layout_marginEnd="18dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -924,34 +920,34 @@
 
         <TextView
             android:id="@+id/textView6"
-            android:layout_width="633dp"
+            android:layout_width="636dp"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="15dp"
-            android:layout_marginTop="17dp"
-            android:layout_marginEnd="36dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="37dp"
             android:fontFamily="@font/public_sans_bold"
             android:text="Council Bins"
             android:textColor="#FFFFFF"
-            android:textSize="30sp" />
+            android:textSize="25sp" />
 
     </RelativeLayout>
 
     <Button
         android:id="@+id/btCouncilAnalysisAlertCouncil"
         android:layout_width="270dp"
-        android:layout_height="48dp"
+        android:layout_height="40dp"
         android:background="@android:color/holo_red_dark"
         android:text="Alert Council"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/relativeLayout4"
-        app:layout_constraintEnd_toEndOf="@+id/rlHomeTrack"
-        app:layout_constraintStart_toStartOf="@+id/rlHomeTrack"
-        app:layout_constraintTop_toBottomOf="@+id/rlHomeTrack"
-        app:layout_constraintVertical_bias="1.0" />
-
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/relativeLayout4"
+        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintStart_toStartOf="@+id/relativeLayout4"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout4"
+        app:layout_constraintVertical_bias="0.17" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

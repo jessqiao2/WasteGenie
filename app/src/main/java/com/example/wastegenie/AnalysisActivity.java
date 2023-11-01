@@ -781,8 +781,11 @@ public class AnalysisActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String binSelection = spSpecificBins.getSelectedItem().toString();
+                String councilSelection = spCouncilForBins.getSelectedItem().toString();
                 Intent intent = new Intent(AnalysisActivity.this, BinAnalysisActivity.class);
                 intent.putExtra("Bin Selection", binSelection);
+                intent.putExtra("Council for Bin Selection", councilSelection);
+
                 startActivity(intent);
             }
         });

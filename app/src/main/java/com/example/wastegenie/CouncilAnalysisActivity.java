@@ -2,6 +2,8 @@ package com.example.wastegenie;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -14,6 +16,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.wastegenie.Adapters.BinAnalysisAdapter;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
@@ -156,6 +159,14 @@ public class CouncilAnalysisActivity extends AppCompatActivity {
     int contaminatedMonthBin10;
 
     Button btAlertCouncil;
+
+    /**
+     * Recyclerview
+     */
+    RecyclerView recyclerView;
+    DatabaseReference databaseRecycler;
+    BinAnalysisAdapter adapter;
+    ArrayList<DropOffData> list;
 
 
     @Override
@@ -343,8 +354,38 @@ public class CouncilAnalysisActivity extends AppCompatActivity {
                             tvBinLocation10.setText(binData.getBinAddress());
                         }
 
+
+
                     }
+
                     tvCouncilAddress.setText(councilLocation);
+                }
+            }
+        });
+
+        /**
+         * Set up the recyclerview
+         */
+        recyclerView = findViewById(R.id.rvCouncilAnalysisDisposal);
+        databaseRecycler = FirebaseDatabase.getInstance().getReference().child("1qHYUHw1GGaVy9oW_pT8LMAWjR9fODaJE1qWqhcSNHBs").child("Sheet2");
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        list = new ArrayList<>();
+        adapter = new BinAnalysisAdapter(this, list);
+
+        recyclerView.setAdapter(adapter);
+
+        databaseRecycler.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (DataSnapshot dataSnapshot : task.getResult().getChildren()) {
+                        DropOffData siteData = dataSnapshot.getValue(DropOffData.class);
+                        list.add(siteData);
+                    }
+                    adapter.getFilter().filter(councilChoice);
+                    adapter.notifyDataSetChanged();
                 }
             }
         });
@@ -989,6 +1030,9 @@ public class CouncilAnalysisActivity extends AppCompatActivity {
                     finish();
                     return true;
                 } else if (id == R.id.analysis) {
+                    Intent intent = new Intent(CouncilAnalysisActivity.this, AnalysisActivity.class);
+                    startActivity(intent);
+                    finish();
                     return true;
                 } else if (id == R.id.tracking) {
                     Intent intent = new Intent(CouncilAnalysisActivity.this, TrackingActivity.class);

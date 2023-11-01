@@ -2,6 +2,8 @@ package com.example.wastegenie;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -9,10 +11,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.wastegenie.Adapters.BinAnalysisAdapter;
+import com.example.wastegenie.Adapters.HomeAdapter;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
@@ -34,6 +39,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class BinAnalysisActivity extends AppCompatActivity {
@@ -127,6 +133,16 @@ public class BinAnalysisActivity extends AppCompatActivity {
     double lightingDevWeightMonthly;
     double otherWeightMonthly;
 
+    /**
+     * Recyclerview
+     */
+    RecyclerView recyclerView;
+    DatabaseReference databaseRecycler;
+    BinAnalysisAdapter adapter;
+    ArrayList<DropOffData> list;
+
+    Button btAlertCouncil;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -137,6 +153,7 @@ public class BinAnalysisActivity extends AppCompatActivity {
          */
         Intent intent = getIntent();
         String binChoice = intent.getStringExtra("Bin Selection");
+        String councilChoice = intent.getStringExtra("Council for Bin Selection");
 
         tvBinName = findViewById(R.id.tvBinAnalysisBinName);
         tvBinCouncil = findViewById(R.id.tvBinAnalysisCouncil);
@@ -179,6 +196,35 @@ public class BinAnalysisActivity extends AppCompatActivity {
         });
 
         /**
+         * Set up the recyclerview
+         */
+        recyclerView = findViewById(R.id.rvBinAnalysisDisposalSites);
+        databaseRecycler = FirebaseDatabase.getInstance().getReference().child("1qHYUHw1GGaVy9oW_pT8LMAWjR9fODaJE1qWqhcSNHBs").child("Sheet2");
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        list = new ArrayList<>();
+        adapter = new BinAnalysisAdapter(this, list);
+
+        recyclerView.setAdapter(adapter);
+
+        databaseRecycler.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (DataSnapshot dataSnapshot : task.getResult().getChildren()) {
+                        DropOffData siteData = dataSnapshot.getValue(DropOffData.class);
+                        list.add(siteData);
+                    }
+                    adapter.getFilter().filter(councilChoice);
+                    adapter.notifyDataSetChanged();
+                }
+            }
+        });
+
+
+
+        /**
          * Setting up weekly and monthly stats
          */
 
@@ -212,24 +258,26 @@ public class BinAnalysisActivity extends AppCompatActivity {
                 int contaminationRate = contaminatedWeeklyTotal*100/(contaminatedWeeklyTotal + recycledWeeklyTotal);
                 tvContaminationRate.setText(String.valueOf(contaminationRate) + "%");
 
+                DecimalFormat formatter = new DecimalFormat("#0.00");
+
                 // ewaste weight
                 int eWasteWeight = totalWeightMon + totalWeightTues + totalWeightWed + totalWeightThurs + totalWeightFri + totalWeightSat + totalWeightSun;
                 tvEwasteWeight.setText(String.valueOf(eWasteWeight));
 
-                tvConsumerElecWeight.setText(String.valueOf(consumerElecWeightWeekly));
-                tvConsumerElecPerc.setText(String.valueOf((consumerElecWeightWeekly*100)/eWasteWeight));
+                tvConsumerElecWeight.setText(formatter.format(consumerElecWeightWeekly));
+                tvConsumerElecPerc.setText(formatter.format((consumerElecWeightWeekly*100)/eWasteWeight));
 
-                tvComputerTeleWeight.setText(String.valueOf(computerTeleWeightWeekly));
-                tvComputerTelePerc.setText(String.valueOf((computerTeleWeightWeekly*100)/eWasteWeight));
+                tvComputerTeleWeight.setText(formatter.format(computerTeleWeightWeekly));
+                tvComputerTelePerc.setText(formatter.format((computerTeleWeightWeekly*100)/eWasteWeight));
 
-                tvSmallAppWeight.setText(String.valueOf(smallAppWeightWeekly));
-                tvSmallAppPerc.setText(String.valueOf((smallAppWeightWeekly*100)/eWasteWeight));
+                tvSmallAppWeight.setText(formatter.format(smallAppWeightWeekly));
+                tvSmallAppPerc.setText(formatter.format((smallAppWeightWeekly*100)/eWasteWeight));
 
-                tvLightingDevWeight.setText(String.valueOf(lightingDevWeightWeekly));
-                tvLightingDevPerc.setText(String.valueOf((lightingDevWeightWeekly*100)/eWasteWeight));
+                tvLightingDevWeight.setText(formatter.format(lightingDevWeightWeekly));
+                tvLightingDevPerc.setText(formatter.format((lightingDevWeightWeekly*100)/eWasteWeight));
 
-                tvOtherWeight.setText(String.valueOf(otherWeightWeekly));
-                tvOtherPerc.setText(String.valueOf((otherWeightWeekly*100)/eWasteWeight));
+                tvOtherWeight.setText(formatter.format(otherWeightWeekly));
+                tvOtherPerc.setText(formatter.format((otherWeightWeekly*100)/eWasteWeight));
 
             }
         });
@@ -257,20 +305,22 @@ public class BinAnalysisActivity extends AppCompatActivity {
                 int eWasteWeight = totalWeightWeekOne + totalWeightWeekTwo + totalWeightWeekThree + totalWeightWeekFour;
                 tvEwasteWeight.setText(String.valueOf(eWasteWeight));
 
-                tvConsumerElecWeight.setText(String.valueOf(consumerElecWeightMonthly));
-                tvConsumerElecPerc.setText(String.valueOf((consumerElecWeightMonthly*100)/eWasteWeight));
+                DecimalFormat formatter = new DecimalFormat("#0.00");
 
-                tvComputerTeleWeight.setText(String.valueOf(computerTeleWeightMonthly));
-                tvComputerTelePerc.setText(String.valueOf((computerTeleWeightMonthly*100)/eWasteWeight));
+                tvConsumerElecWeight.setText(formatter.format(consumerElecWeightMonthly));
+                tvConsumerElecPerc.setText(formatter.format((consumerElecWeightMonthly*100)/eWasteWeight));
 
-                tvSmallAppWeight.setText(String.valueOf(smallAppWeightMonthly));
-                tvSmallAppPerc.setText(String.valueOf((smallAppWeightMonthly*100)/eWasteWeight));
+                tvComputerTeleWeight.setText(formatter.format(computerTeleWeightMonthly));
+                tvComputerTelePerc.setText(formatter.format((computerTeleWeightMonthly*100)/eWasteWeight));
 
-                tvLightingDevWeight.setText(String.valueOf(lightingDevWeightMonthly));
-                tvLightingDevPerc.setText(String.valueOf((lightingDevWeightMonthly*100)/eWasteWeight));
+                tvSmallAppWeight.setText(formatter.format(smallAppWeightMonthly));
+                tvSmallAppPerc.setText(formatter.format((smallAppWeightMonthly*100)/eWasteWeight));
 
-                tvOtherWeight.setText(String.valueOf(otherWeightMonthly));
-                tvOtherPerc.setText(String.valueOf((otherWeightMonthly*100)/eWasteWeight));
+                tvLightingDevWeight.setText(formatter.format(lightingDevWeightMonthly));
+                tvLightingDevPerc.setText(formatter.format((lightingDevWeightMonthly*100)/eWasteWeight));
+
+                tvOtherWeight.setText(formatter.format(otherWeightMonthly));
+                tvOtherPerc.setText(formatter.format((otherWeightMonthly*100)/eWasteWeight));
             }
         });
 
@@ -511,6 +561,8 @@ public class BinAnalysisActivity extends AppCompatActivity {
 
                     }
 
+                    DecimalFormat formatter = new DecimalFormat("#0.00");
+
                     /**
                      * Set up weekly and monthly data
                      */
@@ -530,20 +582,20 @@ public class BinAnalysisActivity extends AppCompatActivity {
                         int eWasteWeight = totalWeightMon + totalWeightTues + totalWeightWed + totalWeightThurs + totalWeightFri + totalWeightSat + totalWeightSun;
                         tvEwasteWeight.setText(String.valueOf(eWasteWeight));
 
-                        tvConsumerElecWeight.setText(String.valueOf(consumerElecWeightWeekly));
-                        tvConsumerElecPerc.setText(String.valueOf((consumerElecWeightWeekly*100)/eWasteWeight));
+                        tvConsumerElecWeight.setText(formatter.format(consumerElecWeightWeekly));
+                        tvConsumerElecPerc.setText(formatter.format((consumerElecWeightWeekly*100)/eWasteWeight));
 
-                        tvComputerTeleWeight.setText(String.valueOf(computerTeleWeightWeekly));
-                        tvComputerTelePerc.setText(String.valueOf((computerTeleWeightWeekly*100)/eWasteWeight));
+                        tvComputerTeleWeight.setText(formatter.format(computerTeleWeightWeekly));
+                        tvComputerTelePerc.setText(formatter.format((computerTeleWeightWeekly*100)/eWasteWeight));
 
-                        tvSmallAppWeight.setText(String.valueOf(smallAppWeightWeekly));
-                        tvSmallAppPerc.setText(String.valueOf((smallAppWeightWeekly*100)/eWasteWeight));
+                        tvSmallAppWeight.setText(formatter.format(smallAppWeightWeekly));
+                        tvSmallAppPerc.setText(formatter.format((smallAppWeightWeekly*100)/eWasteWeight));
 
-                        tvLightingDevWeight.setText(String.valueOf(lightingDevWeightWeekly));
-                        tvLightingDevPerc.setText(String.valueOf((lightingDevWeightWeekly*100)/eWasteWeight));
+                        tvLightingDevWeight.setText(formatter.format(lightingDevWeightWeekly));
+                        tvLightingDevPerc.setText(formatter.format((lightingDevWeightWeekly*100)/eWasteWeight));
 
-                        tvOtherWeight.setText(String.valueOf(otherWeightWeekly));
-                        tvOtherPerc.setText(String.valueOf((otherWeightWeekly*100)/eWasteWeight));
+                        tvOtherWeight.setText(formatter.format(otherWeightWeekly));
+                        tvOtherPerc.setText(formatter.format((otherWeightWeekly*100)/eWasteWeight));
 
                     } else {
                         int contaminatedMonthlyTotal = contaminatedCountWeekOne + contaminatedCountWeekTwo + contaminatedCountWeekThree + contaminatedCountWeekFour;
@@ -558,20 +610,20 @@ public class BinAnalysisActivity extends AppCompatActivity {
                         int eWasteWeight = totalWeightWeekOne + totalWeightWeekTwo + totalWeightWeekThree + totalWeightWeekFour;
                         tvEwasteWeight.setText(String.valueOf(eWasteWeight));
 
-                        tvConsumerElecWeight.setText(String.valueOf(consumerElecWeightMonthly));
-                        tvConsumerElecPerc.setText(String.valueOf((consumerElecWeightMonthly*100)/eWasteWeight));
+                        tvConsumerElecWeight.setText(formatter.format(consumerElecWeightMonthly));
+                        tvConsumerElecPerc.setText(formatter.format((consumerElecWeightMonthly*100)/eWasteWeight));
 
-                        tvComputerTeleWeight.setText(String.valueOf(computerTeleWeightMonthly));
-                        tvComputerTelePerc.setText(String.valueOf((computerTeleWeightMonthly*100)/eWasteWeight));
+                        tvComputerTeleWeight.setText(formatter.format(computerTeleWeightMonthly));
+                        tvComputerTelePerc.setText(formatter.format((computerTeleWeightMonthly*100)/eWasteWeight));
 
-                        tvSmallAppWeight.setText(String.valueOf(smallAppWeightMonthly));
-                        tvSmallAppPerc.setText(String.valueOf((smallAppWeightMonthly*100)/eWasteWeight));
+                        tvSmallAppWeight.setText(formatter.format(smallAppWeightMonthly));
+                        tvSmallAppPerc.setText(formatter.format((smallAppWeightMonthly*100)/eWasteWeight));
 
-                        tvLightingDevWeight.setText(String.valueOf(lightingDevWeightMonthly));
-                        tvLightingDevPerc.setText(String.valueOf((lightingDevWeightMonthly*100)/eWasteWeight));
+                        tvLightingDevWeight.setText(formatter.format(lightingDevWeightMonthly));
+                        tvLightingDevPerc.setText(formatter.format((lightingDevWeightMonthly*100)/eWasteWeight));
 
-                        tvOtherWeight.setText(String.valueOf(otherWeightMonthly));
-                        tvOtherPerc.setText(String.valueOf((otherWeightMonthly*100)/eWasteWeight));
+                        tvOtherWeight.setText(formatter.format(otherWeightMonthly));
+                        tvOtherPerc.setText(formatter.format((otherWeightMonthly*100)/eWasteWeight));
 
                     }
 
@@ -825,6 +877,21 @@ public class BinAnalysisActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * Button to alert council
+         */
+
+        btAlertCouncil = findViewById(R.id.btBinAnalysisAlertCouncil);
+        btAlertCouncil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String chosenCouncil = tvBinCouncil.getText().toString();
+                Intent intent = new Intent(BinAnalysisActivity.this, AlertAnalysisActivity.class);
+                intent.putExtra("Analysis Council", chosenCouncil);
+                startActivity(intent);
+            }
+        });
+
 
 
 
@@ -846,6 +913,9 @@ public class BinAnalysisActivity extends AppCompatActivity {
                     finish();
                     return true;
                 } else if (id == R.id.analysis) {
+                    Intent intent = new Intent(BinAnalysisActivity.this, AnalysisActivity.class);
+                    startActivity(intent);
+                    finish();
                     return true;
                 } else if (id == R.id.tracking) {
                     Intent intent = new Intent(BinAnalysisActivity.this, TrackingActivity.class);
