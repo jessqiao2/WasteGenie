@@ -61,7 +61,7 @@
 
     <RelativeLayout
         android:id="@+id/rlMaps"
-        android:layout_width="640dp"
+        android:layout_width="720dp"
         android:layout_height="0dp"
         android:layout_marginTop="40dp"
         android:layout_marginBottom="40dp"
@@ -99,7 +99,7 @@
             android:layout_marginTop="32dp"
             android:layout_marginEnd="1124dp"
             android:fontFamily="@font/public_sans_bold"
-            android:text="Live Map of All Trucks and Contamination"
+            android:text="Live Map of All Contaminated Bins"
             android:textColor="#FFFFFF"
             android:textSize="30sp"
             android:textStyle="bold"
@@ -130,7 +130,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="60dp"
+            android:layout_marginEnd="24dp"
             android:layout_marginBottom="160dp"
             android:background="@drawable/searchview_background">
 
@@ -154,7 +154,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginStart="24dp"
             android:layout_marginTop="92dp"
-            android:layout_marginEnd="60dp"
+            android:layout_marginEnd="24dp"
             android:layout_marginBottom="84dp"
             android:background="@drawable/searchview_background">
 
@@ -186,7 +186,7 @@
 
         <Button
             android:id="@+id/btViewTruckRoute"
-            android:layout_width="332dp"
+            android:layout_width="292dp"
             android:layout_height="52dp"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="36dp"
@@ -198,7 +198,7 @@
 
         <Button
             android:id="@+id/btViewCouncilRoute"
-            android:layout_width="332dp"
+            android:layout_width="292dp"
             android:layout_height="52dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
@@ -238,6 +238,27 @@
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btViewAnalysis"
+            android:layout_width="332dp"
+            android:layout_height="52dp"
+            android:layout_marginBottom="24dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/button_blue"
+            android:text="View Analysis"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvTopMonthlyContCouncils"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="104dp" />
     </RelativeLayout>
 
 

@@ -160,6 +160,7 @@ public class RouteActivity extends AppCompatActivity implements OnMapReadyCallba
             }
         });
 
+
         Bundle mapViewBundle = null;
         if (savedInstanceState != null) {
             mapViewBundle = savedInstanceState.getBundle(MAPVIEW_BUNDLE_KEY);

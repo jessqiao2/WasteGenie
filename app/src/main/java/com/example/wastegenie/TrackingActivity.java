@@ -3,19 +3,20 @@ package com.example.wastegenie;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.wastegenie.Adapters.HomeAdapter;
+import com.example.wastegenie.Adapters.TopCouncilsAdapter;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -36,7 +37,6 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -50,6 +50,8 @@ public class TrackingActivity extends AppCompatActivity implements OnMapReadyCal
     NavigationView navigationView;
     Button btViewTruckRoute;
     Button btViewCouncilRoute;
+    Button btViewAnalysis;
+
     private MapView mvTracking;
     private static final String MAPVIEW_BUNDLE_KEY = "MapViewBundleKey";
     DatabaseReference database;
@@ -60,6 +62,8 @@ public class TrackingActivity extends AppCompatActivity implements OnMapReadyCal
     Spinner councilSpinner;
 
     GoogleMap map;
+    RecyclerView recyclerView;
+    TopCouncilsAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +71,27 @@ public class TrackingActivity extends AppCompatActivity implements OnMapReadyCal
         setTitle("Tracking Page");
         btViewTruckRoute = findViewById(R.id.btViewTruckRoute);
         btViewCouncilRoute = findViewById(R.id.btViewCouncilRoute);
+        btViewAnalysis = findViewById(R.id.btViewAnalysis);
+
+        // Top Contamination Councils list
+        recyclerView = findViewById(R.id.rvTopMonthlyContCouncils);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        ArrayList<CouncilMCs> councilData = new ArrayList<>();
+        councilData.add(new CouncilMCs("Parramatta", 32));
+        councilData.add(new CouncilMCs("City of Sydney", 36));
+        councilData.add(new CouncilMCs("Ku-ring-gai", 32));
+        councilData.add(new CouncilMCs("Burwood", 23));
+        councilData.add(new CouncilMCs("Hornsby", 25));
+        councilData.add(new CouncilMCs("Strathfield", 27));
+        councilData.add(new CouncilMCs("Northern Beaches", 19));
+        councilData.add(new CouncilMCs("Randwick", 15));
+        councilData.add(new CouncilMCs("Mosman", 17));
+        councilData.add(new CouncilMCs("Hunters Hill", 35));
+        adapter = new TopCouncilsAdapter(councilData);
+        recyclerView.setAdapter(adapter);
+        adapter.sortList();
 
         Bundle mapViewBundle = null;
         if (savedInstanceState != null) {
@@ -76,6 +101,7 @@ public class TrackingActivity extends AppCompatActivity implements OnMapReadyCal
         mvTracking.onCreate(mapViewBundle);
         mvTracking.getMapAsync(this);
 
+        // Choose Council -> Truck (Flow 1) - TBD
         truckSpinner = findViewById(R.id.spTrackActivityTruckID);
         ArrayAdapter<CharSequence> truckAdapter = ArrayAdapter.createFromResource(
                 TrackingActivity.this,
@@ -85,6 +111,8 @@ public class TrackingActivity extends AppCompatActivity implements OnMapReadyCal
         truckAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         truckSpinner.setAdapter(truckAdapter);
 
+
+        // Choose Council (Flow 2)
         councilSpinner = findViewById(R.id.spTrackActivityCouncil);
         ArrayAdapter<CharSequence> councilAdapter = ArrayAdapter.createFromResource(
                 TrackingActivity.this,
@@ -222,6 +250,15 @@ public class TrackingActivity extends AppCompatActivity implements OnMapReadyCal
             public void onClick(View view) {
                 Intent intent = new Intent(TrackingActivity.this, CouncilTracking.class);
                 intent.putExtra("council", councilSpinner.getSelectedItem().toString());
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        btViewAnalysis.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(TrackingActivity.this, AnalysisActivity.class);
                 startActivity(intent);
                 finish();
             }
