@@ -9,88 +9,57 @@
 
 
     <RelativeLayout
-        android:id="@+id/rlCouncilAnalysisMonthChart"
-        android:layout_width="816dp"
-        android:layout_height="547dp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
-        app:layout_constraintStart_toEndOf="@+id/rlHomeScore"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.03">
-
-        <com.github.mikephil.charting.charts.BarChart
-            android:id="@+id/bcCouncilAnalysisMonth"
-            android:layout_width="778dp"
-            android:layout_height="274dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="7dp"
-            android:layout_marginBottom="286dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.675"
-            app:layout_constraintVertical_bias="0.025" />
-
-        <com.github.mikephil.charting.charts.LineChart
-            android:id="@+id/lcCouncilAnalysisMonth"
-            android:layout_width="778dp"
-            android:layout_height="266dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="4dp"
-            android:layout_marginBottom="3dp" />
+        android:id="@+id/relativeLayout6"
+        android:layout_width="815dp"
+        android:layout_height="461dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/blue_rectangle_frame"
+        app:layout_constraintBottom_toBottomOf="@+id/btCouncilAnalysisAlertCouncil"
+        app:layout_constraintEnd_toEndOf="@+id/rlHomeTrack"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/rlHomeTrack"
+        app:layout_constraintTop_toBottomOf="@+id/rlHomeTrack">
 
         <TextView
-            android:layout_width="170dp"
-            android:layout_height="38dp"
+            android:layout_width="633dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="31dp"
+            android:fontFamily="@font/public_sans_bold"
+            android:text="Top WasteGenie Guides"
+            android:textColor="#FFFFFF"
+            android:textSize="25sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvAlertGuides"
+            android:layout_width="777dp"
+            android:layout_height="378dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="-58dp"
-            android:layout_marginTop="95dp"
-            android:layout_marginEnd="703dp"
-            android:layout_marginBottom="414dp"
-            android:fontFamily="@font/public_sans"
-            android:rotation="270"
-            android:text="Number of Bins"
-            android:textSize="15sp" />
-
-        <TextView
-            android:layout_width="170dp"
-            android:layout_height="38dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="-67dp"
-            android:layout_marginTop="347dp"
-            android:layout_marginEnd="703dp"
-            android:layout_marginBottom="162dp"
-            android:fontFamily="@font/public_sans"
-            android:rotation="270"
-            android:text="E-Waste Weight (Kg)"
-            android:textSize="15sp" />
-
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="54dp"
+            android:layout_marginEnd="18dp"
+            android:layout_marginBottom="29dp" />
 
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/rlHomeTrack"
-        android:layout_width="818dp"
-        android:layout_height="293dp"
+        android:layout_width="817dp"
+        android:layout_height="336dp"
         android:background="@drawable/blue_rectangle_frame"
-        app:layout_constraintBottom_toBottomOf="@+id/btCouncilAnalysisAlertCouncil"
-        app:layout_constraintEnd_toEndOf="@+id/rlCouncilAnalysisWeekly"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/rlCouncilAnalysisWeekly"
-        app:layout_constraintTop_toBottomOf="@+id/rlCouncilAnalysisMonthChart"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintStart_toEndOf="@+id/rlHomeScore"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.044">
 
         <TextView
             android:layout_width="633dp"
@@ -107,88 +76,17 @@
             android:textSize="25sp" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvCouncilAnalysisDisposal"
-            android:layout_width="780dp"
-            android:layout_height="224dp"
+            android:id="@+id/rvAlertDropOff"
+            android:layout_width="774dp"
+            android:layout_height="261dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
             android:layout_marginStart="20dp"
             android:layout_marginTop="54dp"
-            android:layout_marginEnd="18dp" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/rlCouncilAnalysisWeekly"
-        android:layout_width="816dp"
-        android:layout_height="547dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
-        app:layout_constraintStart_toEndOf="@+id/rlHomeScore"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.03">
-
-        <com.github.mikephil.charting.charts.BarChart
-            android:id="@+id/bcCouncilAnalysisWeekly"
-            android:layout_width="778dp"
-            android:layout_height="274dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="7dp"
-            android:layout_marginBottom="286dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.675"
-            app:layout_constraintVertical_bias="0.025" />
-
-        <com.github.mikephil.charting.charts.LineChart
-            android:id="@+id/lcCouncilAnalysisWeekly"
-            android:layout_width="778dp"
-            android:layout_height="266dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="4dp"
-            android:layout_marginBottom="3dp" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="170dp"
-            android:layout_height="38dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="-58dp"
-            android:layout_marginTop="95dp"
-            android:layout_marginEnd="703dp"
-            android:layout_marginBottom="414dp"
-            android:fontFamily="@font/public_sans"
-            android:rotation="270"
-            android:text="Number of Bins"
-            android:textSize="15sp" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="170dp"
-            android:layout_height="38dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="-67dp"
-            android:layout_marginTop="347dp"
-            android:layout_marginEnd="703dp"
-            android:layout_marginBottom="162dp"
-            android:fontFamily="@font/public_sans"
-            android:rotation="270"
-            android:text="E-Waste Weight (Kg)"
-            android:textSize="15sp" />
-
+            android:layout_marginEnd="23dp"
+            android:layout_marginBottom="21dp" />
 
     </RelativeLayout>
 
@@ -254,25 +152,10 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/rlHomeScore"
         app:layout_constraintTop_toBottomOf="@+id/rlHomeScore"
-        app:layout_constraintVertical_bias="0.04" />
+        app:layout_constraintVertical_bias="0.028" />
 
     <TextView
-
-        android:id="@+id/tvCouncilAnalysisWeekly"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:fontFamily="@font/public_sans_bold"
-        android:text="Weekly"
-        android:textColor="#2995E2"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tvHomeGraphTitle"
-        app:layout_constraintStart_toEndOf="@+id/tvHomeGraphTitle"
-        app:layout_constraintTop_toTopOf="@+id/tvHomeGraphTitle"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/tvCouncilAnalysisMonthly"
+        android:id="@+id/tvAlertMonthly"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -280,9 +163,27 @@
         android:text="Monthly"
         android:textColor="#87BBDF"
         android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tvCouncilAnalysisWeekly"
-        app:layout_constraintStart_toEndOf="@+id/tvCouncilAnalysisWeekly"
-        app:layout_constraintTop_toTopOf="@+id/tvCouncilAnalysisWeekly"
+        app:layout_constraintBottom_toBottomOf="@+id/tvAlertWeekly"
+        app:layout_constraintEnd_toEndOf="@+id/rlHomeScore"
+        app:layout_constraintHorizontal_bias="0.015"
+        app:layout_constraintStart_toEndOf="@+id/tvAlertWeekly"
+        app:layout_constraintTop_toTopOf="@+id/tvAlertWeekly"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/tvAlertWeekly"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:fontFamily="@font/public_sans_bold"
+        android:text="Weekly"
+        android:textColor="#2995E2"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvHomeGraphTitle"
+        app:layout_constraintEnd_toEndOf="@+id/rlHomeScore"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/tvHomeGraphTitle"
+        app:layout_constraintTop_toTopOf="@+id/tvHomeGraphTitle"
         app:layout_constraintVertical_bias="0.0" />
 
     <RelativeLayout
@@ -299,7 +200,6 @@
         app:layout_constraintVertical_bias="0.0">
 
         <TextView
-            android:id="@+id/tvHomeScoreTitle4"
             android:layout_width="248dp"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
@@ -314,7 +214,7 @@
             android:textSize="25sp" />
 
         <TextView
-            android:id="@+id/tvCouncilAnalysisCouncil"
+            android:id="@+id/tvAlertCouncilName"
             android:layout_width="400dp"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
@@ -346,7 +246,7 @@
             android:textSize="25sp" />
 
         <TextView
-            android:id="@+id/tvCouncilAnalysisAddress"
+            android:id="@+id/tvAlertCouncilAddress"
             android:layout_width="550dp"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
@@ -366,15 +266,15 @@
 
     <RelativeLayout
         android:id="@+id/relativeLayout4"
-        android:layout_width="688dp"
-        android:layout_height="461dp"
+        android:layout_width="690dp"
+        android:layout_height="521dp"
         android:background="@drawable/blue_rectangle_frame"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/btSendSummary"
         app:layout_constraintEnd_toEndOf="@+id/rlHomeScore"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/tvHomeGraphTitle"
-        app:layout_constraintTop_toBottomOf="@+id/tvCouncilAnalysisWeekly"
-        app:layout_constraintVertical_bias="0.08">
+        app:layout_constraintTop_toTopOf="@+id/relativeLayout6"
+        app:layout_constraintVertical_bias="0.0">
 
         <TableLayout
             android:layout_width="646dp"
@@ -429,14 +329,14 @@
         </TableLayout>
 
         <ScrollView
-            android:layout_width="648dp"
-            android:layout_height="351dp"
+            android:layout_width="647dp"
+            android:layout_height="420dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="22dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="80dp"
-            android:layout_marginEnd="18dp">
+            android:layout_marginEnd="19dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -461,7 +361,7 @@
 
 
                         <TextView
-                            android:id="@+id/tvCouncilAnalysisBin1"
+                            android:id="@+id/tvAlertBin1"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="6"
@@ -475,7 +375,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/tvCouncilAnalysisLocation1"
+                            android:id="@+id/tvAlertLocation1"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="6"
@@ -487,7 +387,7 @@
                             android:textSize="18sp" />
 
                         <TextView
-                            android:id="@+id/tvCouncilAnalysisCount1"
+                            android:id="@+id/tvAlertCount1"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="6"
@@ -507,7 +407,7 @@
 
 
                         <TextView
-                            android:id="@+id/tvCouncilAnalysisBin2"
+                            android:id="@+id/tvAlertBin2"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="6"
@@ -521,7 +421,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/tvCouncilAnalysisLocation2"
+                            android:id="@+id/tvAlertLocation2"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="6"
@@ -533,7 +433,7 @@
                             android:textSize="18sp" />
 
                         <TextView
-                            android:id="@+id/tvCouncilAnalysisCount2"
+                            android:id="@+id/tvAlertCount2"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="6"
@@ -553,7 +453,7 @@
 
 
                         <TextView
-                            android:id="@+id/tvCouncilAnalysisBin3"
+                            android:id="@+id/tvAlertBin3"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="6"
@@ -567,7 +467,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/tvCouncilAnalysisLocation3"
+                            android:id="@+id/tvAlertLocation3"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="6"
@@ -579,7 +479,7 @@
                             android:textSize="18sp" />
 
                         <TextView
-                            android:id="@+id/tvCouncilAnalysisCount3"
+                            android:id="@+id/tvAlertCount3"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="6"
@@ -599,7 +499,7 @@
 
 
                         <TextView
-                            android:id="@+id/tvCouncilAnalysisBin4"
+                            android:id="@+id/tvAlertBin4"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="6"
@@ -613,7 +513,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/tvCouncilAnalysisLocation4"
+                            android:id="@+id/tvAlertLocation4"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="6"
@@ -625,7 +525,7 @@
                             android:textSize="18sp" />
 
                         <TextView
-                            android:id="@+id/tvCouncilAnalysisCount4"
+                            android:id="@+id/tvAlertCount4"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="6"
@@ -645,7 +545,7 @@
 
                         <TextView
 
-                            android:id="@+id/tvCouncilAnalysisBin5"
+                            android:id="@+id/tvAlertBin5"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="6"
@@ -659,7 +559,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/tvCouncilAnalysisLocation5"
+                            android:id="@+id/tvAlertLocation5"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="6"
@@ -671,7 +571,7 @@
                             android:textSize="18sp" />
 
                         <TextView
-                            android:id="@+id/tvCouncilAnalysisCount5"
+                            android:id="@+id/tvAlertCount5"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="6"
@@ -690,7 +590,7 @@
 
 
                         <TextView
-                            android:id="@+id/tvCouncilAnalysisBin6"
+                            android:id="@+id/tvAlertBin6"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="6"
@@ -704,7 +604,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/tvCouncilAnalysisLocation6"
+                            android:id="@+id/tvAlertLocation6"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="6"
@@ -716,7 +616,7 @@
                             android:textSize="18sp" />
 
                         <TextView
-                            android:id="@+id/tvCouncilAnalysisCount6"
+                            android:id="@+id/tvAlertCount6"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="6"
@@ -735,7 +635,7 @@
 
 
                         <TextView
-                            android:id="@+id/tvCouncilAnalysisBin7"
+                            android:id="@+id/tvAlertBin7"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="6"
@@ -749,7 +649,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/tvCouncilAnalysisLocation7"
+                            android:id="@+id/tvAlertLocation7"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="6"
@@ -761,53 +661,7 @@
                             android:textSize="18sp" />
 
                         <TextView
-                            android:id="@+id/tvCouncilAnalysisCount7"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="6"
-                            android:fontFamily="@font/public_sans"
-                            android:gravity="center_horizontal"
-                            android:padding="5sp"
-                            android:text="Calculating ..."
-                            android:textColor="@color/black"
-                            android:textSize="18sp" />
-
-
-                    </TableRow>
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-
-                        <TextView
-                            android:id="@+id/tvCouncilAnalysisBin8"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="6"
-                            android:fontFamily="@font/public_sans"
-                            android:gravity="center_horizontal"
-                            android:padding="5sp"
-                            android:text="Loading ..."
-                            android:textAlignment="center"
-                            android:textColor="@color/black"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/tvCouncilAnalysisLocation8"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="6"
-                            android:fontFamily="@font/public_sans"
-                            android:gravity="center_horizontal"
-                            android:padding="5sp"
-                            android:text="Loading ..."
-                            android:textColor="@color/black"
-                            android:textSize="18sp" />
-
-                        <TextView
-                            android:id="@+id/tvCouncilAnalysisCount8"
+                            android:id="@+id/tvAlertCount7"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="6"
@@ -827,7 +681,7 @@
 
 
                         <TextView
-                            android:id="@+id/tvCouncilAnalysisBin9"
+                            android:id="@+id/tvAlertBin8"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="6"
@@ -841,7 +695,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/tvCouncilAnalysisLocation9"
+                            android:id="@+id/tvAlertLocation8"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="6"
@@ -853,7 +707,7 @@
                             android:textSize="18sp" />
 
                         <TextView
-                            android:id="@+id/tvCouncilAnalysisCount9"
+                            android:id="@+id/tvAlertCount8"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="6"
@@ -873,7 +727,7 @@
 
 
                         <TextView
-                            android:id="@+id/tvCouncilAnalysisBin10"
+                            android:id="@+id/tvAlertBin9"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="6"
@@ -887,7 +741,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/tvCouncilAnalysisLocation10"
+                            android:id="@+id/tvAlertLocation9"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="6"
@@ -899,7 +753,53 @@
                             android:textSize="18sp" />
 
                         <TextView
-                            android:id="@+id/tvCouncilAnalysisCount10"
+                            android:id="@+id/tvAlertCount9"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="6"
+                            android:fontFamily="@font/public_sans"
+                            android:gravity="center_horizontal"
+                            android:padding="5sp"
+                            android:text="Calculating ..."
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
+
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+
+                        <TextView
+                            android:id="@+id/tvAlertBin10"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="6"
+                            android:fontFamily="@font/public_sans"
+                            android:gravity="center_horizontal"
+                            android:padding="5sp"
+                            android:text="Loading ..."
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvAlertLocation10"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="6"
+                            android:fontFamily="@font/public_sans"
+                            android:gravity="center_horizontal"
+                            android:padding="5sp"
+                            android:text="Loading ..."
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/tvAlertCount10"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="6"
@@ -936,17 +836,19 @@
     </RelativeLayout>
 
     <Button
-        android:layout_width="270dp"
+        android:id="@+id/btSendSummary"
+        android:layout_width="260dp"
         android:layout_height="40dp"
+        android:layout_marginBottom="164dp"
         android:background="@android:color/holo_red_dark"
-        android:text="Alert Council"
+        android:text="Send Summary"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/relativeLayout4"
-        app:layout_constraintHorizontal_bias="0.52"
-        app:layout_constraintStart_toStartOf="@+id/relativeLayout4"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout4"
-        app:layout_constraintVertical_bias="0.17" />
+        app:layout_constraintEnd_toEndOf="@+id/rlHomeTrack"
+        app:layout_constraintHorizontal_bias="0.499"
+        app:layout_constraintStart_toStartOf="@+id/rlHomeTrack"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout6"
+        app:layout_constraintVertical_bias="0.909" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -206,7 +206,7 @@ public class CouncilAnalysisActivity extends AppCompatActivity {
         tvBinLocation9 = findViewById(R.id.tvCouncilAnalysisLocation9);
         tvBinLocation10 = findViewById(R.id.tvCouncilAnalysisLocation10);
 
-        if (councilChoice.equals("Parramatta")) {
+        if (councilChoice.contains("Parramatta") || councilChoice.contains("Parramatta Council")) {
             tvBinName1.setText(getResources().getStringArray(R.array.parramattaBinsArray)[0]);
             tvBinName2.setText(getResources().getStringArray(R.array.parramattaBinsArray)[1]);
             tvBinName3.setText(getResources().getStringArray(R.array.parramattaBinsArray)[2]);
@@ -217,7 +217,7 @@ public class CouncilAnalysisActivity extends AppCompatActivity {
             tvBinName8.setText(getResources().getStringArray(R.array.parramattaBinsArray)[7]);
             tvBinName9.setText(getResources().getStringArray(R.array.parramattaBinsArray)[8]);
             tvBinName10.setText(getResources().getStringArray(R.array.parramattaBinsArray)[9]);
-        } else if (councilChoice.equals("City of Sydney")) {
+        } else if (councilChoice.contains("City of Sydney") || councilChoice.contains("City of Sydney Council")) {
             tvBinName1.setText(getResources().getStringArray(R.array.sydneyBinsArray)[0]);
             tvBinName2.setText(getResources().getStringArray(R.array.sydneyBinsArray)[1]);
             tvBinName3.setText(getResources().getStringArray(R.array.sydneyBinsArray)[2]);
@@ -228,7 +228,7 @@ public class CouncilAnalysisActivity extends AppCompatActivity {
             tvBinName8.setText(getResources().getStringArray(R.array.sydneyBinsArray)[7]);
             tvBinName9.setText(getResources().getStringArray(R.array.sydneyBinsArray)[8]);
             tvBinName10.setText(getResources().getStringArray(R.array.sydneyBinsArray)[9]);
-        } else if (councilChoice.equals("Ku-ring-gai")) {
+        } else if (councilChoice.contains("Ku-ring-gai") || councilChoice.contains("Ku-ring-gai Council")) {
             tvBinName1.setText(getResources().getStringArray(R.array.kuRingGaiBinsArray)[0]);
             tvBinName2.setText(getResources().getStringArray(R.array.kuRingGaiBinsArray)[1]);
             tvBinName3.setText(getResources().getStringArray(R.array.kuRingGaiBinsArray)[2]);
@@ -239,7 +239,7 @@ public class CouncilAnalysisActivity extends AppCompatActivity {
             tvBinName8.setText(getResources().getStringArray(R.array.kuRingGaiBinsArray)[7]);
             tvBinName9.setText(getResources().getStringArray(R.array.kuRingGaiBinsArray)[8]);
             tvBinName10.setText(getResources().getStringArray(R.array.kuRingGaiBinsArray)[9]);
-        } else if (councilChoice.equals("Burwood")) {
+        } else if (councilChoice.contains("Burwood") || councilChoice.contains("Burwood Council")) {
             tvBinName1.setText(getResources().getStringArray(R.array.burwoodBinsArray)[0]);
             tvBinName2.setText(getResources().getStringArray(R.array.burwoodBinsArray)[1]);
             tvBinName3.setText(getResources().getStringArray(R.array.burwoodBinsArray)[2]);
@@ -250,7 +250,7 @@ public class CouncilAnalysisActivity extends AppCompatActivity {
             tvBinName8.setText(getResources().getStringArray(R.array.burwoodBinsArray)[7]);
             tvBinName9.setText(getResources().getStringArray(R.array.burwoodBinsArray)[8]);
             tvBinName10.setText(getResources().getStringArray(R.array.burwoodBinsArray)[9]);
-        } else if (councilChoice.equals("Hornsby")) {
+        } else if (councilChoice.contains("Hornsby") || councilChoice.contains("Hornsby Council")) {
             tvBinName1.setText(getResources().getStringArray(R.array.hornsbyBinsArray)[0]);
             tvBinName2.setText(getResources().getStringArray(R.array.hornsbyBinsArray)[1]);
             tvBinName3.setText(getResources().getStringArray(R.array.hornsbyBinsArray)[2]);
@@ -261,7 +261,7 @@ public class CouncilAnalysisActivity extends AppCompatActivity {
             tvBinName8.setText(getResources().getStringArray(R.array.hornsbyBinsArray)[7]);
             tvBinName9.setText(getResources().getStringArray(R.array.hornsbyBinsArray)[8]);
             tvBinName10.setText(getResources().getStringArray(R.array.hornsbyBinsArray)[9]);
-        } else if (councilChoice.equals("Strathfield")) {
+        } else if (councilChoice.contains("Strathfield") || councilChoice.contains("Strathfield Council")) {
             tvBinName1.setText(getResources().getStringArray(R.array.strathfieldBinsArray)[0]);
             tvBinName2.setText(getResources().getStringArray(R.array.strathfieldBinsArray)[1]);
             tvBinName3.setText(getResources().getStringArray(R.array.strathfieldBinsArray)[2]);
@@ -272,7 +272,7 @@ public class CouncilAnalysisActivity extends AppCompatActivity {
             tvBinName8.setText(getResources().getStringArray(R.array.strathfieldBinsArray)[7]);
             tvBinName9.setText(getResources().getStringArray(R.array.strathfieldBinsArray)[8]);
             tvBinName10.setText(getResources().getStringArray(R.array.strathfieldBinsArray)[9]);
-        } else if (councilChoice.equals("Northern Beaches")) {
+        } else if (councilChoice.contains("Northern Beaches") || councilChoice.contains("Northern Beaches Council")) {
             tvBinName1.setText(getResources().getStringArray(R.array.northernBeachesBinsArray)[0]);
             tvBinName2.setText(getResources().getStringArray(R.array.northernBeachesBinsArray)[1]);
             tvBinName3.setText(getResources().getStringArray(R.array.northernBeachesBinsArray)[2]);
@@ -283,7 +283,7 @@ public class CouncilAnalysisActivity extends AppCompatActivity {
             tvBinName8.setText(getResources().getStringArray(R.array.northernBeachesBinsArray)[7]);
             tvBinName9.setText(getResources().getStringArray(R.array.northernBeachesBinsArray)[8]);
             tvBinName10.setText(getResources().getStringArray(R.array.northernBeachesBinsArray)[9]);
-        } else if (councilChoice.equals("Randwick")) {
+        } else if (councilChoice.contains("Randwick") || councilChoice.contains("Randwick Council")) {
             tvBinName1.setText(getResources().getStringArray(R.array.randwickBinsArray)[0]);
             tvBinName2.setText(getResources().getStringArray(R.array.randwickBinsArray)[1]);
             tvBinName3.setText(getResources().getStringArray(R.array.randwickBinsArray)[2]);
@@ -294,7 +294,7 @@ public class CouncilAnalysisActivity extends AppCompatActivity {
             tvBinName8.setText(getResources().getStringArray(R.array.randwickBinsArray)[7]);
             tvBinName9.setText(getResources().getStringArray(R.array.randwickBinsArray)[8]);
             tvBinName10.setText(getResources().getStringArray(R.array.randwickBinsArray)[9]);
-        } else if (councilChoice.equals("Mosman")) {
+        } else if (councilChoice.contains("Mosman") || councilChoice.contains("Mosman Council")) {
             tvBinName1.setText(getResources().getStringArray(R.array.mosmanBinsArray)[0]);
             tvBinName2.setText(getResources().getStringArray(R.array.mosmanBinsArray)[1]);
             tvBinName3.setText(getResources().getStringArray(R.array.mosmanBinsArray)[2]);
@@ -305,7 +305,7 @@ public class CouncilAnalysisActivity extends AppCompatActivity {
             tvBinName8.setText(getResources().getStringArray(R.array.mosmanBinsArray)[7]);
             tvBinName9.setText(getResources().getStringArray(R.array.mosmanBinsArray)[8]);
             tvBinName10.setText(getResources().getStringArray(R.array.mosmanBinsArray)[9]);
-        } else if (councilChoice.equals("Hunters Hill")) {
+        } else if (councilChoice.contains("Hunters Hill") || councilChoice.contains("Hunters Hill Council")) {
             tvBinName1.setText(getResources().getStringArray(R.array.huntersHillBinsArray)[0]);
             tvBinName2.setText(getResources().getStringArray(R.array.huntersHillBinsArray)[1]);
             tvBinName3.setText(getResources().getStringArray(R.array.huntersHillBinsArray)[2]);
@@ -712,8 +712,6 @@ public class CouncilAnalysisActivity extends AppCompatActivity {
                                 }
                             }
 
-                        } else {
-                            Log.i("CouncilAnalysis", "bin name does not match selection");
                         }
 
                         // if weekly is selected, contamination count will be calculated depending on

@@ -41,9 +41,10 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.MyViewHolder
 
     public RouteAdapter(Context context, ArrayList<BinData> list){
         this.context = context;
-        this.list = list;
+        //this.list = list;
         this.fullList = list;
         this.contaminatedList = list;
+        this.list = new ArrayList<>(fullList);
     }
 
     @NonNull

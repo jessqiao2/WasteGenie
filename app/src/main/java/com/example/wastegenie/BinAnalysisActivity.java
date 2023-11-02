@@ -555,8 +555,6 @@ public class BinAnalysisActivity extends AppCompatActivity {
 
                             }
 
-                        } else {
-                            Log.i("BinAnalysis", "bin name does not match selection");
                         }
 
                     }
@@ -896,6 +894,45 @@ public class BinAnalysisActivity extends AppCompatActivity {
 
 
 
+
+        /**
+         * Set up navigation view
+         */
+        navigationView = findViewById(R.id.nav_view);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+
+                if(id == R.id.home) {
+                    Intent intent = new Intent(BinAnalysisActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                    return true;
+                } else if (id == R.id.analysis) {
+                    Intent intent = new Intent(BinAnalysisActivity.this, AnalysisActivity.class);
+                    startActivity(intent);
+                    finish();
+                    return true;
+                } else if (id == R.id.tracking) {
+                    Intent intent = new Intent(BinAnalysisActivity.this, TrackingActivity.class);
+                    startActivity(intent);
+                    finish();
+                    return true;
+                } else if (id == R.id.profile) {
+                    Intent intent = new Intent(BinAnalysisActivity.this, ProfileActivity.class);
+                    startActivity(intent);
+                    finish();
+                    return true;
+                } else if (id == R.id.logout) {
+                    Toast.makeText(getApplication(), "Logout Selected", Toast.LENGTH_SHORT).show();
+                    return true;
+                }
+
+                return false;
+            }
+        });
 
         /**
          * Set up navigation view
