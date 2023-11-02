@@ -11,6 +11,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -60,6 +61,7 @@ public class TrackingActivity extends AppCompatActivity implements OnMapReadyCal
 
     Spinner truckSpinner;
     Spinner councilSpinner;
+    Spinner generalCouncilSpinner;
 
     GoogleMap map;
     RecyclerView recyclerView;
@@ -70,7 +72,7 @@ public class TrackingActivity extends AppCompatActivity implements OnMapReadyCal
         setContentView(R.layout.activity_tracking);
         setTitle("Tracking Page");
         btViewTruckRoute = findViewById(R.id.btViewTruckRoute);
-        btViewCouncilRoute = findViewById(R.id.btViewCouncilRoute);
+        btViewCouncilRoute = findViewById(R.id.btViewCouncilRoutes);
         btViewAnalysis = findViewById(R.id.btViewAnalysis);
 
         // Top Contamination Councils list
@@ -102,18 +104,10 @@ public class TrackingActivity extends AppCompatActivity implements OnMapReadyCal
         mvTracking.getMapAsync(this);
 
         // Choose Council -> Truck (Flow 1) - TBD
-        truckSpinner = findViewById(R.id.spTrackActivityTruckID);
-        ArrayAdapter<CharSequence> truckAdapter = ArrayAdapter.createFromResource(
-                TrackingActivity.this,
-                R.array.allTrucksArray,
-                android.R.layout.simple_spinner_item
-        );
-        truckAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        truckSpinner.setAdapter(truckAdapter);
+        truckSpinner = findViewById(R.id.spTrackActivityTruck);
 
 
-        // Choose Council (Flow 2)
-        councilSpinner = findViewById(R.id.spTrackActivityCouncil);
+        councilSpinner = findViewById(R.id.spTrackActivityCouncilofTruck);
         ArrayAdapter<CharSequence> councilAdapter = ArrayAdapter.createFromResource(
                 TrackingActivity.this,
                 R.array.councilArray,
@@ -123,6 +117,110 @@ public class TrackingActivity extends AppCompatActivity implements OnMapReadyCal
         councilSpinner.setAdapter(councilAdapter);
 
 
+        councilSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                // if user selects parramatta council
+                if (councilSpinner.getSelectedItem().equals("Parramatta")) {
+                    ArrayAdapter<CharSequence> truckAdapter = ArrayAdapter.createFromResource(
+                            TrackingActivity.this,
+                            R.array.parramattaTrucksArray,
+                            android.R.layout.simple_spinner_item
+                    );
+                    truckAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    truckSpinner.setAdapter(truckAdapter);
+
+                    // if user selects sydney council
+                } else if (councilSpinner.getSelectedItem().equals("City of Sydney")) {
+                    ArrayAdapter<CharSequence> truckAdapter = ArrayAdapter.createFromResource(
+                            TrackingActivity.this,
+                            R.array.sydneyTrucksArray,
+                            android.R.layout.simple_spinner_item
+                    );
+                    truckAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    truckSpinner.setAdapter(truckAdapter);
+                } else if (councilSpinner.getSelectedItem().equals("Ku-ring-gai")) {
+                    ArrayAdapter<CharSequence> truckAdapter = ArrayAdapter.createFromResource(
+                            TrackingActivity.this,
+                            R.array.kuRingGaiTrucksArray,
+                            android.R.layout.simple_spinner_item
+                    );
+                    truckAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    truckSpinner.setAdapter(truckAdapter);
+                } else if (councilSpinner.getSelectedItem().equals("Burwood")) {
+                    ArrayAdapter<CharSequence> truckAdapter = ArrayAdapter.createFromResource(
+                            TrackingActivity.this,
+                            R.array.burwoodTrucksArray,
+                            android.R.layout.simple_spinner_item
+                    );
+                    truckAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    truckSpinner.setAdapter(truckAdapter);
+                } else if (councilSpinner.getSelectedItem().equals("Hornsby")) {
+                    ArrayAdapter<CharSequence> truckAdapter = ArrayAdapter.createFromResource(
+                            TrackingActivity.this,
+                            R.array.hornsbyTrucksArray,
+                            android.R.layout.simple_spinner_item
+                    );
+                    truckAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    truckSpinner.setAdapter(truckAdapter);
+                } else if (councilSpinner.getSelectedItem().equals("Strathfield")) {
+                    ArrayAdapter<CharSequence> truckAdapter = ArrayAdapter.createFromResource(
+                            TrackingActivity.this,
+                            R.array.strathfieldTrucksArray,
+                            android.R.layout.simple_spinner_item
+                    );
+                    truckAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    truckSpinner.setAdapter(truckAdapter);
+                } else if (councilSpinner.getSelectedItem().equals("Northern Beaches")) {
+                    ArrayAdapter<CharSequence> truckAdapter = ArrayAdapter.createFromResource(
+                            TrackingActivity.this,
+                            R.array.northernBeachesTrucksArray,
+                            android.R.layout.simple_spinner_item
+                    );
+                    truckAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    truckSpinner.setAdapter(truckAdapter);
+                } else if (councilSpinner.getSelectedItem().equals("Randwick")) {
+                    ArrayAdapter<CharSequence> truckAdapter = ArrayAdapter.createFromResource(
+                            TrackingActivity.this,
+                            R.array.randwickTrucksArray,
+                            android.R.layout.simple_spinner_item
+                    );
+                    truckAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    truckSpinner.setAdapter(truckAdapter);
+                } else if (councilSpinner.getSelectedItem().equals("Mosman")) {
+                    ArrayAdapter<CharSequence> truckAdapter = ArrayAdapter.createFromResource(
+                            TrackingActivity.this,
+                            R.array.mosmanTrucksArray,
+                            android.R.layout.simple_spinner_item
+                    );
+                    truckAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    truckSpinner.setAdapter(truckAdapter);
+                } else if (councilSpinner.getSelectedItem().equals("Hunters Hill")) {
+                    ArrayAdapter<CharSequence> truckAdapter = ArrayAdapter.createFromResource(
+                            TrackingActivity.this,
+                            R.array.huntersHillTrucksArray,
+                            android.R.layout.simple_spinner_item
+                    );
+                    truckAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    truckSpinner.setAdapter(truckAdapter);
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        generalCouncilSpinner = findViewById(R.id.spTrackActivityCouncil);
+        ArrayAdapter<CharSequence> generalCouncilAdapter = ArrayAdapter.createFromResource(
+                TrackingActivity.this,
+                R.array.councilArray,
+                android.R.layout.simple_spinner_item
+        );
+        generalCouncilAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        generalCouncilSpinner.setAdapter(generalCouncilAdapter);
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://maps.googleapis.com/maps/api/geocode/")
@@ -249,7 +347,7 @@ public class TrackingActivity extends AppCompatActivity implements OnMapReadyCal
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(TrackingActivity.this, CouncilTracking.class);
-                intent.putExtra("council", councilSpinner.getSelectedItem().toString());
+                intent.putExtra("council", generalCouncilSpinner.getSelectedItem().toString());
                 startActivity(intent);
                 finish();
             }

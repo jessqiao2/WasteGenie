@@ -78,7 +78,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="96dp"
+            android:layout_marginTop="90dp"
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="32dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -96,7 +96,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="28dp"
             android:layout_marginEnd="1124dp"
             android:fontFamily="@font/public_sans_bold"
             android:text="Live Map of All Contaminated Bins"
@@ -111,9 +111,9 @@
     <RelativeLayout
         android:id="@+id/rlLiveTrackingSpecific"
         android:layout_width="0dp"
-        android:layout_height="304dp"
+        android:layout_height="284dp"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="52dp"
         android:layout_marginEnd="64dp"
         android:background="@drawable/blue_rectangle_frame"
         android:orientation="horizontal"
@@ -123,19 +123,19 @@
 
         <RelativeLayout
             android:layout_width="652dp"
-            android:layout_height="37dp"
+            android:layout_height="35dp"
+            android:layout_above="@+id/btViewTruckRoute"
             android:layout_below="@+id/tvTrackTrucks"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="12dp"
             android:layout_marginEnd="24dp"
-            android:layout_marginBottom="160dp"
+            android:layout_marginBottom="110dp"
             android:background="@drawable/searchview_background">
 
             <Spinner
-                android:id="@+id/spTrackActivityTruckID"
+                android:id="@+id/spTrackActivityCouncilofTruck"
                 android:layout_width="614dp"
                 android:layout_height="match_parent"
                 android:layout_alignParentStart="true"
@@ -147,19 +147,19 @@
 
         <RelativeLayout
             android:layout_width="652dp"
-            android:layout_height="37dp"
+            android:layout_height="35dp"
+            android:layout_above="@+id/btViewTruckRoute"
             android:layout_below="@+id/tvTrackTrucks"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="92dp"
+            android:layout_marginTop="104dp"
             android:layout_marginEnd="24dp"
-            android:layout_marginBottom="84dp"
+            android:layout_marginBottom="16dp"
             android:background="@drawable/searchview_background">
 
             <Spinner
-                android:id="@+id/spTrackActivityCouncil"
+                android:id="@+id/spTrackActivityTruck"
                 android:layout_width="614dp"
                 android:layout_height="match_parent"
                 android:layout_alignParentStart="true"
@@ -174,12 +174,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="1124dp"
             android:fontFamily="@font/public_sans_bold"
-            android:text="Track Specific Trucks or Council Routes"
+            android:text="Track Specific Truck Routes"
             android:textColor="#FFFFFF"
-            android:textSize="30sp"
+            android:textSize="28sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -187,41 +187,107 @@
         <Button
             android:id="@+id/btViewTruckRoute"
             android:layout_width="292dp"
-            android:layout_height="52dp"
+            android:layout_height="46dp"
             android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
             android:layout_marginStart="36dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="12dp"
             android:background="@drawable/button_blue"
             android:text="View Truck Route"
             android:textColor="#FFFFFF"
             android:textSize="20sp" />
 
-        <Button
-            android:id="@+id/btViewCouncilRoute"
-            android:layout_width="292dp"
-            android:layout_height="52dp"
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="126dp"
+            android:layout_marginBottom="134dp"
+            android:text="OR"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlLiveTrackingCouncil"
+        android:layout_width="0dp"
+        android:layout_height="196dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="64dp"
+        android:background="@drawable/blue_rectangle_frame"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/rlMaps"
+        app:layout_constraintTop_toBottomOf="@+id/rlLiveTrackingSpecific">
+
+        <RelativeLayout
+            android:layout_width="652dp"
+            android:layout_height="46dp"
+            android:layout_below="@+id/tvTrackCouncilRoutes"
+            android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/searchview_background">
+
+            <Spinner
+                android:id="@+id/spTrackActivityCouncil"
+                android:layout_width="614dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="19dp"
+                android:layout_marginEnd="19dp"
+                android:scrollbarSize="4dp" />
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/tvTrackCouncilRoutes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="1124dp"
+            android:fontFamily="@font/public_sans_bold"
+            android:text="Track All Routes in Council"
+            android:textColor="#FFFFFF"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <Button
+            android:id="@+id/btViewCouncilRoutes"
+            android:layout_width="292dp"
+            android:layout_height="48dp"
             android:layout_alignParentBottom="true"
-            android:layout_marginEnd="36dp"
-            android:layout_marginBottom="16dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="36dp"
+            android:layout_marginBottom="12dp"
             android:background="@drawable/button_blue"
             android:text="View Council Routes"
             android:textColor="#FFFFFF"
             android:textSize="20sp" />
-
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/rlTopContamination"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/blue_rectangle_frame"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="@+id/rlMaps"
         app:layout_constraintEnd_toEndOf="@+id/rlLiveTrackingSpecific"
         app:layout_constraintStart_toStartOf="@+id/rlLiveTrackingSpecific"
-        app:layout_constraintTop_toBottomOf="@+id/rlLiveTrackingSpecific">
+        app:layout_constraintTop_toBottomOf="@+id/rlLiveTrackingCouncil">
 
         <TextView
             android:id="@+id/tvTopContamination"
@@ -229,12 +295,12 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="1124dp"
             android:fontFamily="@font/public_sans_bold"
             android:text="Top E-Waste Contamination Councils"
             android:textColor="#FFFFFF"
-            android:textSize="30sp"
+            android:textSize="28sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -242,10 +308,10 @@
         <Button
             android:id="@+id/btViewAnalysis"
             android:layout_width="332dp"
-            android:layout_height="52dp"
-            android:layout_marginBottom="24dp"
+            android:layout_height="50dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
+            android:layout_marginBottom="24dp"
             android:background="@drawable/button_blue"
             android:text="View Analysis"
             android:textColor="#FFFFFF"
@@ -256,7 +322,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="76dp"
             android:layout_marginEnd="24dp"
             android:layout_marginBottom="104dp" />
     </RelativeLayout>
