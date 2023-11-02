@@ -41,7 +41,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -252,18 +256,43 @@ public class RouteActivity extends AppCompatActivity implements OnMapReadyCallba
                             );
                             map.moveCamera(CameraUpdateFactory.newLatLngBounds(routeBounds, 100));
 
+                            // Format the date-time with AM/PM indicator
+                            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a");
+
                             for (int i = 0; i < addressList.size() - 1; i++){
                                 JSONObject startLoc = rawResponse.getJSONArray("routes").getJSONObject(0).getJSONArray("legs").getJSONObject(i).getJSONObject("start_location");
                                 LatLng waypointLL = new LatLng(startLoc.getDouble("lat"), startLoc.getDouble("lng"));
+                                BinData thisBinData = routeBinList.get(i);
+                                // change date from ISO 8601 format to standard year and time format
+                                String timeStampFromDatabase = thisBinData.getDateTime();
+                                Instant instant = Instant.parse(timeStampFromDatabase);
+
+                                // Convert it to ZonedDateTime using the system's default time zone
+                                ZonedDateTime zonedDateTime = instant.atZone(ZoneId.systemDefault());
+                                String formattedTime = zonedDateTime.format(formatter);
+
                                 map.addMarker(new MarkerOptions()
                                         .position(waypointLL)
-                                        .title(routeBinList.get(i).getBinName()));
+                                        .title(thisBinData.getBinName())
+                                        .snippet("Collected by Truck " + thisBinData.getTruckId() + " at " + formattedTime));
                             }
                             JSONObject endLoc = rawResponse.getJSONArray("routes").getJSONObject(0).getJSONArray("legs").getJSONObject(addressList.size() - 2).getJSONObject("end_location");
                             LatLng endpointLL = new LatLng(endLoc.getDouble("lat"), endLoc.getDouble("lng"));
+                            BinData lastBinData = routeBinList.get(routeBinList.size() - 1);
+
+                            // change date from ISO 8601 format to standard year and time format
+                            String timeStampFromDatabase = lastBinData.getDateTime();
+                            Instant instant = Instant.parse(timeStampFromDatabase);
+
+                            // Convert it to ZonedDateTime using the system's default time zone
+                            ZonedDateTime zonedDateTime = instant.atZone(ZoneId.systemDefault());
+
+                            // Format the date-time with AM/PM indicator
+                            String formattedTime = zonedDateTime.format(formatter);
                             map.addMarker(new MarkerOptions()
                                     .position(endpointLL)
-                                    .title(routeBinList.get(routeBinList.size() - 1).getBinName())
+                                    .title(lastBinData.getBinName())
+                                    .snippet("Truck " + lastBinData.getTruckId() + " at " + formattedTime)
                                     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
 
                         } catch (JSONException e) {
