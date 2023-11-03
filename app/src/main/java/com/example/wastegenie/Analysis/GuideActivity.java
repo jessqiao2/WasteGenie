@@ -1,8 +1,10 @@
-package com.example.wastegenie;
+package com.example.wastegenie.Analysis;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.wastegenie.R;
 
 public class GuideActivity extends AppCompatActivity {
 

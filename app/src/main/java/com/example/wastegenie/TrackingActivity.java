@@ -18,6 +18,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.wastegenie.Adapters.TopCouncilsAdapter;
+import com.example.wastegenie.Analysis.AnalysisActivity;
+import com.example.wastegenie.DataModels.BinData;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;

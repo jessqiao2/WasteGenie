@@ -10,8 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.wastegenie.R;
-import com.example.wastegenie.RecyclerViewResourceClickListener;
-import com.example.wastegenie.ResourceData;
+import com.example.wastegenie.Analysis.RecyclerViewResourceClickListener;
+import com.example.wastegenie.DataModels.ResourceData;
 
 import java.util.ArrayList;
 

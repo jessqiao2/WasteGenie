@@ -1,4 +1,4 @@
-package com.example.wastegenie;
+package com.example.wastegenie.DataModels;
 
 public class DropOffData {
 
@@ -92,4 +92,11 @@ public class DropOffData {
     public void setId(int id) {
         this.id = id;
     }
+
+
+
+
+
+
+
 }

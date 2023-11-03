@@ -12,7 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.wastegenie.BinData;
+import com.example.wastegenie.DataModels.BinData;
 import com.example.wastegenie.R;
 
 import java.time.Instant;

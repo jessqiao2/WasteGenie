@@ -51,8 +51,8 @@
 
     <RelativeLayout
         android:id="@+id/rlHomeTrack"
-        android:layout_width="817dp"
-        android:layout_height="336dp"
+        android:layout_width="814dp"
+        android:layout_height="305dp"
         android:background="@drawable/blue_rectangle_frame"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -269,7 +269,7 @@
         android:layout_width="690dp"
         android:layout_height="521dp"
         android:background="@drawable/blue_rectangle_frame"
-        app:layout_constraintBottom_toBottomOf="@+id/btSendSummary"
+        app:layout_constraintBottom_toBottomOf="@+id/relativeLayout6"
         app:layout_constraintEnd_toEndOf="@+id/rlHomeScore"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/tvHomeGraphTitle"
@@ -329,14 +329,16 @@
         </TableLayout>
 
         <ScrollView
-            android:layout_width="647dp"
-            android:layout_height="420dp"
+            android:layout_width="644dp"
+            android:layout_height="415dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
             android:layout_marginStart="24dp"
             android:layout_marginTop="80dp"
-            android:layout_marginEnd="19dp">
+            android:layout_marginEnd="22dp"
+            android:layout_marginBottom="26dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -839,16 +841,16 @@
         android:id="@+id/btSendSummary"
         android:layout_width="260dp"
         android:layout_height="40dp"
-        android:layout_marginBottom="164dp"
+        android:layout_marginTop="20dp"
         android:background="@android:color/holo_red_dark"
         android:text="Send Summary"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/rlHomeTrack"
-        app:layout_constraintHorizontal_bias="0.499"
-        app:layout_constraintStart_toStartOf="@+id/rlHomeTrack"
+        app:layout_constraintBottom_toBottomOf="@+id/relativeLayout4"
+        app:layout_constraintEnd_toEndOf="@+id/relativeLayout6"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="@+id/relativeLayout6"
         app:layout_constraintTop_toBottomOf="@+id/relativeLayout6"
-        app:layout_constraintVertical_bias="0.909" />
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,7 +1,6 @@
 package com.example.wastegenie.Adapters;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,14 +11,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.wastegenie.BinData;
-import com.example.wastegenie.DropOffData;
+import com.example.wastegenie.DataModels.DropOffData;
 import com.example.wastegenie.R;
 
-import java.time.Instant;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /**

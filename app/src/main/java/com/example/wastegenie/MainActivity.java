@@ -20,6 +20,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.wastegenie.Adapters.HomeAdapter;
+import com.example.wastegenie.Analysis.AnalysisActivity;
+import com.example.wastegenie.DataModels.BinData;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.LegendEntry;

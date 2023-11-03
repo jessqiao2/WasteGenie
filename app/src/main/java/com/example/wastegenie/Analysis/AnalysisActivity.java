@@ -1,9 +1,7 @@
-package com.example.wastegenie;
+package com.example.wastegenie.Analysis;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -18,6 +16,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.wastegenie.DataModels.BinData;
+import com.example.wastegenie.MainActivity;
+import com.example.wastegenie.ProfileActivity;
+import com.example.wastegenie.R;
+import com.example.wastegenie.TrackingActivity;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;

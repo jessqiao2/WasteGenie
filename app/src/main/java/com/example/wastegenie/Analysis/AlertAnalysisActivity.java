@@ -1,36 +1,30 @@
-package com.example.wastegenie;
+package com.example.wastegenie.Analysis;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.wastegenie.Adapters.BinAnalysisAdapter;
-import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.components.LegendEntry;
-import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.LineData;
-import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.formatter.ValueFormatter;
-import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
-import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.example.wastegenie.Adapters.ResourceAdapter;
+import com.example.wastegenie.DataModels.BinData;
+import com.example.wastegenie.DataModels.DropOffData;
+import com.example.wastegenie.MainActivity;
+import com.example.wastegenie.ProfileActivity;
+import com.example.wastegenie.R;
+import com.example.wastegenie.DataModels.ResourceData;
+import com.example.wastegenie.TrackingActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
@@ -40,102 +34,22 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
-public class CouncilAnalysisActivity extends AppCompatActivity {
-
+public class AlertAnalysisActivity extends AppCompatActivity implements RecyclerViewResourceClickListener, RecyclerViewDropOffClickListener {
+    public static final String INTENT_MESSAGE = "message";
     NavigationView navigationView;
-    TextView tvCouncilName;
-    TextView tvCouncilAddress;
+    TextView tvCouncilName, tvCouncilAddress;
     DatabaseReference database;
     String councilLocation;
-    // for bar graph
-    RelativeLayout rlWeekly;
-    RelativeLayout rlMonthly;
-    TextView tvWeekly;
-    TextView tvMonthly;
-    BarChart barChart;
-    BarChart barChartMonthly;
-    DatabaseReference databaseChart;
-    int[] colorClassArray = new int[]{Color.BLUE, Color.CYAN};
-    ArrayList<IBarDataSet> iBarDataSets = new ArrayList<>();
-    BarData barData;
-    ArrayList<IBarDataSet> iBarDataSetsMonthly = new ArrayList<>();
-    BarData barDataMonthly;
-    int recycableCountWeekOne;
-    int recycableCountWeekTwo;
-    int recycableCountWeekThree;
-    int recycableCountWeekFour;
-    int contaminatedCountWeekOne;
-    int contaminatedCountWeekTwo;
-    int contaminatedCountWeekThree;
-    int contaminatedCountWeekFour;
-    int recycableCountMon;
-    int recycableCountTues;
-    int recycableCountWed;
-    int recycableCountThurs;
-    int recycableCountFri;
-    int recycableCountSat;
-    int recycableCountSun;
-    int contaminatedCountMon;
-    int contaminatedCountTues;
-    int contaminatedCountWed;
-    int contaminatedCountThurs;
-    int contaminatedCountFri;
-    int contaminatedCountSat;
-    int contaminatedCountSun;
 
-    // for line graph
-    LineChart lineChart;
-    ArrayList<ILineDataSet> iLineDataSets = new ArrayList<>();
-    LineData lineData;
+    TextView tvBinName1, tvBinName2, tvBinName3, tvBinName4, tvBinName5, tvBinName6, tvBinName7, tvBinName8, tvBinName9, tvBinName10;
+    TextView tvBinLocation1, tvBinLocation2, tvBinLocation3, tvBinLocation4, tvBinLocation5, tvBinLocation6, tvBinLocation7, tvBinLocation8, tvBinLocation9, tvBinLocation10;
+    TextView tvBinCount1, tvBinCount2, tvBinCount3, tvBinCount4, tvBinCount5, tvBinCount6, tvBinCount7, tvBinCount8, tvBinCount9, tvBinCount10;
 
-    LineChart lineChartMonthly;
-    ArrayList<ILineDataSet> iLineDataSetsMonthly = new ArrayList<>();
-    LineData lineDataMonthly;
-    int totalWeightMon;
-    int totalWeightTues;
-    int totalWeightWed;
-    int totalWeightThurs;
-    int totalWeightFri;
-    int totalWeightSat;
-    int totalWeightSun;
-    int totalWeightWeekOne;
-    int totalWeightWeekTwo;
-    int totalWeightWeekThree;
-    int totalWeightWeekFour;
-
-    // for council bins table
-    TextView tvBinName1;
-    TextView tvBinName2;
-    TextView tvBinName3;
-    TextView tvBinName4;
-    TextView tvBinName5;
-    TextView tvBinName6;
-    TextView tvBinName7;
-    TextView tvBinName8;
-    TextView tvBinName9;
-    TextView tvBinName10;
-
-    TextView tvBinLocation1;
-    TextView tvBinLocation2;
-    TextView tvBinLocation3;
-    TextView tvBinLocation4;
-    TextView tvBinLocation5;
-    TextView tvBinLocation6;
-    TextView tvBinLocation7;
-    TextView tvBinLocation8;
-    TextView tvBinLocation9;
-    TextView tvBinLocation10;
-
-    TextView tvBinCount1;
-    TextView tvBinCount2;
-    TextView tvBinCount3;
-    TextView tvBinCount4;
-    TextView tvBinCount5;
-    TextView tvBinCount6;
-    TextView tvBinCount7;
-    TextView tvBinCount8;
-    TextView tvBinCount9;
-    TextView tvBinCount10;
+    TextView tvWeekly, tvMonthly;
+    RecyclerView recyclerView;
+    DatabaseReference databaseRecycler;
+    BinAnalysisAdapter adapter;
+    ArrayList<DropOffData> list;
 
     int contaminatedBin1;
     int contaminatedBin2;
@@ -158,53 +72,135 @@ public class CouncilAnalysisActivity extends AppCompatActivity {
     int contaminatedMonthBin9;
     int contaminatedMonthBin10;
 
-    Button btAlertCouncil;
+    int totalWeightMon;
+    int totalWeightTues;
+    int totalWeightWed;
+    int totalWeightThurs;
+    int totalWeightFri;
+    int totalWeightSat;
+    int totalWeightSun;
+    int totalWeightWeekOne;
+    int totalWeightWeekTwo;
+    int totalWeightWeekThree;
+    int totalWeightWeekFour;
+    int recycableCountWeekOne;
+    int recycableCountWeekTwo;
+    int recycableCountWeekThree;
+    int recycableCountWeekFour;
+    int contaminatedCountWeekOne;
+    int contaminatedCountWeekTwo;
+    int contaminatedCountWeekThree;
+    int contaminatedCountWeekFour;
+    int recycableCountMon;
+    int recycableCountTues;
+    int recycableCountWed;
+    int recycableCountThurs;
+    int recycableCountFri;
+    int recycableCountSat;
+    int recycableCountSun;
+    int contaminatedCountMon;
+    int contaminatedCountTues;
+    int contaminatedCountWed;
+    int contaminatedCountThurs;
+    int contaminatedCountFri;
+    int contaminatedCountSat;
+    int contaminatedCountSun;
+    DatabaseReference databaseChart;
 
     /**
-     * Recyclerview
+     * Send alert button
      */
-    RecyclerView recyclerView;
-    DatabaseReference databaseRecycler;
-    BinAnalysisAdapter adapter;
-    ArrayList<DropOffData> list;
+    Button btSendSummary;
+    AlertDialog popUp;
 
+    /**
+     * Guides
+     */
+    RecyclerView rvGuides;
+    private RecyclerView.LayoutManager layoutManager;
+    private ResourceAdapter resourceAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_council_analysis);
+        setContentView(R.layout.activity_alert_analysis);
 
         /**
          * Set up council details
          */
         Intent intent = getIntent();
-        String councilChoice = intent.getStringExtra("Council Selection");
+        String councilChoice = intent.getStringExtra("Analysis Council");
 
-        tvCouncilName = findViewById(R.id.tvCouncilAnalysisCouncil);
-        tvCouncilAddress = findViewById(R.id.tvCouncilAnalysisAddress);
+        tvCouncilName = findViewById(R.id.tvAlertCouncilName);
+        tvCouncilAddress = findViewById(R.id.tvAlertCouncilAddress);
+
+        tvBinLocation1 = findViewById(R.id.tvAlertLocation1);
+        tvBinLocation2 = findViewById(R.id.tvAlertLocation2);
+        tvBinLocation3 = findViewById(R.id.tvAlertLocation3);
+        tvBinLocation4 = findViewById(R.id.tvAlertLocation4);
+        tvBinLocation5 = findViewById(R.id.tvAlertLocation5);
+        tvBinLocation6 = findViewById(R.id.tvAlertLocation6);
+        tvBinLocation7 = findViewById(R.id.tvAlertLocation7);
+        tvBinLocation8 = findViewById(R.id.tvAlertLocation8);
+        tvBinLocation9 = findViewById(R.id.tvAlertLocation9);
+        tvBinLocation10 = findViewById(R.id.tvAlertLocation10);
+
+        tvBinName1 = findViewById(R.id.tvAlertBin1);
+        tvBinName2 = findViewById(R.id.tvAlertBin2);
+        tvBinName3 = findViewById(R.id.tvAlertBin3);
+        tvBinName4 = findViewById(R.id.tvAlertBin4);
+        tvBinName5 = findViewById(R.id.tvAlertBin5);
+        tvBinName6 = findViewById(R.id.tvAlertBin6);
+        tvBinName7 = findViewById(R.id.tvAlertBin7);
+        tvBinName8 = findViewById(R.id.tvAlertBin8);
+        tvBinName9 = findViewById(R.id.tvAlertBin9);
+        tvBinName10 = findViewById(R.id.tvAlertBin10);
+
+        tvBinCount1 = findViewById(R.id.tvAlertCount1);
+        tvBinCount2 = findViewById(R.id.tvAlertCount2);
+        tvBinCount3 = findViewById(R.id.tvAlertCount3);
+        tvBinCount4 = findViewById(R.id.tvAlertCount4);
+        tvBinCount5 = findViewById(R.id.tvAlertCount5);
+        tvBinCount6 = findViewById(R.id.tvAlertCount6);
+        tvBinCount7 = findViewById(R.id.tvAlertCount7);
+        tvBinCount8 = findViewById(R.id.tvAlertCount8);
+        tvBinCount9 = findViewById(R.id.tvAlertCount9);
+        tvBinCount10 = findViewById(R.id.tvAlertCount10);
+
         tvCouncilName.setText(councilChoice);
 
-        tvBinName1 = findViewById(R.id.tvCouncilAnalysisBin1);
-        tvBinName2 = findViewById(R.id.tvCouncilAnalysisBin2);
-        tvBinName3 = findViewById(R.id.tvCouncilAnalysisBin3);
-        tvBinName4 = findViewById(R.id.tvCouncilAnalysisBin4);
-        tvBinName5 = findViewById(R.id.tvCouncilAnalysisBin5);
-        tvBinName6 = findViewById(R.id.tvCouncilAnalysisBin6);
-        tvBinName7 = findViewById(R.id.tvCouncilAnalysisBin7);
-        tvBinName8 = findViewById(R.id.tvCouncilAnalysisBin8);
-        tvBinName9 = findViewById(R.id.tvCouncilAnalysisBin9);
-        tvBinName10 = findViewById(R.id.tvCouncilAnalysisBin10);
+        /**
+         * Create pop-up to alert user of confirmation of sent summary.
+         */
+        popUp = new AlertDialog.Builder(AlertAnalysisActivity.this).
+                create();
+        popUp.setTitle("Confirmed!");
+        popUp.setMessage("The Alert Summary Page has been sent to the following council: " + tvCouncilName.getText().toString());
 
-        tvBinLocation1 = findViewById(R.id.tvCouncilAnalysisLocation1);
-        tvBinLocation2 = findViewById(R.id.tvCouncilAnalysisLocation2);
-        tvBinLocation3 = findViewById(R.id.tvCouncilAnalysisLocation3);
-        tvBinLocation4 = findViewById(R.id.tvCouncilAnalysisLocation4);
-        tvBinLocation5 = findViewById(R.id.tvCouncilAnalysisLocation5);
-        tvBinLocation6 = findViewById(R.id.tvCouncilAnalysisLocation6);
-        tvBinLocation7 = findViewById(R.id.tvCouncilAnalysisLocation7);
-        tvBinLocation8 = findViewById(R.id.tvCouncilAnalysisLocation8);
-        tvBinLocation9 = findViewById(R.id.tvCouncilAnalysisLocation9);
-        tvBinLocation10 = findViewById(R.id.tvCouncilAnalysisLocation10);
+
+        /**
+         * Send summary button
+         */
+        btSendSummary = findViewById(R.id.btSendSummary);
+        btSendSummary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /**
+                 * If user clicks "ok" on the pop-up, the screen will stay on the current screen
+                 * and a message will confirm this selection
+                 */
+                popUp.setButton(AlertDialog.BUTTON_NEUTRAL, "Ok", new DialogInterface
+                        .OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getApplicationContext(), "The Alert Summary has been sent!",
+                                Toast.LENGTH_LONG).show();
+                    }
+                });
+                popUp.show();
+            }
+        });
+
 
         if (councilChoice.contains("Parramatta") || councilChoice.contains("Parramatta Council")) {
             tvBinName1.setText(getResources().getStringArray(R.array.parramattaBinsArray)[0]);
@@ -354,8 +350,6 @@ public class CouncilAnalysisActivity extends AppCompatActivity {
                             tvBinLocation10.setText(binData.getBinAddress());
                         }
 
-
-
                     }
 
                     tvCouncilAddress.setText(councilLocation);
@@ -364,9 +358,20 @@ public class CouncilAnalysisActivity extends AppCompatActivity {
         });
 
         /**
+         * Set up the recyclerview for resource screen
+         */
+        rvGuides = findViewById(R.id.rvAlertGuides);
+        layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,
+                false);
+        rvGuides.setLayoutManager(layoutManager);
+        resourceAdapter = new ResourceAdapter(ResourceData.getResourceData(), this);
+        rvGuides.setAdapter(resourceAdapter);
+
+
+        /**
          * Set up the recyclerview
          */
-        recyclerView = findViewById(R.id.rvCouncilAnalysisDisposal);
+        recyclerView = findViewById(R.id.rvAlertDropOff);
         databaseRecycler = FirebaseDatabase.getInstance().getReference().child("1qHYUHw1GGaVy9oW_pT8LMAWjR9fODaJE1qWqhcSNHBs").child("Sheet2");
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -394,26 +399,19 @@ public class CouncilAnalysisActivity extends AppCompatActivity {
          * Set up graphs and buttons for weekly and monthly data
          */
 
-        tvBinCount1 = findViewById(R.id.tvCouncilAnalysisCount1);
-        tvBinCount2 = findViewById(R.id.tvCouncilAnalysisCount2);
-        tvBinCount3 = findViewById(R.id.tvCouncilAnalysisCount3);
-        tvBinCount4 = findViewById(R.id.tvCouncilAnalysisCount4);
-        tvBinCount5 = findViewById(R.id.tvCouncilAnalysisCount5);
-        tvBinCount6 = findViewById(R.id.tvCouncilAnalysisCount6);
-        tvBinCount7 = findViewById(R.id.tvCouncilAnalysisCount7);
-        tvBinCount8 = findViewById(R.id.tvCouncilAnalysisCount8);
-        tvBinCount9 = findViewById(R.id.tvCouncilAnalysisCount9);
-        tvBinCount10 = findViewById(R.id.tvCouncilAnalysisCount10);
+        tvBinCount1 = findViewById(R.id.tvAlertCount1);
+        tvBinCount2 = findViewById(R.id.tvAlertCount2);
+        tvBinCount3 = findViewById(R.id.tvAlertCount3);
+        tvBinCount4 = findViewById(R.id.tvAlertCount4);
+        tvBinCount5 = findViewById(R.id.tvAlertCount5);
+        tvBinCount6 = findViewById(R.id.tvAlertCount6);
+        tvBinCount7 = findViewById(R.id.tvAlertCount7);
+        tvBinCount8 = findViewById(R.id.tvAlertCount8);
+        tvBinCount9 = findViewById(R.id.tvAlertCount9);
+        tvBinCount10 = findViewById(R.id.tvAlertCount10);
 
-        tvWeekly = findViewById(R.id.tvCouncilAnalysisWeekly);
-        tvMonthly = findViewById(R.id.tvCouncilAnalysisMonthly);
-        rlWeekly = findViewById(R.id.rlCouncilAnalysisWeekly);
-        rlMonthly = findViewById(R.id.rlCouncilAnalysisMonthChart);
-
-        barChart = findViewById(R.id.bcCouncilAnalysisWeekly);
-        lineChart = findViewById(R.id.lcCouncilAnalysisWeekly);
-        barChartMonthly = findViewById(R.id.bcCouncilAnalysisMonth);
-        lineChartMonthly = findViewById(R.id.lcCouncilAnalysisMonth);
+        tvWeekly = findViewById(R.id.tvAlertWeekly);
+        tvMonthly = findViewById(R.id.tvAlertMonthly);
 
         // if user presses weekly, the colours will change
         tvWeekly.setOnClickListener(new View.OnClickListener() {
@@ -421,8 +419,6 @@ public class CouncilAnalysisActivity extends AppCompatActivity {
             public void onClick(View v) {
                 tvWeekly.setTextColor(Color.parseColor("#2995E2"));
                 tvMonthly.setTextColor(Color.parseColor("#87BBDF"));
-                rlWeekly.setVisibility(View.VISIBLE);
-                rlMonthly.setVisibility(View.INVISIBLE);
 
                 tvBinCount1.setText(String.valueOf(contaminatedBin1));
                 tvBinCount2.setText(String.valueOf(contaminatedBin2));
@@ -446,8 +442,6 @@ public class CouncilAnalysisActivity extends AppCompatActivity {
                 tvWeekly.setTextColor(Color.parseColor("#87BBDF"));
                 // dark blue
                 tvMonthly.setTextColor(Color.parseColor("#2995E2"));
-                rlWeekly.setVisibility(View.INVISIBLE);
-                rlMonthly.setVisibility(View.VISIBLE);
 
                 tvBinCount1.setText(String.valueOf(contaminatedMonthBin1));
                 tvBinCount2.setText(String.valueOf(contaminatedMonthBin2));
@@ -467,12 +461,6 @@ public class CouncilAnalysisActivity extends AppCompatActivity {
         databaseChart.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
-
-                ArrayList<BarEntry> dataVals = new ArrayList<>();
-                ArrayList<Entry> lineDataVals = new ArrayList<Entry>();
-
-                ArrayList<BarEntry> dataValsMonthly = new ArrayList<>();
-                ArrayList<Entry> lineDataValsMonthly = new ArrayList<Entry>();
 
                 if (task.isSuccessful()) {
                     for (DataSnapshot dataSnapshot : task.getResult().getChildren()) {
@@ -653,13 +641,13 @@ public class CouncilAnalysisActivity extends AppCompatActivity {
                              */
 
                             if (binData.getStatus().equals("Bin Flagged as Contaminated")
-                                && ((binData.getDate()).split("T")[0].equals("2023-10-25")
-                                || (binData.getDate()).split("T")[0].equals("2023-10-26")
-                                || (binData.getDate()).split("T")[0].equals("2023-10-27")
-                                || (binData.getDate()).split("T")[0].equals("2023-10-28")
-                                || (binData.getDate()).split("T")[0].equals("2023-10-29")
-                                || (binData.getDate()).split("T")[0].equals("2023-10-30")
-                                || (binData.getDate()).split("T")[0].equals("2023-10-31"))) {
+                                    && ((binData.getDate()).split("T")[0].equals("2023-10-25")
+                                    || (binData.getDate()).split("T")[0].equals("2023-10-26")
+                                    || (binData.getDate()).split("T")[0].equals("2023-10-27")
+                                    || (binData.getDate()).split("T")[0].equals("2023-10-28")
+                                    || (binData.getDate()).split("T")[0].equals("2023-10-29")
+                                    || (binData.getDate()).split("T")[0].equals("2023-10-30")
+                                    || (binData.getDate()).split("T")[0].equals("2023-10-31"))) {
 
                                 if (binData.getBinName().contains(tvBinName1.getText())) {
                                     contaminatedBin1 = contaminatedBin1 + 1;
@@ -750,264 +738,7 @@ public class CouncilAnalysisActivity extends AppCompatActivity {
                         tvBinCount10.setText(String.valueOf(contaminatedMonthBin10));
                     }
 
-
-                    /**
-                     * Set weekly bar chart values
-                     */
-                    dataVals.add(new BarEntry(0, new float[]{recycableCountMon, contaminatedCountMon}));
-                    dataVals.add(new BarEntry(1, new float[]{recycableCountTues, contaminatedCountTues}));
-                    dataVals.add(new BarEntry(2, new float[]{recycableCountWed, contaminatedCountWed}));
-                    dataVals.add(new BarEntry(3, new float[]{recycableCountThurs, contaminatedCountThurs}));
-                    dataVals.add(new BarEntry(4, new float[]{recycableCountFri, contaminatedCountFri}));
-                    dataVals.add(new BarEntry(5, new float[]{recycableCountSat, contaminatedCountSat}));
-                    dataVals.add(new BarEntry(6, new float[]{recycableCountSun, contaminatedCountSun}));
-
-                    BarDataSet barDataSet = new BarDataSet(dataVals, "Bins Fully Recyclable");
-                    barDataSet.setColors(colorClassArray);
-
-                    // create a list of IDataSets to build ChartData object
-                    iBarDataSets.clear();
-                    iBarDataSets.add(barDataSet);
-                    barData = new BarData(iBarDataSets);
-
-                    // other formatting
-                    barData.setBarWidth(0.7f); // set custom bar width
-                    barChart.getDescription().setEnabled(false);
-                    barChart.setExtraBottomOffset(3f);
-
-                    // legend formatting
-                    Legend l = barChart.getLegend();
-                    LegendEntry l1=new LegendEntry("Recycled", Legend.LegendForm.DEFAULT,10f,2f,null, Color.BLUE);
-                    LegendEntry l2=new LegendEntry("Contaminated", Legend.LegendForm.DEFAULT,10f,2f,null, Color.CYAN);
-                    l.setCustom(new LegendEntry[]{l1,l2});
-
-                    l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
-                    l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
-                    l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
-                    l.setDrawInside(false);
-                    l.setTextSize(15);
-
-                    // set X-axis formatting
-                    final ArrayList<String> xLabel = new ArrayList<>();
-                    xLabel.add("Monday");
-                    xLabel.add("Tuesday");
-                    xLabel.add("Wednesday");
-                    xLabel.add("Thursday");
-                    xLabel.add("Friday");
-                    xLabel.add("Saturday");
-                    xLabel.add("Sunday");
-
-                    XAxis xAxis = barChart.getXAxis();
-                    xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-                    xAxis.setDrawGridLines(false);
-                    xAxis.setValueFormatter(new ValueFormatter() {
-                        @Override
-                        public String getFormattedValue(float value) {
-                            return xLabel.get((int) value);
-                        }
-                    });
-
-                    xAxis.setTextSize(15);
-
-                    // set barChart
-                    barChart.setData(barData);
-                    barChart.getBarData().setValueTextSize(15);
-                    barChart.setFitBars(true);
-                    barChart.invalidate();
-
-                    /**
-                     * Set line chart values
-                     */
-                    lineDataVals.add(new Entry(0, totalWeightMon));
-                    lineDataVals.add(new Entry(1, totalWeightTues));
-                    lineDataVals.add(new Entry(2, totalWeightWed));
-                    lineDataVals.add(new Entry(3, totalWeightThurs));
-                    lineDataVals.add(new Entry(4, totalWeightFri));
-                    lineDataVals.add(new Entry(5, totalWeightSat));
-                    lineDataVals.add(new Entry(6, totalWeightSun));
-
-                    LineDataSet lineDataSet = new LineDataSet(lineDataVals, "E-Waste Contamination (Kg)");
-                    lineDataSet.setColors(Color.BLUE);
-
-                    // create a list of IDataSets to build ChartData object
-                    iLineDataSets.clear();
-                    iLineDataSets.add(lineDataSet);
-                    lineData = new LineData(iLineDataSets);
-
-                    // other formatting
-                    lineChart.getDescription().setEnabled(false);
-                    lineChart.setExtraBottomOffset(3f);
-                    lineChart.setExtraLeftOffset(5f);
-                    lineChart.setExtraRightOffset(5f);
-
-                    Legend lLine = lineChart.getLegend();
-
-                    lLine.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
-                    lLine.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
-                    lLine.setOrientation(Legend.LegendOrientation.HORIZONTAL);
-                    lLine.setDrawInside(false);
-                    lLine.setTextSize(15);
-
-                    // set X-axis formatting
-                    final ArrayList<String> xLabelLine = new ArrayList<>();
-                    xLabelLine.add("Monday");
-                    xLabelLine.add("Tuesday");
-                    xLabelLine.add("Wednesday");
-                    xLabelLine.add("Thursday");
-                    xLabelLine.add("Friday");
-                    xLabelLine.add("Saturday");
-                    xLabelLine.add("Sunday");
-
-                    XAxis xAxisLine = lineChart.getXAxis();
-                    xAxisLine.setPosition(XAxis.XAxisPosition.BOTTOM);
-                    xAxisLine.setDrawGridLines(false);
-                    xAxisLine.setValueFormatter(new ValueFormatter() {
-                        @Override
-                        public String getFormattedValue(float value) {
-                            return xLabelLine.get((int) value);
-                        }
-                    });
-
-                    xAxisLine.setTextSize(15);
-
-                    // set barChart
-                    lineChart.setData(lineData);
-                    lineChart.getLineData().setValueTextSize(15);
-                    lineChart.invalidate();
-
-                    /**
-                     * Set up monthly chart values
-                     */
-
-                    dataValsMonthly.add(new BarEntry(0, new float[]{recycableCountWeekOne, contaminatedCountWeekOne}));
-                    dataValsMonthly.add(new BarEntry(1, new float[]{recycableCountWeekTwo, contaminatedCountWeekTwo}));
-                    dataValsMonthly.add(new BarEntry(2, new float[]{recycableCountWeekThree, contaminatedCountWeekThree}));
-                    dataValsMonthly.add(new BarEntry(3, new float[]{recycableCountWeekFour, contaminatedCountWeekFour}));
-
-                    BarDataSet barDataSetMonthly = new BarDataSet(dataValsMonthly, "Bins Fully Recyclable");
-                    barDataSetMonthly.setColors(colorClassArray);
-
-                    // create a list of IDataSets to build ChartData object
-                    iBarDataSetsMonthly.clear();
-                    iBarDataSetsMonthly.add(barDataSetMonthly);
-                    barDataMonthly = new BarData(iBarDataSetsMonthly);
-
-                    // other formatting
-                    //barDataMonthly.setBarWidth(0.7f); // set custom bar width
-                    barChartMonthly.getDescription().setEnabled(false);
-                    barChartMonthly.setExtraBottomOffset(4f);
-
-                    // legend formatting
-                    Legend lMonthly = barChartMonthly.getLegend();
-                    LegendEntry l1Monthly=new LegendEntry("Recycled", Legend.LegendForm.DEFAULT,10f,2f,null, Color.BLUE);
-                    LegendEntry l2Monthly=new LegendEntry("Contaminated", Legend.LegendForm.DEFAULT,10f,2f,null, Color.CYAN);
-                    lMonthly.setCustom(new LegendEntry[]{l1Monthly,l2Monthly});
-
-                    lMonthly.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
-                    lMonthly.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
-                    lMonthly.setOrientation(Legend.LegendOrientation.HORIZONTAL);
-                    lMonthly.setDrawInside(false);
-                    lMonthly.setTextSize(15);
-
-                    // set X-axis formatting
-                    final ArrayList<String> xLabelMonthly = new ArrayList<>();
-                    xLabelMonthly.add("1-8 Oct");
-                    xLabelMonthly.add("9-16 Oct");
-                    xLabelMonthly.add("17-24 Oct");
-                    xLabelMonthly.add("25-31 Oct");
-
-                    XAxis xAxisMonthly = barChartMonthly.getXAxis();
-                    xAxisMonthly.setPosition(XAxis.XAxisPosition.BOTTOM);
-                    xAxisMonthly.setDrawGridLines(false);
-                    xAxisMonthly.setValueFormatter(new ValueFormatter() {
-                        @Override
-                        public String getFormattedValue(float value) {
-                            return xLabelMonthly.get((int) value);
-                        }
-                    });
-                    xAxisMonthly.setLabelCount(xLabelMonthly.size(), false);
-                    xAxisMonthly.setGranularityEnabled(true);
-
-                    xAxisMonthly.setTextSize(15);
-
-                    // set barChart
-                    barChartMonthly.setData(barDataMonthly);
-                    barChartMonthly.getBarData().setValueTextSize(15);
-                    barChartMonthly.setFitBars(true);
-                    barChartMonthly.invalidate();
-
-                    /**
-                     * Set line chart values
-                     */
-                    lineDataValsMonthly.add(new Entry(0, totalWeightWeekOne));
-                    lineDataValsMonthly.add(new Entry(1, totalWeightWeekTwo));
-                    lineDataValsMonthly.add(new Entry(2, totalWeightWeekThree));
-                    lineDataValsMonthly.add(new Entry(3, totalWeightWeekFour));
-
-                    LineDataSet lineDataSetMonthly = new LineDataSet(lineDataValsMonthly, "E-Waste Contamination (Kg)");
-                    lineDataSetMonthly.setColors(Color.BLUE);
-
-                    // create a list of IDataSets to build ChartData object
-                    iLineDataSetsMonthly.clear();
-                    iLineDataSetsMonthly.add(lineDataSetMonthly);
-                    lineDataMonthly = new LineData(iLineDataSetsMonthly);
-
-                    // other formatting
-                    lineChartMonthly.getDescription().setEnabled(false);
-                    lineChartMonthly.setExtraBottomOffset(3f);
-                    lineChartMonthly.setExtraLeftOffset(7f);
-                    lineChartMonthly.setExtraRightOffset(10f);
-
-                    Legend lLineMonthly = lineChartMonthly.getLegend();
-
-                    lLineMonthly.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
-                    lLineMonthly.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
-                    lLineMonthly.setOrientation(Legend.LegendOrientation.HORIZONTAL);
-                    lLineMonthly.setDrawInside(false);
-                    lLineMonthly.setTextSize(15);
-
-                    // set X-axis formatting
-                    final ArrayList<String> xLabelLineMonthly = new ArrayList<>();
-                    xLabelLineMonthly.add("1-8 Oct");
-                    xLabelLineMonthly.add("9-16 Oct");
-                    xLabelLineMonthly.add("17-24 Oct");
-                    xLabelLineMonthly.add("25-31 Oct");
-
-                    XAxis xAxisLineMonthly = lineChartMonthly.getXAxis();
-                    xAxisLineMonthly.setPosition(XAxis.XAxisPosition.BOTTOM);
-                    xAxisLineMonthly.setDrawGridLines(false);
-                    xAxisLineMonthly.setValueFormatter(new ValueFormatter() {
-                        @Override
-                        public String getFormattedValue(float value) {
-                            return xLabelLineMonthly.get((int) value);
-                        }
-                    });
-
-                    lineChartMonthly.getXAxis().setLabelCount(4, /*force: */true);
-
-                    xAxisLineMonthly.setTextSize(15);
-
-                    // set barChart
-                    lineChartMonthly.setData(lineDataMonthly);
-                    lineChartMonthly.getLineData().setValueTextSize(15);
-                    lineChartMonthly.invalidate();
-
                 }
-            }
-        });
-
-        /**
-         * Button to alert council
-         */
-
-        btAlertCouncil = findViewById(R.id.btCouncilAnalysisAlertCouncil);
-        btAlertCouncil.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String chosenCouncil = tvCouncilName.getText().toString();
-                Intent intent = new Intent(CouncilAnalysisActivity.this, AlertAnalysisActivity.class);
-                intent.putExtra("Analysis Council", chosenCouncil);
-                startActivity(intent);
             }
         });
 
@@ -1023,22 +754,22 @@ public class CouncilAnalysisActivity extends AppCompatActivity {
                 int id = item.getItemId();
 
                 if(id == R.id.home) {
-                    Intent intent = new Intent(CouncilAnalysisActivity.this, MainActivity.class);
+                    Intent intent = new Intent(AlertAnalysisActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();
                     return true;
                 } else if (id == R.id.analysis) {
-                    Intent intent = new Intent(CouncilAnalysisActivity.this, AnalysisActivity.class);
+                    Intent intent = new Intent(AlertAnalysisActivity.this, AnalysisActivity.class);
                     startActivity(intent);
                     finish();
                     return true;
                 } else if (id == R.id.tracking) {
-                    Intent intent = new Intent(CouncilAnalysisActivity.this, TrackingActivity.class);
+                    Intent intent = new Intent(AlertAnalysisActivity.this, TrackingActivity.class);
                     startActivity(intent);
                     finish();
                     return true;
                 } else if (id == R.id.profile) {
-                    Intent intent = new Intent(CouncilAnalysisActivity.this, ProfileActivity.class);
+                    Intent intent = new Intent(AlertAnalysisActivity.this, ProfileActivity.class);
                     startActivity(intent);
                     finish();
                     return true;
@@ -1050,5 +781,31 @@ public class CouncilAnalysisActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+
+    }
+
+    @Override
+    public void onRowClick(String name) {
+        launchSelectedResource(name);
+
+    }
+
+    private void launchSelectedResource(String name) {
+        Intent intent = new Intent(AlertAnalysisActivity.this, GuideActivity.class);
+        intent.putExtra(GuideActivity.INTENT_MESSAGE, name);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onRowClickDropOff(String name) {
+        launchSelectedDropOff(name);
+    }
+
+    private void launchSelectedDropOff(String name) {
+        Intent intent = new Intent(AlertAnalysisActivity.this, DisposalActivity.class);
+        intent.putExtra(DisposalActivity.INTENT_MESSAGE, name);
+        startActivity(intent);
+
     }
 }

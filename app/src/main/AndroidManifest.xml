@@ -13,19 +13,22 @@
         android:theme="@style/Theme.WasteGenie"
         tools:targetApi="31">
         <activity
-            android:name=".GuideActivity"
+            android:name=".Analysis.DisposalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Analysis.GuideActivity"
             android:exported="false" />
         <activity
             android:name=".CouncilTracking"
             android:exported="false" />
         <activity
-            android:name=".AlertAnalysisActivity"
+            android:name=".Analysis.AlertAnalysisActivity"
             android:exported="false" />
         <activity
-            android:name=".BinAnalysisActivity"
+            android:name=".Analysis.BinAnalysisActivity"
             android:exported="false" />
         <activity
-            android:name=".CouncilAnalysisActivity"
+            android:name=".Analysis.CouncilAnalysisActivity"
             android:exported="false" />
         <activity
             android:name=".RouteActivity"
@@ -61,7 +64,7 @@
             android:name=".TrackingActivity"
             android:exported="false" />
         <activity
-            android:name=".AnalysisActivity"
+            android:name=".Analysis.AnalysisActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
