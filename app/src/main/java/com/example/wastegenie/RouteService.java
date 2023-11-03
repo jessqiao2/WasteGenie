@@ -9,4 +9,6 @@ public interface RouteService {
     @POST("json")
     Call<ResponseBody> getRoute(@Query("origin") String origin, @Query("destination") String destination,
                                 @Query("waypoints") String waypoints, @Query("key") String key);
+    @POST("json")
+    Call<ResponseBody> getSimpleRoute(@Query("origin") String origin, @Query("destination") String destination, @Query("key") String key);
 }

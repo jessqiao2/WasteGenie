@@ -261,7 +261,8 @@ public class TrackingActivity extends AppCompatActivity implements OnMapReadyCal
                                 LatLng binLoc = new LatLng(longLat.getDouble("lat"), longLat.getDouble("lng"));
                                 map.addMarker(new MarkerOptions()
                                         .position(binLoc)
-                                        .title(bindata.getBinName()));
+                                        .title(bindata.getBinName())
+                                        .snippet("E-waste Contamination: " + String.valueOf(bindata.geteWasteWeightKilos()) + "kg"));
 
                             } catch (JSONException e) {
                                 throw new RuntimeException(e);

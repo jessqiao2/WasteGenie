@@ -287,18 +287,36 @@
         app:layout_constraintVertical_bias="0.215">
 
         <TextView
+            android:id="@+id/tvDisposalTitle"
             android:layout_width="633dp"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="27dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="31dp"
             android:fontFamily="@font/public_sans_bold"
             android:text="Disposal Site Route from Council"
             android:textColor="#FFFFFF"
             android:textSize="25sp" />
+
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/mvDisposals"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_below="@+id/tvDisposalTitle"
+            android:layout_alignStart="@+id/tvDisposalTitle"
+            android:layout_alignEnd="@+id/tvDisposalTitle"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:uiCompass="true"
+            app:uiScrollGestures="true"
+            app:uiZoomControls="true"
+            app:uiZoomGestures="true" />
 
     </RelativeLayout>
 
@@ -497,5 +515,7 @@
             android:textSize="20sp" />
 
     </RelativeLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -274,10 +274,16 @@ public class RouteActivity extends AppCompatActivity implements OnMapReadyCallba
                                 ZonedDateTime zonedDateTime = instant.atZone(ZoneId.systemDefault());
                                 String formattedTime = zonedDateTime.format(formatter);
 
+                                // Change marker colour based on contamination
+                                float hue = BitmapDescriptorFactory.HUE_RED;
+                                if(thisBinData.getStatus().equals("Bin Flagged as Contaminated")){
+                                    hue = BitmapDescriptorFactory.HUE_GREEN;
+                                }
                                 map.addMarker(new MarkerOptions()
                                         .position(waypointLL)
                                         .title(thisBinData.getBinName())
-                                        .snippet("Collected by Truck " + thisBinData.getTruckId() + " at " + formattedTime));
+                                        .snippet("Collected by Truck " + thisBinData.getTruckId() + " at " + formattedTime)
+                                        .icon(BitmapDescriptorFactory.defaultMarker()));
                             }
                             JSONObject endLoc = rawResponse.getJSONArray("routes").getJSONObject(0).getJSONArray("legs").getJSONObject(addressList.size() - 2).getJSONObject("end_location");
                             LatLng endpointLL = new LatLng(endLoc.getDouble("lat"), endLoc.getDouble("lng"));
@@ -296,7 +302,7 @@ public class RouteActivity extends AppCompatActivity implements OnMapReadyCallba
                                     .position(endpointLL)
                                     .title(lastBinData.getBinName())
                                     .snippet("Truck " + lastBinData.getTruckId() + " at " + formattedTime)
-                                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+                                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
 
                         } catch (JSONException e) {
                             throw new RuntimeException(e);
