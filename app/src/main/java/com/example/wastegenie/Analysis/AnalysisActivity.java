@@ -831,5 +831,20 @@ public class AnalysisActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+    }
+
+    /**
+     * Method to allow back button to behave like the default Android back button and not like the
+     * "up" button.
+     */
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

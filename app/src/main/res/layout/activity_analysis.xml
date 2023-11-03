@@ -129,7 +129,7 @@
                         android:fontFamily="@font/public_sans"
                         android:gravity="center_horizontal"
                         android:padding="5sp"
-                        android:text="6"
+                        android:text="5"
                         android:textColor="@color/black"
                         android:textSize="18sp" />
 
@@ -175,7 +175,7 @@
                         android:fontFamily="@font/public_sans"
                         android:gravity="center_horizontal"
                         android:padding="5sp"
-                        android:text="6"
+                        android:text="5"
                         android:textColor="@color/black"
                         android:textSize="18sp" />
 
@@ -195,7 +195,7 @@
                         android:fontFamily="@font/public_sans"
                         android:gravity="center_horizontal"
                         android:padding="5sp"
-                        android:text="Parramatta Library"
+                        android:text="Crystal Car Wash "
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="18sp"
@@ -209,7 +209,7 @@
                         android:fontFamily="@font/public_sans"
                         android:gravity="center_horizontal"
                         android:padding="5sp"
-                        android:text="Parramatta Council"
+                        android:text="Randwick City Council"
                         android:textColor="@color/black"
                         android:textSize="18sp" />
 
@@ -221,7 +221,7 @@
                         android:fontFamily="@font/public_sans"
                         android:gravity="center_horizontal"
                         android:padding="5sp"
-                        android:text="5"
+                        android:text="4"
                         android:textColor="@color/black"
                         android:textSize="18sp" />
 
@@ -241,7 +241,7 @@
                         android:fontFamily="@font/public_sans"
                         android:gravity="center_horizontal"
                         android:padding="5sp"
-                        android:text="Parramatta Station"
+                        android:text="The Juniors Kingsford"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="18sp"
@@ -255,7 +255,7 @@
                         android:fontFamily="@font/public_sans"
                         android:gravity="center_horizontal"
                         android:padding="5sp"
-                        android:text="Parramatta Council"
+                        android:text="Randwick City Council"
                         android:textColor="@color/black"
                         android:textSize="18sp" />
 
@@ -268,7 +268,7 @@
                         android:fontFamily="@font/public_sans"
                         android:gravity="center_horizontal"
                         android:padding="5sp"
-                        android:text="5"
+                        android:text="4"
                         android:textColor="@color/black"
                         android:textSize="18sp" />
 
@@ -288,7 +288,7 @@
                         android:fontFamily="@font/public_sans"
                         android:gravity="center_horizontal"
                         android:padding="5sp"
-                        android:text="Riverside Theatres"
+                        android:text="Fig Tree Hall"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="18sp"
@@ -302,7 +302,7 @@
                         android:fontFamily="@font/public_sans"
                         android:gravity="center_horizontal"
                         android:padding="5sp"
-                        android:text="Parramatta Council"
+                        android:text="Randwick City Council"
                         android:textColor="@color/black"
                         android:textSize="18sp" />
 
@@ -314,7 +314,7 @@
                         android:fontFamily="@font/public_sans"
                         android:gravity="center_horizontal"
                         android:padding="5sp"
-                        android:text="5"
+                        android:text="4"
                         android:textColor="@color/black"
                         android:textSize="18sp" />
 
@@ -334,7 +334,7 @@
                         android:fontFamily="@font/public_sans"
                         android:gravity="center_horizontal"
                         android:padding="5sp"
-                        android:text="Carriageworks"
+                        android:text="Gladesville Guitar Factory"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="18sp"
@@ -348,7 +348,7 @@
                         android:fontFamily="@font/public_sans"
                         android:gravity="center_horizontal"
                         android:padding="5sp"
-                        android:text="City of Sydney Council"
+                        android:text="Hunters Hill"
                         android:textColor="@color/black"
                         android:textSize="18sp" />
 
@@ -360,7 +360,7 @@
                         android:fontFamily="@font/public_sans"
                         android:gravity="center_horizontal"
                         android:padding="5sp"
-                        android:text="5"
+                        android:text="4"
                         android:textColor="@color/black"
                         android:textSize="18sp" />
 
@@ -380,7 +380,7 @@
                         android:fontFamily="@font/public_sans"
                         android:gravity="center_horizontal"
                         android:padding="5sp"
-                        android:text="Forum Medical Centre"
+                        android:text="Coles Gladesville"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="18sp"
@@ -394,7 +394,7 @@
                         android:fontFamily="@font/public_sans"
                         android:gravity="center_horizontal"
                         android:padding="5sp"
-                        android:text="City of Sydney Council"
+                        android:text="Hunters Hill"
                         android:textColor="@color/black"
                         android:textSize="18sp" />
 
@@ -406,7 +406,7 @@
                         android:fontFamily="@font/public_sans"
                         android:gravity="center_horizontal"
                         android:padding="5sp"
-                        android:text="5"
+                        android:text="4"
                         android:textColor="@color/black"
                         android:textSize="18sp" />
 
@@ -676,7 +676,7 @@
         android:layout_width="107dp"
         android:layout_height="41dp"
         android:fontFamily="@font/public_sans_bold"
-        android:text="78%"
+        android:text="..."
         android:textColor="#2995E2"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="@+id/tvHomeWelcomeDesc"
@@ -763,16 +763,16 @@
 
         <TextView
             android:id="@+id/tvDashboardWeight"
-            android:layout_width="108dp"
+            android:layout_width="125dp"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="13dp"
-            android:layout_marginTop="55dp"
-            android:layout_marginEnd="129dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="57dp"
+            android:layout_marginEnd="107dp"
             android:fontFamily="@font/public_sans_bold"
-            android:text="15.3"
+            android:text="..."
             android:textColor="#FFFFFF"
             android:textSize="40sp" />
 
@@ -783,11 +783,11 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="122dp"
-            android:layout_marginTop="68dp"
-            android:layout_marginEnd="3dp"
+            android:layout_marginStart="137dp"
+            android:layout_marginTop="70dp"
+            android:layout_marginEnd="-12dp"
             android:fontFamily="@font/public_sans_bold"
-            android:text="kilograms"
+            android:text="Kg"
             android:textColor="#FFFFFF"
             android:textSize="25sp" />
 
@@ -827,7 +827,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="150dp"
-            android:layout_marginTop="68dp"
+            android:layout_marginTop="70dp"
             android:layout_marginEnd="27dp"
             android:layout_marginBottom="20dp"
             android:fontFamily="@font/public_sans_bold"
@@ -844,7 +844,7 @@
             android:layout_marginStart="17dp"
             android:layout_marginTop="55dp"
             android:fontFamily="@font/public_sans_bold"
-            android:text="5000"
+            android:text="..."
             android:textColor="#FFFFFF"
             android:textSize="40sp" />
 
@@ -948,9 +948,9 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="127dp"
-            android:layout_marginTop="68dp"
-            android:layout_marginEnd="-2dp"
+            android:layout_marginStart="139dp"
+            android:layout_marginTop="73dp"
+            android:layout_marginEnd="-14dp"
             android:fontFamily="@font/public_sans_bold"
             android:text="bins"
             android:textColor="#FFFFFF"
@@ -963,11 +963,11 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="13dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="55dp"
             android:layout_marginEnd="129dp"
             android:fontFamily="@font/public_sans_bold"
-            android:text="1805"
+            android:text="..."
             android:textColor="#FFFFFF"
             android:textSize="40sp" />
 

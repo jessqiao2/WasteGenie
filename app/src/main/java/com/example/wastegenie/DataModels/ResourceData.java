@@ -61,6 +61,22 @@ public class ResourceData {
         return resources;
     }
 
+    /**
+     * Method to create an arraylist that adds in the resources and compares the  names. If there
+     * is a match, return all the resource's information
+     */
+    public static ResourceData findResources(String name) {
+        ArrayList<ResourceData> resources = ResourceData.getResourceData();
+
+        for(final ResourceData resource: resources) {
+            if(resource.getName().toLowerCase().equals(name.toLowerCase())) {
+                return resource;
+            }
+        }
+
+        return null;
+    }
+
 
 
 

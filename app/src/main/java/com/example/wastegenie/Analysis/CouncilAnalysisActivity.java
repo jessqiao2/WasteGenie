@@ -45,7 +45,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
-public class CouncilAnalysisActivity extends AppCompatActivity {
+public class CouncilAnalysisActivity extends AppCompatActivity implements RecyclerViewDropOffClickListener{
 
     NavigationView navigationView;
     TextView tvCouncilName;
@@ -377,7 +377,7 @@ public class CouncilAnalysisActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         list = new ArrayList<>();
-        adapter = new BinAnalysisAdapter(this, list);
+        adapter = new BinAnalysisAdapter(this, list, this);
 
         recyclerView.setAdapter(adapter);
 
@@ -1055,5 +1055,31 @@ public class CouncilAnalysisActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    @Override
+    public void onRowClickDropOff(String name) {
+        launchSelectedDropOff(name);
+    }
+
+    private void launchSelectedDropOff(String name) {
+        Intent intent = new Intent(CouncilAnalysisActivity.this, DisposalActivity.class);
+        intent.putExtra(DisposalActivity.INTENT_MESSAGE, name);
+        startActivity(intent);
+
+    }
+
+    /**
+     * Method to allow back button to behave like the default Android back button and not like the
+     * "up" button.
+     */
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

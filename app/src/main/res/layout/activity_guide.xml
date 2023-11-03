@@ -4,6 +4,71 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Analysis.GuideActivity">
+    android:background="#F3F3F4"
+    tools:context=".MainActivity">
+
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="#0460A1"
+        app:headerLayout="@layout/nav_header"
+        app:itemIconSize="35dp"
+        app:itemIconTint="@color/white"
+        app:itemTextAppearance="@style/TextAppearance.AppCompat.Large"
+        app:itemTextColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/navigation" />
+
+    <TextView
+        android:id="@+id/tvResourceTitle"
+        android:layout_width="1382dp"
+        android:layout_height="66dp"
+        android:fontFamily="@font/public_sans_bold"
+        android:text="Loading Resource Title ..."
+        android:textColor="#2995E2"
+        android:textSize="50sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.669"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.045" />
+
+    <TextView
+        android:id="@+id/tvResourceSource"
+        android:layout_width="902dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="1312dp"
+        android:fontFamily="@font/public_sans_bold"
+        android:text="Loading Source ..."
+        android:textColor="#2995E2"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tvResourceTitle"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.125" />
+
+    <WebView
+        android:id="@+id/wvGuide"
+        android:layout_width="1507dp"
+        android:layout_height="647dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="228dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/tvResourceTitle"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tvResourceSource"
+        app:layout_constraintTop_toBottomOf="@+id/tvResourceSource"
+        app:layout_constraintVertical_bias="0.085" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

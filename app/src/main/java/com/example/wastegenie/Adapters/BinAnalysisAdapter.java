@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.wastegenie.Analysis.RecyclerViewDropOffClickListener;
+import com.example.wastegenie.Analysis.RecyclerViewResourceClickListener;
 import com.example.wastegenie.DataModels.DropOffData;
 import com.example.wastegenie.R;
 
@@ -26,10 +28,13 @@ public class BinAnalysisAdapter extends RecyclerView.Adapter<BinAnalysisAdapter.
     ArrayList<DropOffData> list;
     ArrayList<DropOffData> fullList;
 
-    public BinAnalysisAdapter(Context context, ArrayList<DropOffData> list) {
+    private RecyclerViewDropOffClickListener localListener;
+
+    public BinAnalysisAdapter(Context context, ArrayList<DropOffData> list, RecyclerViewDropOffClickListener listener) {
         this.context = context;
         this.fullList = list;
         this.list = new ArrayList<>(fullList);
+        localListener = listener;
     }
 
     @Override
@@ -67,12 +72,25 @@ public class BinAnalysisAdapter extends RecyclerView.Adapter<BinAnalysisAdapter.
 
         TextView tvSiteName, tvSiteLocation, tvSiteDistance;
 
-        public MyViewHolder(@NonNull View itemView) {
+        public MyViewHolder(@NonNull View itemView, RecyclerViewDropOffClickListener localListener) {
             super(itemView);
 
             tvSiteName = itemView.findViewById(R.id.tvDropOffName);
             tvSiteLocation = itemView.findViewById(R.id.tvDropOffLocation);
             tvSiteDistance = itemView.findViewById(R.id.tvDropOffDistance);
+
+            /**
+             * Implement setOnClickListener
+             */
+            itemView.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    if (localListener != null) {
+                        localListener.onRowClickDropOff((String) itemView.getTag());
+                    }
+                }
+            });
         }
     }
 
@@ -80,7 +98,7 @@ public class BinAnalysisAdapter extends RecyclerView.Adapter<BinAnalysisAdapter.
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.list_council_analysis_tracking, parent, false);
-        return new MyViewHolder(view);
+        return new MyViewHolder(view, localListener);
     }
 
     @Override
@@ -90,6 +108,8 @@ public class BinAnalysisAdapter extends RecyclerView.Adapter<BinAnalysisAdapter.
         holder.tvSiteName.setText(dropOffData.getDropOffName());
         holder.tvSiteLocation.setText(dropOffData.getLocation());
         holder.tvSiteDistance.setText(String.valueOf(dropOffData.getDistanceKm()) + " Km");
+
+        holder.itemView.setTag(dropOffData.getDropOffName());
 
     }
 
