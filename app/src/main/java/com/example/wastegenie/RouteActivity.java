@@ -403,6 +403,17 @@ public class RouteActivity extends AppCompatActivity implements OnMapReadyCallba
         });
     }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                Intent intent = new Intent(RouteActivity.this, TrackingActivity.class);
+                startActivity(intent);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {

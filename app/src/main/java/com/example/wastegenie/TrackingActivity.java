@@ -365,6 +365,24 @@ public class TrackingActivity extends AppCompatActivity implements OnMapReadyCal
             }
         });
     }
+
+
+    /**
+     * Method to allow back button to behave like the default Android back button and not like the
+     * "up" button.
+     */
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                Intent intent = new Intent(TrackingActivity.this, MainActivity.class);
+                startActivity(intent);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);

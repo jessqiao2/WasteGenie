@@ -22,7 +22,8 @@
             android:parentActivityName=".Analysis.AnalysisActivity"/>
         <activity
             android:name=".CouncilTracking"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".TrackingActivity"/>
         <activity
             android:name=".Analysis.AlertAnalysisActivity"
             android:exported="false"
@@ -37,7 +38,8 @@
             android:parentActivityName=".Analysis.AnalysisActivity"/>
         <activity
             android:name=".RouteActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".TrackingActivity"/>
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
@@ -67,7 +69,8 @@
             android:exported="false" />
         <activity
             android:name=".TrackingActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".Analysis.AnalysisActivity"
             android:exported="false" />

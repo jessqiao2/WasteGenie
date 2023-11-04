@@ -512,6 +512,17 @@ public class CouncilTracking extends AppCompatActivity implements OnMapReadyCall
         });
     }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                Intent intent = new Intent(CouncilTracking.this, TrackingActivity.class);
+                startActivity(intent);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     private synchronized void adjustBounds(){
         if(isFinished1 && isFinished2){
