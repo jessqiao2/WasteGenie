@@ -221,7 +221,7 @@ public class RouteActivity extends AppCompatActivity implements OnMapReadyCallba
                 String mostRecentDate = binDataList.get(binDataList.size() - 1).getDate().split("T")[0];
                 for (BinData binData : binDataList){
                     String collectionDate = binData.getDate().split("T")[0];
-                    if (binData.getStatus().equals("Bin Picked Up") && collectionDate.equals(mostRecentDate)) {
+                    if ((binData.getStatus().contains("Bin Fully Recyclable") || binData.getStatus().contains("Bin Flagged as Contaminated")) && collectionDate.equals(mostRecentDate)) {
                         String address = binData.getBinAddress();
                         addressList.add(address);
                         routeBinList.add(binData);
@@ -275,8 +275,11 @@ public class RouteActivity extends AppCompatActivity implements OnMapReadyCallba
                                 String formattedTime = zonedDateTime.format(formatter);
 
                                 // Change marker colour based on contamination
-                                float hue = BitmapDescriptorFactory.HUE_RED;
-                                if(thisBinData.getStatus().equals("Bin Flagged as Contaminated")){
+
+                                float hue = 0;
+                                if(thisBinData.getStatus().contains("Bin Flagged as Contaminated")){
+                                    hue = BitmapDescriptorFactory.HUE_RED;
+                                } else if(thisBinData.getStatus().contains("Bin Fully Recyclable")){
                                     hue = BitmapDescriptorFactory.HUE_GREEN;
                                 }
                                 map.addMarker(new MarkerOptions()
@@ -296,13 +299,19 @@ public class RouteActivity extends AppCompatActivity implements OnMapReadyCallba
                             // Convert it to ZonedDateTime using the system's default time zone
                             ZonedDateTime zonedDateTime = instant.atZone(ZoneId.systemDefault());
 
+                            float hue = 0;
+                            if(lastBinData.getStatus().contains("Bin Flagged as Contaminated")){
+                                hue = BitmapDescriptorFactory.HUE_RED;
+                            } else if(lastBinData.getStatus().contains("Bin Fully Recyclable")){
+                                hue = BitmapDescriptorFactory.HUE_GREEN;
+                            }
                             // Format the date-time with AM/PM indicator
                             String formattedTime = zonedDateTime.format(formatter);
                             map.addMarker(new MarkerOptions()
                                     .position(endpointLL)
                                     .title(lastBinData.getBinName())
                                     .snippet("Truck " + lastBinData.getTruckId() + " at " + formattedTime)
-                                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+                                    .icon(BitmapDescriptorFactory.defaultMarker(hue)));
 
                         } catch (JSONException e) {
                             throw new RuntimeException(e);

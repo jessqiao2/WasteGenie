@@ -111,7 +111,7 @@
     <RelativeLayout
         android:id="@+id/rlLiveTrackingSpecific"
         android:layout_width="0dp"
-        android:layout_height="284dp"
+        android:layout_height="288dp"
         android:layout_marginStart="48dp"
         android:layout_marginTop="52dp"
         android:layout_marginEnd="64dp"
@@ -128,10 +128,10 @@
             android:layout_below="@+id/tvTrackTrucks"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="35dp"
             android:layout_marginEnd="24dp"
-            android:layout_marginBottom="110dp"
+            android:layout_marginBottom="93dp"
             android:background="@drawable/searchview_background">
 
             <Spinner
@@ -153,9 +153,9 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="104dp"
+            android:layout_marginTop="122dp"
             android:layout_marginEnd="24dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="8dp"
             android:background="@drawable/searchview_background">
 
             <Spinner
@@ -187,11 +187,11 @@
         <Button
             android:id="@+id/btViewTruckRoute"
             android:layout_width="292dp"
-            android:layout_height="46dp"
+            android:layout_height="45dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginStart="36dp"
-            android:layout_marginBottom="12dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/button_blue"
             android:text="View Truck Route"
             android:textColor="#FFFFFF"
@@ -202,9 +202,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="126dp"
+            android:layout_marginTop="148dp"
+            android:layout_marginBottom="106dp"
+            android:text="Select Truck from Council"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="61dp"
             android:layout_marginBottom="134dp"
-            android:text="OR"
+            android:layout_centerHorizontal="true"
+            android:text="Select Council"
             android:textColor="#FFFFFF"
             android:textSize="22sp"
             android:textStyle="bold" />
@@ -214,9 +226,9 @@
     <RelativeLayout
         android:id="@+id/rlLiveTrackingCouncil"
         android:layout_width="0dp"
-        android:layout_height="196dp"
+        android:layout_height="186dp"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="64dp"
         android:background="@drawable/blue_rectangle_frame"
         android:orientation="horizontal"
@@ -266,7 +278,7 @@
         <Button
             android:id="@+id/btViewCouncilRoutes"
             android:layout_width="292dp"
-            android:layout_height="48dp"
+            android:layout_height="45dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginStart="36dp"
@@ -281,7 +293,7 @@
         android:id="@+id/rlTopContamination"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/blue_rectangle_frame"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="@+id/rlMaps"

@@ -166,7 +166,7 @@ public class DisposalActivity extends AppCompatActivity implements OnMapReadyCal
         // Get all stops taken by a particular truck
         database = FirebaseDatabase.getInstance().getReference().child("1qHYUHw1GGaVy9oW_pT8LMAWjR9fODaJE1qWqhcSNHBs").child("Sheet2");
         // will change hardcoded value later
-        database.orderByChild("DropOffName").equalTo(INTENT_MESSAGE).addValueEventListener(new ValueEventListener() {
+        database.orderByChild("DropOffName").equalTo(message).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Gson gson = new Gson();

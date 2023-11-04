@@ -229,7 +229,7 @@ public class CouncilTracking extends AppCompatActivity implements OnMapReadyCall
                 String mostRecentDate2 = binDataList.get(binDataList.size() - 11).getDate().split("T")[0];
                 for (BinData binData : binDataList){
                     String collectionDate = binData.getDate().split("T")[0];
-                    if (binData.getStatus().equals("Bin Picked Up") && (collectionDate.equals(mostRecentDate) || collectionDate.equals(mostRecentDate2))) {
+                    if ((binData.getStatus().contains("Bin Fully Recyclable") || binData.getStatus().contains("Bin Flagged as Contaminated")) && (collectionDate.equals(mostRecentDate) || collectionDate.equals(mostRecentDate2))) {
                         String address = binData.getBinAddress();
 
                         // separate bins by truck
@@ -285,10 +285,17 @@ public class CouncilTracking extends AppCompatActivity implements OnMapReadyCall
                                 // Format the date-time with AM/PM indicator
                                 String formattedTime = zonedDateTime.format(formatter);
 
+                                float hue = 0;
+                                if(thisBinData.getStatus().contains("Bin Flagged as Contaminated")){
+                                    hue = BitmapDescriptorFactory.HUE_RED;
+                                } else if(thisBinData.getStatus().contains("Bin Fully Recyclable")){
+                                    hue = BitmapDescriptorFactory.HUE_GREEN;
+                                }
                                 map.addMarker(new MarkerOptions()
                                         .position(waypointLL)
                                         .title(thisBinData.getBinName())
-                                        .snippet("Collected by Truck " + thisBinData.getTruckId() + " at " + formattedTime));
+                                        .snippet("Collected by Truck " + thisBinData.getTruckId() + " at " + formattedTime)
+                                        .icon(BitmapDescriptorFactory.defaultMarker(hue)));
                             }
                             JSONObject endLoc = rawResponse.getJSONArray("routes").getJSONObject(0).getJSONArray("legs").getJSONObject(addressList1.size() - 2).getJSONObject("end_location");
                             LatLng endpointLL = new LatLng(endLoc.getDouble("lat"), endLoc.getDouble("lng"));
@@ -301,13 +308,19 @@ public class CouncilTracking extends AppCompatActivity implements OnMapReadyCall
                             // Convert it to ZonedDateTime using the system's default time zone
                             ZonedDateTime zonedDateTime = instant.atZone(ZoneId.systemDefault());
 
+                            float hue = 0;
+                            if(lastBinData.getStatus().contains("Bin Flagged as Contaminated")){
+                                hue = BitmapDescriptorFactory.HUE_RED;
+                            } else if(lastBinData.getStatus().contains("Bin Fully Recyclable")){
+                                hue = BitmapDescriptorFactory.HUE_GREEN;
+                            }
                             // Format the date-time with AM/PM indicator
                             String formattedTime = zonedDateTime.format(formatter);
                             map.addMarker(new MarkerOptions()
                                     .position(endpointLL)
                                     .title(routeBinList1.get(routeBinList1.size() - 1).getBinName())
                                     .snippet("Truck " + lastBinData.getTruckId() + " at " + formattedTime)
-                                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+                                    .icon(BitmapDescriptorFactory.defaultMarker(hue)));
                             isFinished1 = true;
                             adjustBounds();
 
@@ -367,8 +380,10 @@ public class CouncilTracking extends AppCompatActivity implements OnMapReadyCall
                                 String formattedTime = zonedDateTime.format(formatter);
 
                                 // Change marker colour based on contamination
-                                float hue = BitmapDescriptorFactory.HUE_RED;
-                                if(thisBinData.getStatus().equals("Bin Flagged as Contaminated")){
+                                float hue = 0;
+                                if(thisBinData.getStatus().contains("Bin Flagged as Contaminated")){
+                                    hue = BitmapDescriptorFactory.HUE_RED;
+                                } else if(thisBinData.getStatus().contains("Bin Fully Recyclable")){
                                     hue = BitmapDescriptorFactory.HUE_GREEN;
                                 }
 
@@ -391,11 +406,18 @@ public class CouncilTracking extends AppCompatActivity implements OnMapReadyCall
                             // Format the date-time with AM/PM indicator
                             String formattedTime = zonedDateTime.format(formatter);
 
+
+                            float hue = 0;
+                            if(lastBinData.getStatus().contains("Bin Flagged as Contaminated")){
+                                hue = BitmapDescriptorFactory.HUE_RED;
+                            } else if(lastBinData.getStatus().contains("Bin Fully Recyclable")){
+                                hue = BitmapDescriptorFactory.HUE_GREEN;
+                            }
                             map.addMarker(new MarkerOptions()
                                     .position(endpointLL)
                                     .title(routeBinList2.get(routeBinList2.size() - 1).getBinName())
                                     .snippet("Truck " + lastBinData.getTruckId() + " at " + formattedTime)
-                                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+                                    .icon(BitmapDescriptorFactory.defaultMarker(hue)));
                             isFinished2 = true;
                             adjustBounds();
 
