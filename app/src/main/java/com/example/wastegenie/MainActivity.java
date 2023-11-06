@@ -570,7 +570,10 @@ public class MainActivity extends AppCompatActivity {
                     finish();
                     return true;
                 } else if (id == R.id.logout) {
-                    Toast.makeText(getApplication(), "Logout Selected", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplication(), "You have been logged out.", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    finish();
                     return true;
                 }
 

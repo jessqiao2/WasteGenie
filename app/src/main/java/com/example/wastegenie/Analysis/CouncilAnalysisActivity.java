@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.example.wastegenie.Adapters.BinAnalysisAdapter;
 import com.example.wastegenie.DataModels.BinData;
 import com.example.wastegenie.DataModels.DropOffData;
+import com.example.wastegenie.LoginActivity;
 import com.example.wastegenie.MainActivity;
 import com.example.wastegenie.ProfileActivity;
 import com.example.wastegenie.R;
@@ -1048,8 +1049,10 @@ public class CouncilAnalysisActivity extends AppCompatActivity implements Recycl
                     finish();
                     return true;
                 } else if (id == R.id.logout) {
-                    Toast.makeText(getApplication(), "Logout Selected", Toast.LENGTH_SHORT).show();
-                    return true;
+                    Toast.makeText(getApplication(), "You have been logged out.", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(CouncilAnalysisActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    finish();
                 }
 
                 return false;

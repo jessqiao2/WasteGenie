@@ -8,7 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.wastegenie.CouncilMCs;
+import com.example.wastegenie.DataModels.CouncilMCs;
 import com.example.wastegenie.R;
 
 import java.util.ArrayList;

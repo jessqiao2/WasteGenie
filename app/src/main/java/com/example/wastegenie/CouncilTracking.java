@@ -75,7 +75,7 @@ public class CouncilTracking extends AppCompatActivity implements OnMapReadyCall
     DatabaseReference database;
     ArrayList<String> addressList1 = new ArrayList<String>();
     ArrayList<String> addressList2 = new ArrayList<String>();
-    String key;
+    String key = "AIzaSyAe0InYKdqmQjy4NFyLAt97pdHRJmsm9Lw";
     List<Double> lats = new ArrayList<>();
     List<Double> lngs = new ArrayList<>();
     Boolean isFinished1 = false;
@@ -180,11 +180,11 @@ public class CouncilTracking extends AppCompatActivity implements OnMapReadyCall
                 .build();
         RouteService routeService = retrofit.create(RouteService.class);
 
-        try {
-            key = getPackageManager().getApplicationInfo(getPackageName(), PackageManager.GET_META_DATA).metaData.get("com.google.android.geo.API_KEY").toString();
-        } catch (PackageManager.NameNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+//        try {
+//            key = getPackageManager().getApplicationInfo(getPackageName(), PackageManager.GET_META_DATA).metaData.get("com.google.android.geo.API_KEY").toString();
+//        } catch (PackageManager.NameNotFoundException e) {
+//            throw new RuntimeException(e);
+//        }
 
         // get from Firebase
         database = FirebaseDatabase.getInstance().getReference().child("1qHYUHw1GGaVy9oW_pT8LMAWjR9fODaJE1qWqhcSNHBs").child("Sheet1");
@@ -503,8 +503,10 @@ public class CouncilTracking extends AppCompatActivity implements OnMapReadyCall
                     finish();
                     return true;
                 } else if (id == R.id.logout) {
-                    Toast.makeText(getApplication(), "Logout Selected", Toast.LENGTH_SHORT).show();
-                    return true;
+                    Toast.makeText(getApplication(), "You have been logged out.", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(CouncilTracking.this, LoginActivity.class);
+                    startActivity(intent);
+                    finish();
                 }
 
                 return false;

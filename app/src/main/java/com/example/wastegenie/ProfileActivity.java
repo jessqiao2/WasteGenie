@@ -6,20 +6,28 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.wastegenie.Analysis.AnalysisActivity;
+import com.example.wastegenie.Analysis.GuideActivity;
 import com.google.android.material.navigation.NavigationView;
 
 public class ProfileActivity extends AppCompatActivity {
 
     NavigationView navigationView;
+    Button btnLogOut;
+    Button btnFAQs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         setTitle("Profile Page");
+
+        btnLogOut = findViewById(R.id.btnLogOut);
+        btnFAQs = findViewById(R.id.btnFAQs);
 
         /**
          * Set up navigation view
@@ -49,11 +57,33 @@ public class ProfileActivity extends AppCompatActivity {
                 } else if (id == R.id.profile) {
                     return true;
                 } else if (id == R.id.logout) {
-                    Toast.makeText(getApplication(), "Logout Selected", Toast.LENGTH_SHORT).show();
-                    return true;
+                    Toast.makeText(getApplication(), "You have been logged out.", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(ProfileActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    finish();
                 }
 
                 return false;
+            }
+        });
+
+        btnLogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplication(), "You have been logged out.", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(ProfileActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        btnFAQs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                /** Where should this go? */
+//                Intent intent = new Intent(ProfileActivity.this, GuideActivity.class);
+//                startActivity(intent);
+//                finish();
             }
         });
     }

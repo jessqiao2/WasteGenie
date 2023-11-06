@@ -57,6 +57,7 @@ import java.util.List;
 import java.util.Map;
 
 import okhttp3.ResponseBody;
+import okhttp3.Route;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -69,7 +70,7 @@ public class RouteActivity extends AppCompatActivity implements OnMapReadyCallba
 
     DatabaseReference database;
     ArrayList<String> addressList = new ArrayList<String>();
-    String key = null;
+    String key = "AIzaSyAe0InYKdqmQjy4NFyLAt97pdHRJmsm9Lw";
     private MapView mvRoute;
     GoogleMap map;
     private static final String MAPVIEW_BUNDLE_KEY = "MapViewBundleKey";
@@ -177,11 +178,11 @@ public class RouteActivity extends AppCompatActivity implements OnMapReadyCallba
                 .build();
         RouteService routeService = retrofit.create(RouteService.class);
 
-        try {
-            key = getPackageManager().getApplicationInfo(getPackageName(), PackageManager.GET_META_DATA).metaData.get("com.google.android.geo.API_KEY").toString();
-        } catch (PackageManager.NameNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+//        try {
+//            key = getPackageManager().getApplicationInfo(getPackageName(), PackageManager.GET_META_DATA).metaData.get("com.google.android.geo.API_KEY").toString();
+//        } catch (PackageManager.NameNotFoundException e) {
+//            throw new RuntimeException(e);
+//        }
 
         // Get all stops taken by a particular truck
         database = FirebaseDatabase.getInstance().getReference().child("1qHYUHw1GGaVy9oW_pT8LMAWjR9fODaJE1qWqhcSNHBs").child("Sheet1");
@@ -394,8 +395,10 @@ public class RouteActivity extends AppCompatActivity implements OnMapReadyCallba
                     finish();
                     return true;
                 } else if (id == R.id.logout) {
-                    Toast.makeText(getApplication(), "Logout Selected", Toast.LENGTH_SHORT).show();
-                    return true;
+                    Toast.makeText(getApplication(), "You have been logged out.", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(RouteActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    finish();
                 }
 
                 return false;

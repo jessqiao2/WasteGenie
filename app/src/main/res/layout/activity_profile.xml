@@ -6,6 +6,203 @@
     android:layout_height="match_parent"
     tools:context=".ProfileActivity">
 
+    <RelativeLayout
+        android:id="@+id/rlProfile2"
+        android:layout_width="720dp"
+        android:layout_height="552dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/lightblue_rectangle_frame"
+        app:layout_constraintStart_toStartOf="@id/tvProfileTitle"
+        app:layout_constraintTop_toBottomOf="@+id/rlProfile">
+
+        <TextView
+            android:id="@+id/tvAchievements"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/public_sans_bold"
+            android:text="Achievements"
+            android:textColor="@color/blue"
+            android:textSize="44sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvAchievements"
+            android:layout_alignStart="@+id/tvAchievements"
+            android:layout_marginStart="54dp"
+            android:layout_marginTop="38dp"
+            android:fontFamily="@font/public_sans_bold"
+            android:text="Waste Score:"
+            android:textColor="@color/blue"
+            android:textSize="34dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView19"
+            android:layout_alignStart="@+id/textView19"
+            android:layout_alignParentEnd="false"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/public_sans_bold"
+            android:text="44%"
+            android:textColor="@color/blue"
+            android:textSize="92dp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvAchievements"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/textView22"
+            app:srcCompat="@drawable/trash" />
+
+        <TextView
+            android:id="@+id/textView23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView22"
+            android:layout_alignStart="@+id/tvAchievements"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="false"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="114dp"
+            android:layout_marginEnd="24dp"
+            android:fontFamily="@font/public_sans_bold"
+            android:text="Your Waste Score is calculated as the percentage of fully recycled bins collected over the past month."
+            android:textColor="@color/blue"
+            android:textSize="28dp" />
+
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/tvProfileTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/public_sans_bold"
+        android:text="My Profile"
+        android:textColor="#2995E2"
+        android:textSize="50sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.223"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.045" />
+
+
+    <RelativeLayout
+        android:id="@+id/rlProfile"
+        android:layout_width="720dp"
+        android:layout_height="220dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/lightblue_rectangle_frame"
+        app:layout_constraintStart_toStartOf="@id/tvProfileTitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvProfileTitle">
+
+        <TextView
+            android:id="@+id/tvProfileName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/public_sans_bold"
+            android:text="Cleanaway"
+            android:textColor="@color/blue"
+            android:textSize="44sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvProfileName"
+            android:layout_alignStart="@+id/tvProfileName"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="70dp"
+            android:fontFamily="@font/public_sans_bold"
+            android:text="admin@cleanaway.com.au"
+            android:textColor="@color/blue"
+            android:textSize="28sp" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="48dp"
+            app:srcCompat="@drawable/logo" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlProfileCouncils"
+        android:layout_width="672dp"
+        android:layout_height="196dp"
+        android:layout_marginStart="48dp"
+        android:background="@drawable/lightblue_rectangle_frame"
+        app:layout_constraintStart_toEndOf="@+id/rlProfile"
+        app:layout_constraintTop_toTopOf="@+id/rlProfile">
+
+        <TextView
+            android:id="@+id/tvProfileName3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvCouncilNo"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="48dp"
+            android:fontFamily="@font/public_sans_bold"
+            android:text="Councils Serviced"
+            android:textColor="@color/blue"
+            android:textSize="42sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvCouncilNo"
+            android:layout_width="wrap_content"
+            android:layout_height="105dp"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentTop="false"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="180dp"
+            android:fontFamily="@font/public_sans_bold"
+            android:text="10"
+            android:textColor="@color/blue"
+            android:textSize="76sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="150dp"
+            android:layout_height="159dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="32dp"
+            app:srcCompat="@drawable/marker" />
+
+    </RelativeLayout>
+
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
@@ -23,4 +220,138 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:menu="@menu/navigation" />
+
+    <RelativeLayout
+        android:id="@+id/rlProfileTrucks"
+        android:layout_width="672dp"
+        android:layout_height="196dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/lightblue_rectangle_frame"
+        app:layout_constraintStart_toEndOf="@+id/rlProfile2"
+        app:layout_constraintTop_toBottomOf="@+id/rlProfileCouncils">
+
+        <TextView
+            android:id="@+id/tvTruckNo"
+            android:layout_width="wrap_content"
+            android:layout_height="97dp"
+            android:layout_marginStart="128dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="396dp"
+            android:fontFamily="@font/public_sans_bold"
+            android:text="20"
+            android:textColor="@color/blue"
+            android:textSize="76sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvProfileName4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvTruckNo"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="0dp"
+            android:fontFamily="@font/public_sans_bold"
+            android:text="Active Trucks"
+            android:textColor="@color/blue"
+            android:textSize="42sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="265dp"
+            android:layout_height="167dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="22dp"
+            app:srcCompat="@drawable/truck" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rlProfileBins"
+        android:layout_width="672dp"
+        android:layout_height="196dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/lightblue_rectangle_frame"
+        app:layout_constraintStart_toStartOf="@+id/rlProfileCouncils"
+        app:layout_constraintTop_toBottomOf="@+id/rlProfileTrucks">
+
+        <TextView
+            android:id="@+id/tvProfileName5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvCouncilNo2"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="92dp"
+            android:fontFamily="@font/public_sans_bold"
+            android:text="Total Bins"
+            android:textColor="@color/blue"
+            android:textSize="42sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvCouncilNo2"
+            android:layout_width="wrap_content"
+            android:layout_height="105dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="120dp"
+            android:fontFamily="@font/public_sans_bold"
+            android:text="134"
+            android:textColor="@color/blue"
+            android:textSize="76sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="172dp"
+            android:layout_height="168dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="60dp"
+            app:srcCompat="@drawable/bins" />
+    </RelativeLayout>
+
+
+    <Button
+        android:id="@+id/btnFAQs"
+        android:layout_width="320dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/purple_rectangle_frame"
+        android:fontFamily="@font/public_sans_bold"
+        android:text="FAQs"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="60sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/rlProfileCouncils"
+        app:layout_constraintTop_toBottomOf="@+id/rlProfileBins" />
+
+
+    <Button
+        android:id="@+id/btnLogOut"
+        android:layout_width="320dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="36dp"
+        android:background="@drawable/red_rectangle_frame"
+        android:text="Log Out"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="52sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/btnFAQs"
+        app:layout_constraintTop_toTopOf="@+id/btnFAQs" />
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

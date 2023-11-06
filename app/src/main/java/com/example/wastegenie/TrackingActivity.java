@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,6 +19,7 @@ import android.widget.Toast;
 import com.example.wastegenie.Adapters.TopCouncilsAdapter;
 import com.example.wastegenie.Analysis.AnalysisActivity;
 import com.example.wastegenie.DataModels.BinData;
+import com.example.wastegenie.DataModels.CouncilMCs;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -59,7 +59,7 @@ public class TrackingActivity extends AppCompatActivity implements OnMapReadyCal
     private static final String MAPVIEW_BUNDLE_KEY = "MapViewBundleKey";
     DatabaseReference database;
     ArrayList<String> addressList = new ArrayList<String>();
-    String key = null;
+    String key = "AIzaSyAe0InYKdqmQjy4NFyLAt97pdHRJmsm9Lw";
 
     Spinner truckSpinner;
     Spinner councilSpinner;
@@ -231,11 +231,11 @@ public class TrackingActivity extends AppCompatActivity implements OnMapReadyCal
 
         GeocodingService geocodingService = retrofit.create(GeocodingService.class);
 
-        try {
-            key = getPackageManager().getApplicationInfo(getPackageName(), PackageManager.GET_META_DATA).metaData.get("com.google.android.geo.API_KEY").toString();
-        } catch (PackageManager.NameNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+//        try {
+//            key = getPackageManager().getApplicationInfo(getPackageName(), PackageManager.GET_META_DATA).metaData.get("com.google.android.geo.API_KEY").toString();
+//        } catch (PackageManager.NameNotFoundException e) {
+//            throw new RuntimeException(e);
+//        }
 
         database = FirebaseDatabase.getInstance().getReference().child("1qHYUHw1GGaVy9oW_pT8LMAWjR9fODaJE1qWqhcSNHBs").child("Sheet1");
         database.orderByChild("status").equalTo("Bin Flagged as Contaminated").addChildEventListener(new ChildEventListener() {
@@ -328,8 +328,10 @@ public class TrackingActivity extends AppCompatActivity implements OnMapReadyCal
                     finish();
                     return true;
                 } else if (id == R.id.logout) {
-                    Toast.makeText(getApplication(), "Logout Selected", Toast.LENGTH_SHORT).show();
-                    return true;
+                    Toast.makeText(getApplication(), "You have been logged out.", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(TrackingActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    finish();
                 }
 
                 return false;

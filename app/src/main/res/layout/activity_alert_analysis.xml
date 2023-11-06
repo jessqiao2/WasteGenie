@@ -57,7 +57,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.466"
-        app:layout_constraintStart_toEndOf="@+id/rlHomeScore"
+        app:layout_constraintStart_toEndOf="@+id/rlProfile2"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.044">
 
@@ -148,10 +148,10 @@
         android:textColor="#2995E2"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/rlHomeScore"
+        app:layout_constraintEnd_toEndOf="@+id/rlProfile2"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/rlHomeScore"
-        app:layout_constraintTop_toBottomOf="@+id/rlHomeScore"
+        app:layout_constraintStart_toStartOf="@+id/rlProfile2"
+        app:layout_constraintTop_toBottomOf="@+id/rlProfile2"
         app:layout_constraintVertical_bias="0.028" />
 
     <TextView
@@ -164,7 +164,7 @@
         android:textColor="#87BBDF"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="@+id/tvAlertWeekly"
-        app:layout_constraintEnd_toEndOf="@+id/rlHomeScore"
+        app:layout_constraintEnd_toEndOf="@+id/rlProfile2"
         app:layout_constraintHorizontal_bias="0.015"
         app:layout_constraintStart_toEndOf="@+id/tvAlertWeekly"
         app:layout_constraintTop_toTopOf="@+id/tvAlertWeekly"
@@ -180,14 +180,14 @@
         android:textColor="#2995E2"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="@+id/tvHomeGraphTitle"
-        app:layout_constraintEnd_toEndOf="@+id/rlHomeScore"
+        app:layout_constraintEnd_toEndOf="@+id/rlProfile2"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/tvHomeGraphTitle"
         app:layout_constraintTop_toTopOf="@+id/tvHomeGraphTitle"
         app:layout_constraintVertical_bias="0.0" />
 
     <RelativeLayout
-        android:id="@+id/rlHomeScore"
+        android:id="@+id/rlProfile2"
         android:layout_width="692dp"
         android:layout_height="102dp"
         android:layout_marginTop="24dp"
@@ -270,7 +270,7 @@
         android:layout_height="521dp"
         android:background="@drawable/blue_rectangle_frame"
         app:layout_constraintBottom_toBottomOf="@+id/relativeLayout6"
-        app:layout_constraintEnd_toEndOf="@+id/rlHomeScore"
+        app:layout_constraintEnd_toEndOf="@+id/rlProfile2"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/tvHomeGraphTitle"
         app:layout_constraintTop_toTopOf="@+id/relativeLayout6"

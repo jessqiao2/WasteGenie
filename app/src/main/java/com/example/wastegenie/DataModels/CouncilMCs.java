@@ -1,4 +1,4 @@
-package com.example.wastegenie;
+package com.example.wastegenie.DataModels;
 
 public class CouncilMCs {
     String councilName;

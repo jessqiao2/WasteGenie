@@ -305,9 +305,9 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/blue_rectangle_frame"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/rlHomeScore"
+        app:layout_constraintEnd_toEndOf="@+id/rlProfile2"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/rlHomeScore"
+        app:layout_constraintStart_toStartOf="@+id/rlProfile2"
         app:layout_constraintTop_toBottomOf="@+id/tvHomeGraphTitle"
         app:layout_constraintVertical_bias="0.0">
 
@@ -360,9 +360,9 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/blue_rectangle_frame"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/rlHomeScore"
+        app:layout_constraintEnd_toEndOf="@+id/rlProfile2"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/rlHomeScore"
+        app:layout_constraintStart_toStartOf="@+id/rlProfile2"
         app:layout_constraintTop_toBottomOf="@+id/tvHomeGraphTitle"
         app:layout_constraintVertical_bias="0.0">
 
@@ -416,9 +416,9 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/blue_rectangle_frame"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/rlHomeScore"
+        app:layout_constraintEnd_toEndOf="@+id/rlProfile2"
         app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="@+id/rlHomeScore"
+        app:layout_constraintStart_toStartOf="@+id/rlProfile2"
         app:layout_constraintTop_toBottomOf="@+id/tvHomeGraphTitle"
         app:layout_constraintVertical_bias="0.0">
 
@@ -508,7 +508,7 @@
         android:layout_height="547dp"
         android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/rlHomeScore"
+        app:layout_constraintStart_toEndOf="@+id/rlProfile2"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.github.mikephil.charting.charts.BarChart
@@ -578,7 +578,7 @@
         android:layout_marginTop="10dp"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/rlHomeScore"
+        app:layout_constraintStart_toEndOf="@+id/rlProfile2"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.github.mikephil.charting.charts.BarChart
@@ -699,7 +699,7 @@
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/tvHomeWelcome"
-        app:layout_constraintTop_toBottomOf="@+id/rlHomeScore"
+        app:layout_constraintTop_toBottomOf="@+id/rlProfile2"
         app:layout_constraintVertical_bias="0.031" />
 
 
@@ -733,7 +733,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <RelativeLayout
-        android:id="@+id/rlHomeScore"
+        android:id="@+id/rlProfile2"
         android:layout_width="687dp"
         android:layout_height="130dp"
         android:background="@drawable/blue_rectangle_frame"

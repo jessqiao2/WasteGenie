@@ -2,6 +2,7 @@
     <string name="app_name">WasteGenie</string>
     <string name="title_activity_maps">MapsActivity</string>
 
+
     // for council spinner
     <string-array name="councilArray">
         <item>Parramatta</item>

@@ -14,9 +14,9 @@
         android:layout_height="468dp"
         android:background="@drawable/blue_rectangle_frame"
         app:layout_constraintBottom_toBottomOf="@+id/rlHomeTrack"
-        app:layout_constraintEnd_toEndOf="@+id/rlHomeScore"
+        app:layout_constraintEnd_toEndOf="@+id/rlProfile2"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/rlHomeScore"
+        app:layout_constraintStart_toStartOf="@+id/rlProfile2"
         app:layout_constraintTop_toTopOf="@+id/rlHomeTrack"
         app:layout_constraintVertical_bias="1.0">
 
@@ -282,7 +282,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.52"
-        app:layout_constraintStart_toEndOf="@+id/rlHomeScore"
+        app:layout_constraintStart_toEndOf="@+id/rlProfile2"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.215">
 
@@ -370,7 +370,7 @@
 
 
     <RelativeLayout
-        android:id="@+id/rlHomeScore"
+        android:id="@+id/rlProfile2"
         android:layout_width="693dp"
         android:layout_height="179dp"
         android:layout_marginTop="24dp"
