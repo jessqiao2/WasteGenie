@@ -53,11 +53,11 @@ public class ResourceData {
     public static ArrayList<ResourceData> getResourceData() {
         ArrayList<ResourceData> resources = new ArrayList<>();
         resources.add(new ResourceData("Computer Recycling - Managing E-waste", "Planet Ark", "https://recyclingnearyou.com.au/computers/", R.drawable.resource1));
-        resources.add(new ResourceData("Recycling Old Phones", "MobileMuster", "https://www.mobilemuster.com.au/", R.drawable.resource2));
+        resources.add(new ResourceData("Why Recycle E-waste?", "EcoCycle", "https://ecocycle.com.au/why-do-we-recycle-e-waste/#:~:text=It%20prevents%20toxic%20hazards,aren't%20disposed%20of%20responsibly.", R.drawable.resource2));
         resources.add(new ResourceData("National TV and Computer Recycling Scheme","Tech Collect","https://techcollect.com.au/", R.drawable.resource3));
-        resources.add(new ResourceData("Recycle eWaste", "NetWaste", "https://www.netwaste.com.au/ewaste/", R.drawable.resource4));
-        resources.add(new ResourceData("E-Waste Collection and Recycling", "EcoActiv", "https://www.ecoactiv.com.au/e-waste-electronic-recycling-disposal/", R.drawable.resource5));
-        resources.add(new ResourceData("Ultimate Guide to E-Waste", "Safety Culture", "https://safetyculture.com/topics/waste-management-system/e-waste-management/", R.drawable.resource6));
+        resources.add(new ResourceData("Benefits of Recycling E-Waste", "Tech Recyclers", "https://www.atechrecyclers.com.au/top-5-benefits-of-recycling-e-waste/", R.drawable.resource4));
+        resources.add(new ResourceData("E-Waste Fact Sheet", "World Health Organisation", "https://www.who.int/news-room/fact-sheets/detail/electronic-waste-(e-waste)", R.drawable.resource5));
+        resources.add(new ResourceData("Sydney E-Waste Services", "E Wastec", "https://ewastec.com.au/sydney/", R.drawable.resource6));
         return resources;
     }
 
